@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kodera — App Development Studio</title>
+    <meta name="description" content="Kodera LLC builds thoughtfully crafted mobile applications for iOS and the Apple ecosystem.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌘</text></svg>">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #fafafa;
+            --text: #1d1d1f;
+            --muted: #6e6e73;
+            --accent: #0071e3;
+            --card-bg: #ffffff;
+            --border: #e5e5e7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 20px 24px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        nav a.contact-link {
+            font-size: 0.875rem;
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        nav a.contact-link:hover { text-decoration: underline; }
+
+        .hero {
+            text-align: center;
+            padding: 100px 24px 80px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--muted);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .services {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 36px 32px;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .card h3 {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            font-size: 0.9375rem;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .about {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 16px;
+        }
+
+        .about p {
+            font-size: 1rem;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        footer {
+            border-top: 1px solid var(--border);
+            text-align: center;
+            padding: 32px 24px;
+            font-size: 0.8125rem;
+            color: var(--muted);
+        }
+
+        footer a {
+            color: var(--muted);
+            text-decoration: none;
+        }
+
+        footer a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="/" class="logo">Kodera</a>
+        <a href="mailto:admin@koderastudio.com" class="contact-link">Contact</a>
+    </nav>
+
+    <section class="hero">
+        <h1>We build apps people love to use.</h1>
+        <p>Kodera is a software studio focused on crafting high-quality mobile applications for iOS and the Apple ecosystem.</p>
+    </section>
+
+    <section class="services">
+        <div class="card">
+            <div class="card-icon">📱</div>
+            <h3>iOS Development</h3>
+            <p>Native apps built with Swift and SwiftUI, designed for performance and a seamless user experience.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🎨</div>
+            <h3>Product Design</h3>
+            <p>Intuitive interfaces that follow Apple's Human Interface Guidelines and delight users.</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🚀</div>
+            <h3>App Store Launch</h3>
+            <p>End-to-end support from concept to App Store submission and beyond.</p>
+        </div>
+    </section>
+
+    <section class="about">
+        <h2>About Kodera</h2>
+        <p>Kodera LLC is an app development studio dedicated to building thoughtful, well-crafted software for Apple platforms. We combine clean code with great design to create applications that make a difference.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Kodera LLC. All rights reserved. &nbsp;·&nbsp; <a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a></p>
+    </footer>
+
+</body>
+</html>

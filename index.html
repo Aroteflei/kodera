@@ -24,9 +24,27 @@
             --accent-dim: rgba(232, 200, 114, 0.12);
             --border: rgba(255, 255, 255, 0.06);
             --border-hover: rgba(255, 255, 255, 0.12);
+            --nav-scrolled-bg: rgba(10, 10, 11, 0.85);
+            --card-shadow: rgba(0, 0, 0, 0.3);
             --radius: 20px;
             --font-display: 'Instrument Serif', Georgia, serif;
             --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        :root.light {
+            --bg-primary: #fafaf9;
+            --bg-secondary: #f5f5f4;
+            --bg-elevated: #e7e5e4;
+            --bg-glass: rgba(0, 0, 0, 0.02);
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --text-tertiary: #a8a29e;
+            --accent: #b8960a;
+            --accent-dim: rgba(184, 150, 10, 0.08);
+            --border: rgba(0, 0, 0, 0.06);
+            --border-hover: rgba(0, 0, 0, 0.12);
+            --nav-scrolled-bg: rgba(250, 250, 249, 0.85);
+            --card-shadow: rgba(0, 0, 0, 0.08);
         }
 
         html { scroll-behavior: smooth; }
@@ -39,6 +57,7 @@
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
+            transition: background 0.4s ease, color 0.4s ease;
         }
 
         /* ── Noise overlay ── */
@@ -75,7 +94,7 @@
 
         nav.scrolled {
             padding: 16px 0;
-            background: rgba(10, 10, 11, 0.85);
+            background: var(--nav-scrolled-bg);
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--border);
@@ -93,6 +112,13 @@
             color: var(--text-primary);
             text-decoration: none;
             letter-spacing: -0.01em;
+            transition: color 0.4s ease;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .nav-links {
@@ -100,6 +126,7 @@
             align-items: center;
             gap: 36px;
             list-style: none;
+            margin-right: 16px;
         }
 
         .nav-links a {
@@ -120,13 +147,34 @@
             background: var(--accent);
             padding: 10px 22px;
             border-radius: 100px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.4s ease !important;
         }
 
         .nav-cta:hover {
             transform: translateY(-1px);
             box-shadow: 0 8px 30px rgba(232, 200, 114, 0.25);
         }
+
+        .toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover {
+            color: var(--text-secondary);
+            border-color: var(--border-hover);
+        }
+
+        .toggle-btn svg { width: 15px; height: 15px; }
 
         /* ── Hero ── */
         .hero {
@@ -140,7 +188,6 @@
             overflow: hidden;
         }
 
-        /* Animated gradient orb */
         .hero::before {
             content: '';
             position: absolute;
@@ -172,7 +219,6 @@
             50% { transform: translate(-50%, -55%) scale(1.15); opacity: 0.7; }
         }
 
-        /* Dot grid background */
         .hero-grid {
             position: absolute;
             inset: 0;
@@ -181,6 +227,10 @@
             mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
             -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
             pointer-events: none;
+        }
+
+        :root.light .hero-grid {
+            background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
         }
 
         .hero-content {
@@ -202,6 +252,7 @@
             color: var(--accent);
             margin-bottom: 40px;
             letter-spacing: 0.03em;
+            transition: all 0.4s ease;
         }
 
         .hero-badge::before {
@@ -225,11 +276,13 @@
             line-height: 1.05;
             letter-spacing: -0.03em;
             margin-bottom: 28px;
+            transition: color 0.4s ease;
         }
 
         .hero h1 em {
             font-style: italic;
             color: var(--accent);
+            transition: color 0.4s ease;
         }
 
         .hero-sub {
@@ -238,6 +291,7 @@
             max-width: 520px;
             margin: 0 auto 48px;
             line-height: 1.7;
+            transition: color 0.4s ease;
         }
 
         .hero-actions {
@@ -262,7 +316,7 @@
             border-radius: 100px;
             cursor: pointer;
             text-decoration: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease, color 0.4s ease;
             letter-spacing: 0.01em;
         }
 
@@ -295,6 +349,11 @@
             color: var(--text-primary);
             border-color: rgba(255, 255, 255, 0.25);
             background: rgba(255, 255, 255, 0.03);
+        }
+
+        :root.light .btn-secondary:hover {
+            border-color: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.03);
         }
 
         /* ── Scroll indicator ── */
@@ -340,6 +399,7 @@
             text-transform: uppercase;
             letter-spacing: 0.12em;
             margin-bottom: 24px;
+            transition: color 0.4s ease;
         }
 
         .section-label::before {
@@ -347,6 +407,7 @@
             width: 24px;
             height: 1px;
             background: var(--accent);
+            transition: background 0.4s ease;
         }
 
         .section-title {
@@ -356,6 +417,7 @@
             line-height: 1.15;
             letter-spacing: -0.02em;
             margin-bottom: 20px;
+            transition: color 0.4s ease;
         }
 
         .section-desc {
@@ -363,17 +425,17 @@
             color: var(--text-secondary);
             max-width: 520px;
             line-height: 1.7;
+            transition: color 0.4s ease;
         }
 
         /* ── Services ── */
         .services {
             padding: 140px 0;
             border-top: 1px solid var(--border);
+            transition: border-color 0.4s ease;
         }
 
-        .services-header {
-            margin-bottom: 72px;
-        }
+        .services-header { margin-bottom: 72px; }
 
         .services-grid {
             display: grid;
@@ -403,7 +465,7 @@
         .service-card:hover {
             border-color: var(--border-hover);
             transform: translateY(-4px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px var(--card-shadow);
         }
 
         .service-card:hover::before { opacity: 1; }
@@ -421,6 +483,7 @@
             font-size: 1.375rem;
             position: relative;
             z-index: 1;
+            transition: all 0.4s ease;
         }
 
         .service-card h3 {
@@ -430,6 +493,7 @@
             margin-bottom: 12px;
             position: relative;
             z-index: 1;
+            transition: color 0.4s ease;
         }
 
         .service-card p {
@@ -438,17 +502,17 @@
             line-height: 1.7;
             position: relative;
             z-index: 1;
+            transition: color 0.4s ease;
         }
 
         /* ── Process ── */
         .process {
             padding: 140px 0;
             border-top: 1px solid var(--border);
+            transition: border-color 0.4s ease;
         }
 
-        .process-header {
-            margin-bottom: 80px;
-        }
+        .process-header { margin-bottom: 80px; }
 
         .process-steps {
             display: grid;
@@ -503,18 +567,21 @@
             font-size: 1.25rem;
             font-weight: 400;
             margin-bottom: 10px;
+            transition: color 0.4s ease;
         }
 
         .process-step p {
             font-size: 0.875rem;
             color: var(--text-secondary);
             line-height: 1.6;
+            transition: color 0.4s ease;
         }
 
         /* ── About ── */
         .about {
             padding: 140px 0;
             border-top: 1px solid var(--border);
+            transition: border-color 0.4s ease;
         }
 
         .about-inner {
@@ -555,12 +622,14 @@
             color: var(--accent);
             line-height: 1;
             margin-bottom: 8px;
+            transition: color 0.4s ease;
         }
 
         .stat-label {
             font-size: 0.8125rem;
             color: var(--text-secondary);
             letter-spacing: 0.02em;
+            transition: color 0.4s ease;
         }
 
         /* ── CTA ── */
@@ -570,6 +639,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            transition: border-color 0.4s ease;
         }
 
         .cta::before {
@@ -603,6 +673,7 @@
         footer {
             border-top: 1px solid var(--border);
             padding: 60px 0 40px;
+            transition: border-color 0.4s ease;
         }
 
         .footer-inner {
@@ -612,22 +683,17 @@
             margin-bottom: 60px;
         }
 
-        .footer-brand .logo {
-            display: block;
-            margin-bottom: 12px;
-        }
+        .footer-brand .logo { display: block; margin-bottom: 12px; }
 
         .footer-brand p {
             font-size: 0.875rem;
             color: var(--text-tertiary);
             max-width: 280px;
             line-height: 1.6;
+            transition: color 0.4s ease;
         }
 
-        .footer-links {
-            display: flex;
-            gap: 64px;
-        }
+        .footer-links { display: flex; gap: 64px; }
 
         .footer-col h4 {
             font-size: 0.75rem;
@@ -636,6 +702,7 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-bottom: 20px;
+            transition: color 0.4s ease;
         }
 
         .footer-col ul {
@@ -662,6 +729,7 @@
             border-top: 1px solid var(--border);
             font-size: 0.8125rem;
             color: var(--text-tertiary);
+            transition: all 0.4s ease;
         }
 
         .footer-legal a {
@@ -671,6 +739,27 @@
         }
 
         .footer-legal a:hover { color: var(--text-secondary); }
+
+        /* ── Language toggle ── */
+        [data-lang="es"] { display: none; }
+        html[lang="es"] [data-lang="es"] { display: block; }
+        html[lang="es"] [data-lang="en"] { display: none; }
+        /* Inline variants for spans/links inside flex containers */
+        span[data-lang="es"], a[data-lang="es"] { display: none; }
+        html[lang="es"] span[data-lang="es"], html[lang="es"] a[data-lang="es"] { display: inline; }
+        html[lang="es"] span[data-lang="en"], html[lang="es"] a[data-lang="en"] { display: none; }
+        /* For list items */
+        li[data-lang="es"] { display: none; }
+        html[lang="es"] li[data-lang="es"] { display: list-item; }
+        html[lang="es"] li[data-lang="en"] { display: none; }
+        /* For divs used as inline-flex (badges, actions) */
+        div.hero-badge[data-lang="es"] { display: none; }
+        html[lang="es"] div.hero-badge[data-lang="es"] { display: inline-flex; }
+        html[lang="es"] div.hero-badge[data-lang="en"] { display: none; }
+        /* Section labels */
+        div.section-label[data-lang="es"] { display: none; }
+        html[lang="es"] div.section-label[data-lang="es"] { display: inline-flex; }
+        html[lang="es"] div.section-label[data-lang="en"] { display: none; }
 
         /* ── Scroll animations ── */
         .reveal {
@@ -696,10 +785,10 @@
             animation: hero-enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
-        .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
-        .hero-content > *:nth-child(3) { animation-delay: 0.35s; }
-        .hero-content > *:nth-child(4) { animation-delay: 0.5s; }
+        .hero-content > *:nth-child(1), .hero-content > *:nth-child(2) { animation-delay: 0.1s; }
+        .hero-content > *:nth-child(3), .hero-content > *:nth-child(4) { animation-delay: 0.2s; }
+        .hero-content > *:nth-child(5), .hero-content > *:nth-child(6) { animation-delay: 0.35s; }
+        .hero-content > *:nth-child(7), .hero-content > *:nth-child(8) { animation-delay: 0.5s; }
 
         @keyframes hero-enter {
             to { opacity: 1; transform: translateY(0); }
@@ -708,45 +797,24 @@
         /* ── Mobile responsive ── */
         @media (max-width: 960px) {
             .services-grid { grid-template-columns: 1fr; }
-
-            .process-steps {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 40px;
-            }
-
+            .process-steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
             .process-steps::before { display: none; }
-
-            .about-inner {
-                grid-template-columns: 1fr;
-                gap: 48px;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-                gap: 48px;
-            }
+            .about-inner { grid-template-columns: 1fr; gap: 48px; }
+            .footer-inner { flex-direction: column; gap: 48px; }
         }
 
         @media (max-width: 640px) {
             .nav-links { display: none; }
-
             .hero { min-height: auto; padding: 160px 24px 100px; }
             .scroll-indicator { display: none; }
-
             .services, .process, .about, .cta { padding: 80px 0; }
-
             .services-header, .process-header { margin-bottom: 48px; }
-
             .process-steps { grid-template-columns: 1fr; gap: 32px; }
-
             .about-stats { grid-template-columns: 1fr 1fr; gap: 16px; }
-
             .stat { padding: 24px; }
             .stat-value { font-size: 2rem; }
-
             .footer-links { gap: 40px; flex-wrap: wrap; }
             .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-
             .hero-actions { flex-direction: column; }
             .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
         }
@@ -758,12 +826,25 @@
     <nav id="nav">
         <div class="container">
             <a href="/" class="logo">Kodera</a>
-            <ul class="nav-links">
-                <li><a href="#services">Services</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="mailto:admin@koderastudio.com" class="nav-cta">Get in Touch</a></li>
-            </ul>
+            <div class="nav-right">
+                <ul class="nav-links">
+                    <li data-lang="en"><a href="#services">Services</a></li>
+                    <li data-lang="es"><a href="#services">Servicios</a></li>
+                    <li data-lang="en"><a href="#process">Process</a></li>
+                    <li data-lang="es"><a href="#process">Proceso</a></li>
+                    <li data-lang="en"><a href="#about">About</a></li>
+                    <li data-lang="es"><a href="#about">Nosotros</a></li>
+                    <li data-lang="en"><a href="mailto:admin@koderastudio.com" class="nav-cta">Get in Touch</a></li>
+                    <li data-lang="es"><a href="mailto:admin@koderastudio.com" class="nav-cta">Contacto</a></li>
+                </ul>
+                <button class="toggle-btn" id="lang-toggle" aria-label="Switch language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+                </button>
+                <button class="toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+                    <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -771,15 +852,25 @@
     <section class="hero" id="hero">
         <div class="hero-grid"></div>
         <div class="hero-content">
-            <div class="hero-badge">iOS App Development Studio</div>
-            <h1>We craft apps<br>people <em>love</em> to use</h1>
-            <p class="hero-sub">Kodera is a boutique software studio dedicated to building exceptional mobile experiences for the Apple ecosystem.</p>
-            <div class="hero-actions">
+            <div class="hero-badge" data-lang="en">iOS App Development Studio</div>
+            <div class="hero-badge" data-lang="es">Estudio de Desarrollo iOS</div>
+            <h1 data-lang="en">We craft apps<br>people <em>love</em> to use</h1>
+            <h1 data-lang="es">Creamos apps<br>que la gente <em>ama</em> usar</h1>
+            <p class="hero-sub" data-lang="en">Kodera is a boutique software studio dedicated to building exceptional mobile experiences for the Apple ecosystem.</p>
+            <p class="hero-sub" data-lang="es">Kodera es un estudio de software dedicado a crear experiencias móviles excepcionales para el ecosistema Apple.</p>
+            <div class="hero-actions" data-lang="en">
                 <a href="mailto:admin@koderastudio.com" class="btn-primary">
                     Start a Project
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8.67 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
                 </a>
                 <a href="#services" class="btn-secondary">See Our Work</a>
+            </div>
+            <div class="hero-actions" data-lang="es">
+                <a href="mailto:admin@koderastudio.com" class="btn-primary">
+                    Iniciar un Proyecto
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8.67 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#services" class="btn-secondary">Ver Nuestro Trabajo</a>
             </div>
         </div>
         <div class="scroll-indicator">Scroll</div>
@@ -788,32 +879,52 @@
     <!-- Services -->
     <section class="services" id="services">
         <div class="container">
-            <div class="services-header">
-                <div class="section-label reveal">What We Do</div>
-                <h2 class="section-title reveal reveal-delay-1">Expertise across the entire<br>product lifecycle</h2>
-                <p class="section-desc reveal reveal-delay-2">From initial concept to App Store launch, we handle every detail with precision and care.</p>
+            <div data-lang="en">
+                <div class="services-header">
+                    <div class="section-label reveal">What We Do</div>
+                    <h2 class="section-title reveal reveal-delay-1">Expertise across the entire<br>product lifecycle</h2>
+                    <p class="section-desc reveal reveal-delay-2">From initial concept to App Store launch, we handle every detail with precision and care.</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card reveal reveal-delay-1">
+                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="19" x2="14" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                        <h3>iOS Development</h3>
+                        <p>Native applications built with Swift and SwiftUI, engineered for performance and crafted for seamless user experiences across all Apple devices.</p>
+                    </div>
+                    <div class="service-card reveal reveal-delay-2">
+                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4m-2.83-7.17l-2.83 2.83M7.76 16.24l-2.83 2.83m14.14 0l-2.83-2.83M7.76 7.76L4.93 4.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                        <h3>Product Design</h3>
+                        <p>Intuitive, beautiful interfaces informed by Apple's Human Interface Guidelines. Every interaction is considered, every pixel intentional.</p>
+                    </div>
+                    <div class="service-card reveal reveal-delay-3">
+                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                        <h3>App Store Launch</h3>
+                        <p>End-to-end launch strategy, from App Store Optimization and metadata to submission review and post-launch iteration.</p>
+                    </div>
+                </div>
             </div>
-            <div class="services-grid">
-                <div class="service-card reveal reveal-delay-1">
-                    <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="19" x2="14" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-                    </div>
-                    <h3>iOS Development</h3>
-                    <p>Native applications built with Swift and SwiftUI, engineered for performance and crafted for seamless user experiences across all Apple devices.</p>
+            <div data-lang="es">
+                <div class="services-header">
+                    <div class="section-label reveal">Lo Que Hacemos</div>
+                    <h2 class="section-title reveal reveal-delay-1">Experiencia en todo el<br>ciclo de vida del producto</h2>
+                    <p class="section-desc reveal reveal-delay-2">Desde el concepto inicial hasta el lanzamiento en la App Store, manejamos cada detalle con precisión y cuidado.</p>
                 </div>
-                <div class="service-card reveal reveal-delay-2">
-                    <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4m-2.83-7.17l-2.83 2.83M7.76 16.24l-2.83 2.83m14.14 0l-2.83-2.83M7.76 7.76L4.93 4.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <div class="services-grid">
+                    <div class="service-card reveal reveal-delay-1">
+                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="19" x2="14" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                        <h3>Desarrollo iOS</h3>
+                        <p>Aplicaciones nativas construidas con Swift y SwiftUI, diseñadas para rendimiento y experiencias de usuario fluidas en todos los dispositivos Apple.</p>
                     </div>
-                    <h3>Product Design</h3>
-                    <p>Intuitive, beautiful interfaces informed by Apple's Human Interface Guidelines. Every interaction is considered, every pixel intentional.</p>
-                </div>
-                <div class="service-card reveal reveal-delay-3">
-                    <div class="service-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                    <div class="service-card reveal reveal-delay-2">
+                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4m-2.83-7.17l-2.83 2.83M7.76 16.24l-2.83 2.83m14.14 0l-2.83-2.83M7.76 7.76L4.93 4.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+                        <h3>Diseño de Producto</h3>
+                        <p>Interfaces intuitivas y hermosas basadas en las Human Interface Guidelines de Apple. Cada interacción es considerada, cada píxel intencional.</p>
                     </div>
-                    <h3>App Store Launch</h3>
-                    <p>End-to-end launch strategy, from App Store Optimization and metadata to submission review and post-launch iteration.</p>
+                    <div class="service-card reveal reveal-delay-3">
+                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
+                        <h3>Lanzamiento en App Store</h3>
+                        <p>Estrategia de lanzamiento integral, desde optimización en App Store y metadata hasta revisión de envío e iteración post-lanzamiento.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -822,31 +933,30 @@
     <!-- Process -->
     <section class="process" id="process">
         <div class="container">
-            <div class="process-header">
-                <div class="section-label reveal">How We Work</div>
-                <h2 class="section-title reveal reveal-delay-1">A proven process built<br>for clarity and speed</h2>
-                <p class="section-desc reveal reveal-delay-2">We move fast without cutting corners. Each phase is designed to keep your project on track.</p>
+            <div data-lang="en">
+                <div class="process-header">
+                    <div class="section-label reveal">How We Work</div>
+                    <h2 class="section-title reveal reveal-delay-1">A proven process built<br>for clarity and speed</h2>
+                    <p class="section-desc reveal reveal-delay-2">We move fast without cutting corners. Each phase is designed to keep your project on track.</p>
+                </div>
+                <div class="process-steps">
+                    <div class="process-step reveal reveal-delay-1"><div class="step-number">01</div><h3>Discover</h3><p>We learn your goals, audience, and competitive landscape to define a clear product vision.</p></div>
+                    <div class="process-step reveal reveal-delay-2"><div class="step-number">02</div><h3>Design</h3><p>Wireframes evolve into polished prototypes. Every interaction is mapped and refined.</p></div>
+                    <div class="process-step reveal reveal-delay-3"><div class="step-number">03</div><h3>Develop</h3><p>Clean, testable Swift code brought to life with weekly builds and transparent progress.</p></div>
+                    <div class="process-step reveal reveal-delay-4"><div class="step-number">04</div><h3>Deliver</h3><p>App Store submission, launch support, and ongoing iteration to ensure long-term success.</p></div>
+                </div>
             </div>
-            <div class="process-steps">
-                <div class="process-step reveal reveal-delay-1">
-                    <div class="step-number">01</div>
-                    <h3>Discover</h3>
-                    <p>We learn your goals, audience, and competitive landscape to define a clear product vision.</p>
+            <div data-lang="es">
+                <div class="process-header">
+                    <div class="section-label reveal">Cómo Trabajamos</div>
+                    <h2 class="section-title reveal reveal-delay-1">Un proceso probado<br>para claridad y velocidad</h2>
+                    <p class="section-desc reveal reveal-delay-2">Avanzamos rápido sin tomar atajos. Cada fase está diseñada para mantener tu proyecto en curso.</p>
                 </div>
-                <div class="process-step reveal reveal-delay-2">
-                    <div class="step-number">02</div>
-                    <h3>Design</h3>
-                    <p>Wireframes evolve into polished prototypes. Every interaction is mapped and refined.</p>
-                </div>
-                <div class="process-step reveal reveal-delay-3">
-                    <div class="step-number">03</div>
-                    <h3>Develop</h3>
-                    <p>Clean, testable Swift code brought to life with weekly builds and transparent progress.</p>
-                </div>
-                <div class="process-step reveal reveal-delay-4">
-                    <div class="step-number">04</div>
-                    <h3>Deliver</h3>
-                    <p>App Store submission, launch support, and ongoing iteration to ensure long-term success.</p>
+                <div class="process-steps">
+                    <div class="process-step reveal reveal-delay-1"><div class="step-number">01</div><h3>Descubrir</h3><p>Conocemos tus objetivos, audiencia y panorama competitivo para definir una visión de producto clara.</p></div>
+                    <div class="process-step reveal reveal-delay-2"><div class="step-number">02</div><h3>Diseñar</h3><p>Los wireframes evolucionan en prototipos pulidos. Cada interacción se mapea y se refina.</p></div>
+                    <div class="process-step reveal reveal-delay-3"><div class="step-number">03</div><h3>Desarrollar</h3><p>Código Swift limpio y testeable, con builds semanales y progreso transparente.</p></div>
+                    <div class="process-step reveal reveal-delay-4"><div class="step-number">04</div><h3>Entregar</h3><p>Envío a App Store, soporte de lanzamiento e iteración continua para asegurar el éxito a largo plazo.</p></div>
                 </div>
             </div>
         </div>
@@ -856,27 +966,40 @@
     <section class="about" id="about">
         <div class="container">
             <div class="about-inner">
-                <div class="about-text">
-                    <div class="section-label reveal">About Kodera</div>
-                    <h2 class="section-title reveal reveal-delay-1">Built on craft,<br>driven by quality</h2>
-                    <p class="section-desc reveal reveal-delay-2">Kodera LLC is a focused app development studio dedicated to building thoughtful, well-crafted software for Apple platforms. We combine clean code with great design to create applications that stand apart.</p>
+                <div data-lang="en">
+                    <div class="about-text">
+                        <div class="section-label reveal">About Kodera</div>
+                        <h2 class="section-title reveal reveal-delay-1">Built on craft,<br>driven by quality</h2>
+                        <p class="section-desc reveal reveal-delay-2">Kodera LLC is a focused app development studio dedicated to building thoughtful, well-crafted software for Apple platforms. We combine clean code with great design to create applications that stand apart.</p>
+                    </div>
+                </div>
+                <div data-lang="es">
+                    <div class="about-text">
+                        <div class="section-label reveal">Sobre Kodera</div>
+                        <h2 class="section-title reveal reveal-delay-1">Construido con oficio,<br>impulsado por la calidad</h2>
+                        <p class="section-desc reveal reveal-delay-2">Kodera LLC es un estudio de desarrollo enfocado en construir software cuidadoso y bien elaborado para plataformas Apple. Combinamos código limpio con gran diseño para crear aplicaciones que se destacan.</p>
+                    </div>
                 </div>
                 <div class="about-stats">
                     <div class="stat reveal reveal-delay-1">
                         <div class="stat-value">100%</div>
-                        <div class="stat-label">Apple Ecosystem Focus</div>
+                        <div class="stat-label" data-lang="en">Apple Ecosystem Focus</div>
+                        <div class="stat-label" data-lang="es">Enfoque Ecosistema Apple</div>
                     </div>
                     <div class="stat reveal reveal-delay-2">
                         <div class="stat-value">Swift</div>
-                        <div class="stat-label">Native Development</div>
+                        <div class="stat-label" data-lang="en">Native Development</div>
+                        <div class="stat-label" data-lang="es">Desarrollo Nativo</div>
                     </div>
                     <div class="stat reveal reveal-delay-3">
                         <div class="stat-value">HIG</div>
-                        <div class="stat-label">Design Compliant</div>
+                        <div class="stat-label" data-lang="en">Design Compliant</div>
+                        <div class="stat-label" data-lang="es">Cumple con Diseño</div>
                     </div>
                     <div class="stat reveal reveal-delay-4">
                         <div class="stat-value">5&#9733;</div>
-                        <div class="stat-label">Quality Standard</div>
+                        <div class="stat-label" data-lang="en">Quality Standard</div>
+                        <div class="stat-label" data-lang="es">Estándar de Calidad</div>
                     </div>
                 </div>
             </div>
@@ -887,14 +1010,27 @@
     <section class="cta">
         <div class="container">
             <div class="cta-content">
-                <div class="section-label reveal">Work With Us</div>
-                <h2 class="section-title reveal reveal-delay-1">Ready to build something<br>extraordinary?</h2>
-                <p class="section-desc reveal reveal-delay-2">Whether you have a fully scoped product or just an idea, we'd love to hear about it.</p>
-                <div class="reveal reveal-delay-3">
-                    <a href="mailto:admin@koderastudio.com" class="btn-primary">
-                        Start the Conversation
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8.67 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </a>
+                <div data-lang="en">
+                    <div class="section-label reveal">Work With Us</div>
+                    <h2 class="section-title reveal reveal-delay-1">Ready to build something<br>extraordinary?</h2>
+                    <p class="section-desc reveal reveal-delay-2">Whether you have a fully scoped product or just an idea, we'd love to hear about it.</p>
+                    <div class="reveal reveal-delay-3">
+                        <a href="mailto:admin@koderastudio.com" class="btn-primary">
+                            Start the Conversation
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8.67 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div data-lang="es">
+                    <div class="section-label reveal">Trabajá con Nosotros</div>
+                    <h2 class="section-title reveal reveal-delay-1">¿Listo para construir algo<br>extraordinario?</h2>
+                    <p class="section-desc reveal reveal-delay-2">Ya sea que tengas un producto definido o solo una idea, nos encantaría escucharte.</p>
+                    <div class="reveal reveal-delay-3">
+                        <a href="mailto:admin@koderastudio.com" class="btn-primary">
+                            Iniciar la Conversación
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8.67 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -906,19 +1042,25 @@
             <div class="footer-inner">
                 <div class="footer-brand">
                     <a href="/" class="logo">Kodera</a>
-                    <p>Thoughtfully crafted mobile applications for the Apple ecosystem.</p>
+                    <p data-lang="en">Thoughtfully crafted mobile applications for the Apple ecosystem.</p>
+                    <p data-lang="es">Aplicaciones móviles cuidadosamente creadas para el ecosistema Apple.</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-col">
-                        <h4>Studio</h4>
+                        <h4 data-lang="en">Studio</h4>
+                        <h4 data-lang="es">Estudio</h4>
                         <ul>
-                            <li><a href="#services">Services</a></li>
-                            <li><a href="#process">Process</a></li>
-                            <li><a href="#about">About</a></li>
+                            <li data-lang="en"><a href="#services">Services</a></li>
+                            <li data-lang="es"><a href="#services">Servicios</a></li>
+                            <li data-lang="en"><a href="#process">Process</a></li>
+                            <li data-lang="es"><a href="#process">Proceso</a></li>
+                            <li data-lang="en"><a href="#about">About</a></li>
+                            <li data-lang="es"><a href="#about">Nosotros</a></li>
                         </ul>
                     </div>
                     <div class="footer-col">
-                        <h4>Connect</h4>
+                        <h4 data-lang="en">Connect</h4>
+                        <h4 data-lang="es">Contacto</h4>
                         <ul>
                             <li><a href="mailto:admin@koderastudio.com">Email</a></li>
                         </ul>
@@ -928,7 +1070,8 @@
             <div class="footer-bottom">
                 <span>&copy; 2026 Kodera LLC. All rights reserved.</span>
                 <span class="footer-legal"><a href="/puntos/privacy.html">Privacy</a> · <a href="/puntos/support.html">Support</a></span>
-                <span>Crafted in California</span>
+                <span data-lang="en">Crafted in the United States</span>
+                <span data-lang="es">Hecho en Estados Unidos</span>
             </div>
         </div>
     </footer>
@@ -959,6 +1102,26 @@
                 const target = document.querySelector(link.getAttribute('href'));
                 if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
+        });
+
+        // Language toggle
+        const langBtn = document.getElementById('lang-toggle');
+        const html = document.documentElement;
+        langBtn.addEventListener('click', () => {
+            const isEn = html.lang === 'en';
+            html.lang = isEn ? 'es' : 'en';
+            // Re-observe newly visible reveal elements
+            document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
+        });
+
+        // Theme toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        const iconMoon = document.getElementById('icon-moon');
+        const iconSun = document.getElementById('icon-sun');
+        themeBtn.addEventListener('click', () => {
+            const isLight = html.classList.toggle('light');
+            iconMoon.style.display = isLight ? 'none' : 'block';
+            iconSun.style.display = isLight ? 'block' : 'none';
         });
     </script>
 

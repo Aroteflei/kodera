@@ -664,6 +664,14 @@
             color: var(--text-tertiary);
         }
 
+        .footer-legal a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover { color: var(--text-secondary); }
+
         /* ── Scroll animations ── */
         .reveal {
             opacity: 0;
@@ -919,6 +927,7 @@
             </div>
             <div class="footer-bottom">
                 <span>&copy; 2026 Kodera LLC. All rights reserved.</span>
+                <span class="footer-legal"><a href="/puntos/privacy.html">Privacy</a> · <a href="/puntos/support.html">Support</a></span>
                 <span>Crafted in California</span>
             </div>
         </div>

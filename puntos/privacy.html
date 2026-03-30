@@ -1,70 +1,205 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy — Puntos</title>
-  <style>
-    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 720px; margin: 0 auto; padding: 2rem 1.5rem; color: #222; line-height: 1.7; }
-    h1 { font-size: 1.8rem; margin-bottom: 0.25rem; }
-    h2 { font-size: 1.2rem; margin-top: 2rem; color: #1E4B32; }
-    .updated { color: #666; font-size: 0.9rem; margin-bottom: 2rem; }
-    a { color: #1E4B32; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy — Puntos</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌘</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=General+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #52525b;
+            --accent: #e8c872;
+            --border: rgba(255, 255, 255, 0.06);
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 28px;
+        }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 24px 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .back-link {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover { color: var(--text-secondary); }
+
+        main {
+            padding: 80px 0 120px;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 400;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 12px;
+        }
+
+        .updated {
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-top: 40px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            font-size: 0.9375rem;
+            margin-bottom: 16px;
+        }
+
+        ul {
+            margin: 0 0 16px 20px;
+            font-size: 0.9375rem;
+        }
+
+        li { margin-bottom: 6px; }
+
+        strong { color: var(--text-primary); font-weight: 600; }
+
+        a { color: var(--accent); text-decoration: none; transition: opacity 0.3s ease; }
+        a:hover { opacity: 0.8; }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+            text-align: center;
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+        }
+    </style>
 </head>
 <body>
-  <h1>Privacy Policy</h1>
-  <p class="updated">Last updated: March 27, 2026</p>
 
-  <p>Kodera LLC ("we", "our", or "us") operates the Puntos mobile application (the "App"). This Privacy Policy explains how we collect, use, and protect your information.</p>
+    <header>
+        <div class="container">
+            <a href="/" class="logo">Kodera</a>
+            <a href="/" class="back-link">&larr; Back to home</a>
+        </div>
+    </header>
 
-  <h2>1. Information We Collect</h2>
-  <p><strong>Currently</strong>, Puntos does not collect, store, or transmit any personal data. All game data (scores, settings, preferences) is stored locally on your device and is never sent to our servers or any third party.</p>
-  <p><strong>In future versions</strong>, we may introduce optional account features (such as Sign in with Apple or other authentication methods). If and when we do, this policy will be updated to reflect exactly what data is collected and how it is used. We will notify you of any material changes.</p>
+    <main>
+        <div class="container">
+            <h1>Privacy Policy</h1>
+            <p class="updated">Last updated: March 27, 2026</p>
 
-  <h2>2. Account Information (Future)</h2>
-  <p>When we introduce account features, we may collect:</p>
-  <ul>
-    <li>Authentication identifiers (e.g., Apple ID token, email address)</li>
-    <li>Display name or username</li>
-    <li>Game data you choose to sync across devices</li>
-  </ul>
-  <p>We will only collect information necessary to provide the features you choose to use. Account creation will always be optional.</p>
+            <p>Kodera LLC ("we", "our", or "us") operates the Puntos mobile application (the "App"). This Privacy Policy explains how we collect, use, and protect your information.</p>
 
-  <h2>3. How We Use Your Information</h2>
-  <p>Any information we collect will be used solely to:</p>
-  <ul>
-    <li>Provide and maintain the App's functionality</li>
-    <li>Sync your game data across your devices (if you opt in)</li>
-    <li>Improve the App experience</li>
-  </ul>
-  <p>We will never sell your personal information to third parties.</p>
+            <h2>1. Information We Collect</h2>
+            <p><strong>Currently</strong>, Puntos does not collect, store, or transmit any personal data. All game data (scores, settings, preferences) is stored locally on your device and is never sent to our servers or any third party.</p>
+            <p><strong>In future versions</strong>, we may introduce optional account features (such as Sign in with Apple or other authentication methods). If and when we do, this policy will be updated to reflect exactly what data is collected and how it is used. We will notify you of any material changes.</p>
 
-  <h2>4. Data Storage and Security</h2>
-  <p>Currently, all data stays on your device. When we introduce cloud features, your data will be stored using industry-standard security measures and encrypted in transit and at rest.</p>
+            <h2>2. Account Information (Future)</h2>
+            <p>When we introduce account features, we may collect:</p>
+            <ul>
+                <li>Authentication identifiers (e.g., Apple ID token, email address)</li>
+                <li>Display name or username</li>
+                <li>Game data you choose to sync across devices</li>
+            </ul>
+            <p>We will only collect information necessary to provide the features you choose to use. Account creation will always be optional.</p>
 
-  <h2>5. Third-Party Services</h2>
-  <p>The App does not currently use any third-party analytics, advertising, or tracking services. If this changes in the future, we will update this policy accordingly.</p>
+            <h2>3. How We Use Your Information</h2>
+            <p>Any information we collect will be used solely to:</p>
+            <ul>
+                <li>Provide and maintain the App's functionality</li>
+                <li>Sync your game data across your devices (if you opt in)</li>
+                <li>Improve the App experience</li>
+            </ul>
+            <p>We will never sell your personal information to third parties.</p>
 
-  <h2>6. Children's Privacy</h2>
-  <p>Puntos does not knowingly collect personal information from children under 13. The App is suitable for all ages as it currently collects no personal data.</p>
+            <h2>4. Data Storage and Security</h2>
+            <p>Currently, all data stays on your device. When we introduce cloud features, your data will be stored using industry-standard security measures and encrypted in transit and at rest.</p>
 
-  <h2>7. Your Rights</h2>
-  <p>You have the right to:</p>
-  <ul>
-    <li>Access any personal data we hold about you</li>
-    <li>Request deletion of your data</li>
-    <li>Opt out of any future data collection features</li>
-  </ul>
-  <p>Since we currently collect no data, these rights will become actionable when account features are introduced.</p>
+            <h2>5. Third-Party Services</h2>
+            <p>The App does not currently use any third-party analytics, advertising, or tracking services. If this changes in the future, we will update this policy accordingly.</p>
 
-  <h2>8. Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last updated" date.</p>
+            <h2>6. Children's Privacy</h2>
+            <p>Puntos does not knowingly collect personal information from children under 13. The App is suitable for all ages as it currently collects no personal data.</p>
 
-  <h2>9. Contact Us</h2>
-  <p>If you have any questions about this Privacy Policy, please contact us at:<br>
-  <a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a></p>
+            <h2>7. Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access any personal data we hold about you</li>
+                <li>Request deletion of your data</li>
+                <li>Opt out of any future data collection features</li>
+            </ul>
+            <p>Since we currently collect no data, these rights will become actionable when account features are introduced.</p>
 
-  <p style="margin-top: 3rem; font-size: 0.85rem; color: #888;">&copy; 2026 Kodera LLC. All rights reserved.</p>
+            <h2>8. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page and updating the "Last updated" date.</p>
+
+            <h2>9. Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us at:<br>
+            <a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            &copy; 2026 Kodera LLC. All rights reserved.
+        </div>
+    </footer>
+
 </body>
 </html>

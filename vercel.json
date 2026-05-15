@@ -2,7 +2,7 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/puntos/invite/:username",
+      "source": "/puntos/invite/:username([A-Za-z0-9_.]+)",
       "destination": "/puntos/invite.html"
     }
   ]

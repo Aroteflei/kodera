@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación — Puntitos</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌘</text></svg>">
+
+    <!-- Open Graph / Twitter / iMessage rich preview tags. iMessage shows
+         the title + image when the URL is sent in a chat — much better
+         than the bare-URL fallback. We populate the @username dynamically
+         via JS below (the rich preview crawlers won't see it, they'll
+         see the static "Te invitan a Puntitos" instead, which is fine).
+    -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Te invitan a Puntitos">
+    <meta property="og:description" content="Anotador de Truco, Burako y Generala. Aceptá la invitación y agregalo como amigo.">
+    <meta property="og:image" content="https://koderastudio.com/icon-1024.png">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=General+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #52525b;
+            --accent: #e8c872;
+            --accent-soft: rgba(232, 200, 114, 0.12);
+            --border: rgba(255, 255, 255, 0.06);
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px;
+        }
+
+        .container { max-width: 480px; margin: 0 auto; padding: 0 28px; width: 100%; }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 24px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        .logo .dot { color: var(--accent); }
+
+        .label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-tertiary);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            padding: 40px 0;
+        }
+
+        .invite-card {
+            text-align: center;
+        }
+
+        .eyebrow {
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 14px;
+        }
+
+        .username {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(2.4rem, 9vw, 3.4rem);
+            line-height: 1.05;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .invited-text {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(1.6rem, 6vw, 2.1rem);
+            line-height: 1.15;
+            color: var(--text-primary);
+            margin-top: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--accent);
+            opacity: 0.5;
+            width: 50%;
+            margin: 28px auto;
+        }
+
+        .description {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            padding: 0 12px;
+        }
+
+        .primary-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 18px 28px;
+            background: var(--accent);
+            color: #0a0a0b;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 6px 24px rgba(232, 200, 114, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .primary-btn:hover, .primary-btn:focus {
+            transform: translateY(-1px);
+            box-shadow: 0 10px 30px rgba(232, 200, 114, 0.32);
+        }
+
+        .primary-btn:active {
+            transform: translateY(0);
+        }
+
+        .secondary-section {
+            margin-top: 28px;
+            padding-top: 22px;
+            border-top: 1px solid var(--border);
+        }
+
+        .secondary-text {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 0.95rem;
+            color: var(--text-tertiary);
+            margin-bottom: 14px;
+        }
+
+        .appstore-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 22px;
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .appstore-btn:hover {
+            border-color: var(--text-tertiary);
+            color: var(--text-primary);
+        }
+
+        footer {
+            padding: 24px 0;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-text {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            color: var(--text-tertiary);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-text a {
+            color: var(--text-tertiary);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .footer-text a:hover {
+            color: var(--text-secondary);
+            border-color: var(--text-tertiary);
+        }
+
+        /* Error state — when the URL doesn't have a valid username */
+        .error-state .username,
+        .error-state .invited-text { display: none; }
+        .error-state .description { color: var(--text-tertiary); }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="https://koderastudio.com" class="logo">Kodera<span class="dot">.</span></a>
+            <span class="label">Puntitos</span>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="invite-card" id="card">
+                <div class="eyebrow">· Invitación de amistad ·</div>
+                <div class="username" id="usernameLine">@cargando</div>
+                <div class="invited-text">te invitó a Puntitos</div>
+
+                <div class="divider"></div>
+
+                <div class="description" id="description">
+                    Anotador de Truco, Burako y Generala. Aceptá la invitación
+                    para conectarte y empezar a anotar partidas juntos.
+                </div>
+
+                <button class="primary-btn" id="openBtn" type="button">
+                    Abrir en Puntitos
+                </button>
+
+                <div class="secondary-section">
+                    <div class="secondary-text">¿Todavía no tenés la app?</div>
+                    <a class="appstore-btn"
+                       href="https://apps.apple.com/us/app/puntitos/id6761696563"
+                       target="_blank" rel="noopener">
+                        Descargar en App Store
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p class="footer-text">
+                <a href="https://koderastudio.com">koderastudio.com</a> ·
+                Kodera LLC
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Extract @username from URL pathname.
+        // Vercel rewrite maps /puntos/invite/<username> → this page.
+        // window.location.pathname will be /puntos/invite/<username>
+        // (rewrite preserves the original path even though the file
+        // served is invite.html). Defensive: also accept a ?u= query
+        // param as a fallback for weird Vercel cache states.
+        function extractUsername() {
+            const path = window.location.pathname || '';
+            const m = path.match(/\/puntos\/invite\/([a-z0-9_.]{3,20})\b/i);
+            if (m) return m[1].toLowerCase();
+            const params = new URLSearchParams(window.location.search);
+            const q = params.get('u');
+            if (q && /^[a-z0-9_.]{3,20}$/i.test(q)) return q.toLowerCase();
+            return null;
+        }
+
+        const username = extractUsername();
+        const usernameLine = document.getElementById('usernameLine');
+        const card = document.getElementById('card');
+        const openBtn = document.getElementById('openBtn');
+        const description = document.getElementById('description');
+
+        if (!username) {
+            // Bad / missing username — degrade gracefully.
+            card.classList.add('error-state');
+            description.textContent = 'Este link de invitación no es válido o expiró. Pedile a tu amigo que te lo mande de nuevo.';
+            openBtn.style.display = 'none';
+        } else {
+            usernameLine.textContent = '@' + username;
+            const deepLink = 'puntitos://invite/' + username;
+            openBtn.addEventListener('click', () => {
+                // Trigger the iOS URL scheme. If Puntitos is installed,
+                // the OS catches the scheme and opens the app (showing
+                // the AcceptInviteModal via @capacitor/app). If not,
+                // nothing visible happens — user can scroll down to
+                // the App Store button.
+                window.location.href = deepLink;
+            });
+
+            // Update document title with username for browser tab + share previews.
+            document.title = '@' + username + ' te invitó a Puntitos';
+        }
+    </script>
+</body>
+</html>

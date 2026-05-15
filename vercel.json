@@ -1,3 +1,9 @@
 {
-  "cleanUrls": true
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/puntos/invite/:username",
+      "destination": "/puntos/invite.html"
+    }
+  ]
 }

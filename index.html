@@ -1,1129 +1,1471 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kodera — App Development Studio</title>
-    <meta name="description" content="Kodera LLC builds thoughtfully crafted mobile applications for iOS and the Apple ecosystem.">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌘</text></svg>">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Kodera — el estudio detrás de Puntitos</title>
+    <meta name="description" content="Kodera LLC es el estudio independiente que diseña y mantiene Puntitos, el anotador de Truco, Burako, Generala y Backgammon para iPhone y iPad.">
+    <link rel="canonical" href="https://www.koderastudio.com/">
+    <meta name="theme-color" content="#0c0b09" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f4eee2" media="(prefers-color-scheme: light)">
+    <meta name="apple-itunes-app" content="app-id=6761696563">
+
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kodera">
+    <meta property="og:url" content="https://www.koderastudio.com/">
+    <meta property="og:title" content="Kodera — el estudio detrás de Puntitos">
+    <meta property="og:description" content="Hacemos Puntitos, el anotador de Truco, Burako, Generala y Backgammon. Sin papel, sin publicidad y sin discusiones.">
+    <meta property="og:image" content="https://www.koderastudio.com/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="es_AR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=General+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@graph": [
+            {
+                "@type": "Organization",
+                "@id": "https://www.koderastudio.com/#org",
+                "name": "Kodera LLC",
+                "alternateName": "Kodera",
+                "url": "https://www.koderastudio.com/",
+                "email": "admin@koderastudio.com",
+                "logo": "https://www.koderastudio.com/apple-touch-icon.png"
+            },
+            {
+                "@type": "MobileApplication",
+                "name": "Puntitos",
+                "operatingSystem": "iOS 15.0+",
+                "applicationCategory": "UtilitiesApplication",
+                "inLanguage": ["es", "pt", "en"],
+                "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+                "installUrl": "https://apps.apple.com/app/id6761696563",
+                "author": { "@id": "https://www.koderastudio.com/#org" },
+                "publisher": { "@id": "https://www.koderastudio.com/#org" }
+            }
+        ]
+    }
+    </script>
+
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #0a0a0b;
-            --bg-secondary: #111113;
-            --bg-elevated: #18181b;
-            --bg-glass: rgba(255, 255, 255, 0.03);
-            --text-primary: #f4f4f5;
-            --text-secondary: #a1a1aa;
-            --text-tertiary: #52525b;
-            --accent: #e8c872;
-            --accent-dim: rgba(232, 200, 114, 0.12);
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
-            --nav-scrolled-bg: rgba(10, 10, 11, 0.85);
-            --card-shadow: rgba(0, 0, 0, 0.3);
-            --radius: 20px;
-            --font-display: 'Instrument Serif', Georgia, serif;
-            --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --bg: #0c0b09;
+            --bg-2: #141210;
+            --text: #f1ebdd;
+            --muted: #a59f92;
+            --faint: #6f6a60;
+            --rule: rgba(241, 235, 221, 0.11);
+            --rule-strong: rgba(241, 235, 221, 0.22);
+            --gold: #e3c171;
+            --gold-soft: rgba(227, 193, 113, 0.13);
+
+            --felt: #0f3b2c;
+            --felt-deep: #072218;
+            --felt-hi: #186045;
+            --sage: #7fa98f;
+
+            --card: #f6f0e3;
+            --card-ink: #1c1915;
+            --card-muted: #6d6558;
+            --card-gold: #9a7520;
+            --red: #c4553b;
+
+            --serif: 'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+            --sans: 'Instrument Sans', ui-sans-serif, -apple-system, 'Segoe UI', sans-serif;
+            --wrap: 1180px;
+            --gutter: clamp(16px, 4vw, 40px);
+            color-scheme: dark;
         }
 
-        :root.light {
-            --bg-primary: #fafaf9;
-            --bg-secondary: #f5f5f4;
-            --bg-elevated: #e7e5e4;
-            --bg-glass: rgba(0, 0, 0, 0.02);
-            --text-primary: #1c1917;
-            --text-secondary: #57534e;
-            --text-tertiary: #a8a29e;
-            --accent: #b8960a;
-            --accent-dim: rgba(184, 150, 10, 0.08);
-            --border: rgba(0, 0, 0, 0.06);
-            --border-hover: rgba(0, 0, 0, 0.12);
-            --nav-scrolled-bg: rgba(250, 250, 249, 0.85);
-            --card-shadow: rgba(0, 0, 0, 0.08);
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f4eee2;
+                --bg-2: #ebe3d3;
+                --text: #1b1813;
+                --muted: #5d564a;
+                --faint: #8d8578;
+                --rule: rgba(27, 24, 19, 0.12);
+                --rule-strong: rgba(27, 24, 19, 0.24);
+                --gold: #94701b;
+                --gold-soft: rgba(148, 112, 27, 0.11);
+                color-scheme: light;
+            }
         }
 
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+        @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
         body {
-            font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--text-primary);
+            font-family: var(--sans);
+            font-size: 17px;
             line-height: 1.6;
+            background: var(--bg);
+            color: var(--text);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             overflow-x: hidden;
-            transition: background 0.4s ease, color 0.4s ease;
         }
 
-        /* ── Noise overlay ── */
-        body::before {
+        /* Grano de paño, apenas perceptible, sobre toda la página */
+        body::after {
             content: '';
             position: fixed;
             inset: 0;
-            z-index: 9999;
             pointer-events: none;
-            opacity: 0.025;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-size: 200px;
+            z-index: 100;
+            opacity: 0.035;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 220px;
         }
 
-        /* ── Section base ── */
-        section { position: relative; }
+        a { color: inherit; }
+        img { display: block; max-width: 100%; }
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
 
-        .container {
-            max-width: 1120px;
+        .wrap {
+            max-width: var(--wrap);
             margin: 0 auto;
-            padding: 0 28px;
+            padding: 0 var(--gutter);
         }
 
-        /* ── Navigation ── */
-        nav {
+        .label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        .label::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: currentColor;
+            transform: rotate(45deg);
+        }
+
+        .serif { font-family: var(--serif); font-weight: 400; }
+
+        h1, h2, h3 { font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em; }
+        h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.04; }
+        h2 em, h1 em { font-style: italic; color: var(--gold); }
+
+        /* Separador con rombo, como los de la app */
+        .diamond-rule {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: var(--gold);
+        }
+        .diamond-rule::before, .diamond-rule::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, currentColor 30%, currentColor 70%, transparent);
+            opacity: 0.45;
+        }
+        .diamond-rule span {
+            width: 7px;
+            height: 7px;
+            background: currentColor;
+            transform: rotate(45deg);
+        }
+
+        /* ── Navegación ── */
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            z-index: 1000;
-            padding: 24px 0;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 50;
+            padding: 18px 0;
+            transition: background 0.35s ease, padding 0.35s ease, border-color 0.35s ease;
+            border-bottom: 1px solid transparent;
         }
-
-        nav.scrolled {
-            padding: 16px 0;
-            background: var(--nav-scrolled-bg);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            border-bottom: 1px solid var(--border);
+        .nav.is-scrolled {
+            padding: 12px 0;
+            background: var(--bg);
+            background: color-mix(in srgb, var(--bg) 86%, transparent);
+            -webkit-backdrop-filter: blur(16px) saturate(160%);
+            backdrop-filter: blur(16px) saturate(160%);
+            border-bottom-color: var(--rule);
         }
-
-        nav .container {
+        .nav .wrap {
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--text-primary);
+        .wordmark {
+            font-family: var(--serif);
+            font-size: 1.6rem;
+            line-height: 1;
             text-decoration: none;
             letter-spacing: -0.01em;
-            transition: color 0.4s ease;
+            display: inline-flex;
+            align-items: baseline;
         }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        .wordmark i {
+            color: var(--gold);
+            font-style: normal;
         }
-
         .nav-links {
             display: flex;
             align-items: center;
-            gap: 36px;
+            gap: 32px;
             list-style: none;
-            margin-right: 16px;
-        }
-
-        .nav-links a {
             font-size: 0.875rem;
             font-weight: 500;
-            color: var(--text-secondary);
+        }
+        .nav-links a {
             text-decoration: none;
-            transition: color 0.3s ease;
-            letter-spacing: 0.01em;
+            color: var(--muted);
+            transition: color 0.2s ease;
         }
+        .nav-links a:hover { color: var(--text); }
 
-        .nav-links a:hover { color: var(--text-primary); }
-
-        .nav-cta {
-            font-size: 0.8125rem !important;
-            font-weight: 600 !important;
-            color: var(--bg-primary) !important;
-            background: var(--accent);
-            padding: 10px 22px;
-            border-radius: 100px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.4s ease !important;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 8px 30px rgba(232, 200, 114, 0.25);
-        }
-
-        .toggle-btn {
+        .lang {
             display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
+            border: 1px solid var(--rule-strong);
+            border-radius: 100px;
+            padding: 3px;
+            gap: 2px;
+        }
+        .lang button {
+            appearance: none;
+            border: 0;
             background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            color: var(--text-tertiary);
+            color: var(--muted);
+            font: 600 0.6875rem/1 var(--sans);
+            letter-spacing: 0.12em;
+            padding: 7px 10px;
+            border-radius: 100px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+        .lang button:hover { color: var(--text); }
+        .lang button[aria-pressed="true"] {
+            background: var(--gold);
+            color: var(--bg);
         }
 
-        .toggle-btn:hover {
-            color: var(--text-secondary);
-            border-color: var(--border-hover);
-        }
-
-        .toggle-btn svg { width: 15px; height: 15px; }
-
-        /* ── Hero ── */
+        /* ── Portada ── */
         .hero {
-            min-height: 100vh;
+            position: relative;
+            min-height: min(100vh, 980px);
+            min-height: min(100svh, 980px);
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 28px 140px;
-            position: relative;
+            padding: 130px 0 90px;
             overflow: hidden;
         }
-
         .hero::before {
             content: '';
             position: absolute;
-            width: 800px;
-            height: 800px;
+            width: 1100px;
+            height: 1100px;
+            right: -380px;
             top: 50%;
-            left: 50%;
-            transform: translate(-50%, -55%);
-            background: radial-gradient(circle, rgba(232, 200, 114, 0.08) 0%, rgba(232, 200, 114, 0.02) 40%, transparent 70%);
-            animation: orb-pulse 8s ease-in-out infinite;
+            transform: translateY(-50%);
+            background: radial-gradient(circle, rgba(24, 96, 69, 0.28) 0%, rgba(24, 96, 69, 0.08) 38%, transparent 66%);
             pointer-events: none;
         }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 600px;
-            height: 600px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-45%, -50%);
-            background: radial-gradient(circle, rgba(120, 100, 200, 0.06) 0%, transparent 60%);
-            animation: orb-pulse 10s ease-in-out infinite reverse;
-            pointer-events: none;
-        }
-
-        @keyframes orb-pulse {
-            0%, 100% { transform: translate(-50%, -55%) scale(1); opacity: 1; }
-            50% { transform: translate(-50%, -55%) scale(1.15); opacity: 0.7; }
-        }
-
         .hero-grid {
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-            background-size: 40px 40px;
-            mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
-            -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 50%, black 20%, transparent 100%);
-            pointer-events: none;
-        }
-
-        :root.light .hero-grid {
-            background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-        }
-
-        .hero-content {
             position: relative;
-            z-index: 1;
-            max-width: 800px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
+            display: grid;
+            grid-template-columns: minmax(0, 1.28fr) minmax(0, 0.72fr);
+            gap: clamp(40px, 6vw, 96px);
             align-items: center;
-            gap: 8px;
-            padding: 8px 18px;
-            background: var(--accent-dim);
-            border: 1px solid rgba(232, 200, 114, 0.15);
-            border-radius: 100px;
-            font-size: 0.8125rem;
-            font-weight: 500;
-            color: var(--accent);
-            margin-bottom: 40px;
-            letter-spacing: 0.03em;
-            transition: all 0.4s ease;
         }
-
-        .hero-badge::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-            animation: badge-pulse 2s ease-in-out infinite;
-        }
-
-        @keyframes badge-pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
         .hero h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 400;
-            line-height: 1.05;
+            font-size: clamp(2.9rem, 7.4vw, 6.1rem);
+            line-height: 0.98;
             letter-spacing: -0.03em;
-            margin-bottom: 28px;
-            transition: color 0.4s ease;
+            margin: 26px 0 30px;
         }
-
-        .hero h1 em {
-            font-style: italic;
-            color: var(--accent);
-            transition: color 0.4s ease;
-        }
-
         .hero-sub {
-            font-size: clamp(1.05rem, 2vw, 1.2rem);
-            color: var(--text-secondary);
-            max-width: 520px;
-            margin: 0 auto 48px;
-            line-height: 1.7;
-            transition: color 0.4s ease;
+            max-width: 560px;
+            font-size: clamp(1.05rem, 1.7vw, 1.2rem);
+            color: var(--muted);
+            line-height: 1.65;
         }
-
         .hero-actions {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 16px;
             flex-wrap: wrap;
+            gap: 18px 26px;
+            margin-top: 42px;
         }
-
-        .btn-primary {
+        .badge-link {
+            display: inline-block;
+            line-height: 0;
+            border-radius: 10px;
+            transition: transform 0.25s ease;
+        }
+        .badge-link:hover { transform: translateY(-2px); }
+        .badge-link img { height: 52px; width: auto; }
+        .text-link {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 16px 32px;
-            background: var(--accent);
-            color: var(--bg-primary);
-            font-family: var(--font-body);
-            font-size: 0.9375rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 100px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.4s ease, color 0.4s ease;
-            letter-spacing: 0.01em;
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(232, 200, 114, 0.3);
-        }
-
-        .btn-primary svg { transition: transform 0.3s ease; }
-        .btn-primary:hover svg { transform: translateX(3px); }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 32px;
-            background: transparent;
-            color: var(--text-secondary);
-            font-family: var(--font-body);
             font-size: 0.9375rem;
             font-weight: 500;
-            border: 1px solid var(--border-hover);
-            border-radius: 100px;
-            cursor: pointer;
             text-decoration: none;
-            transition: all 0.3s ease;
+            color: var(--text);
+            border-bottom: 1px solid var(--rule-strong);
+            padding-bottom: 3px;
+            transition: border-color 0.2s ease, gap 0.2s ease;
         }
+        .text-link:hover { border-color: var(--gold); gap: 12px; }
 
-        .btn-secondary:hover {
-            color: var(--text-primary);
-            border-color: rgba(255, 255, 255, 0.25);
-            background: rgba(255, 255, 255, 0.03);
+        /* Planilla de palitos (firma visual) */
+        .scoresheet {
+            position: relative;
+            justify-self: center;
+            width: min(100%, 360px);
+            padding: 22px 22px 18px;
+            border-radius: 18px;
+            background:
+                radial-gradient(120% 80% at 30% 0%, rgba(255, 255, 255, 0.06), transparent 60%),
+                linear-gradient(170deg, var(--felt-hi) 0%, var(--felt) 45%, var(--felt-deep) 100%);
+            box-shadow:
+                0 1px 0 rgba(255, 255, 255, 0.08) inset,
+                0 40px 80px -30px rgba(0, 0, 0, 0.65),
+                0 18px 30px -18px rgba(0, 0, 0, 0.5);
+            transform: rotate(-2.5deg);
+            color: #f1ebdd;
         }
-
-        :root.light .btn-secondary:hover {
-            border-color: rgba(0, 0, 0, 0.2);
-            background: rgba(0, 0, 0, 0.03);
-        }
-
-        /* ── Scroll indicator ── */
-        .scroll-indicator {
+        .scoresheet::before {
+            content: '';
             position: absolute;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%);
+            inset: 8px;
+            border: 1px solid rgba(227, 193, 113, 0.28);
+            border-radius: 12px;
+            pointer-events: none;
+        }
+        .sheet-head {
+            text-align: center;
+            margin-bottom: 14px;
+        }
+        .sheet-head .serif {
+            font-style: italic;
+            font-size: 1.9rem;
+            line-height: 1;
+        }
+        .sheet-head small {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.625rem;
+            font-weight: 600;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            color: rgba(241, 235, 221, 0.62);
+        }
+        .sheet-head .diamond-rule { margin-top: 12px; color: #e3c171; }
+        .sheet-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .sheet-col {
+            border: 1px solid rgba(241, 235, 221, 0.12);
+            border-radius: 10px;
+            padding: 12px 12px 10px;
+            background: rgba(0, 0, 0, 0.14);
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-tertiary);
-            font-size: 0.75rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            z-index: 0;
         }
-
-        .scroll-indicator::after {
-            content: '';
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--text-tertiary), transparent);
-            animation: scroll-line 2s ease-in-out infinite;
-        }
-
-        @keyframes scroll-line {
-            0% { transform: scaleY(0); transform-origin: top; }
-            50% { transform: scaleY(1); transform-origin: top; }
-            51% { transform-origin: bottom; }
-            100% { transform: scaleY(0); transform-origin: bottom; }
-        }
-
-        /* ── Section headers ── */
-        .section-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.8125rem;
+        .sheet-col .team-tag {
+            font-size: 0.5625rem;
             font-weight: 600;
-            color: var(--accent);
+            letter-spacing: 0.24em;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            margin-bottom: 24px;
-            transition: color 0.4s ease;
+            color: #e3c171;
         }
-
-        .section-label::before {
-            content: '';
-            width: 24px;
-            height: 1px;
-            background: var(--accent);
-            transition: background 0.4s ease;
+        .sheet-col .team {
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            line-height: 1.1;
+            margin-bottom: 10px;
         }
-
-        .section-title {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 3rem);
+        .sheet-col.them .team-tag { color: var(--sage); }
+        .sheet-col svg {
+            display: block;
+            width: 64px;
+            height: 220px;
+            margin: 0 auto;
+            overflow: visible;
+        }
+        .sheet-col svg line {
+            stroke: #e3c171;
+            stroke-width: 3.2;
+            stroke-linecap: round;
+        }
+        .sheet-col.them svg line { stroke: var(--sage); }
+        .sheet-col .total {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            border-top: 1px solid rgba(241, 235, 221, 0.14);
+            margin-top: 8px;
+            padding-top: 6px;
+        }
+        .sheet-col .total small {
+            font-size: 0.625rem;
+            letter-spacing: 0.14em;
+            color: rgba(241, 235, 221, 0.5);
+            font-variant-numeric: tabular-nums;
+        }
+        .sheet-col .total b {
+            font-family: var(--serif);
+            font-style: italic;
             font-weight: 400;
-            line-height: 1.15;
-            letter-spacing: -0.02em;
-            margin-bottom: 20px;
-            transition: color 0.4s ease;
+            font-size: 2.6rem;
+            line-height: 1;
+            color: #e3c171;
+            font-variant-numeric: tabular-nums;
+        }
+        .sheet-col.them .total b { color: var(--sage); }
+
+        /* Animación de trazos: sólo con JS y sin reduced-motion */
+        .anim .sheet-col svg line {
+            stroke-dasharray: 1;
+            stroke-dashoffset: 1;
+        }
+        .anim .sheet-col svg line.drawn {
+            stroke-dashoffset: 0;
+            transition: stroke-dashoffset 0.32s cubic-bezier(0.6, 0, 0.3, 1);
         }
 
-        .section-desc {
-            font-size: 1.0625rem;
-            color: var(--text-secondary);
-            max-width: 520px;
-            line-height: 1.7;
-            transition: color 0.4s ease;
-        }
-
-        /* ── Services ── */
-        .services {
-            padding: 140px 0;
-            border-top: 1px solid var(--border);
-            transition: border-color 0.4s ease;
-        }
-
-        .services-header { margin-bottom: 72px; }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-
-        .service-card {
+        /* ── Puntitos (paño verde) ── */
+        .felt {
+            --text: #f1ebdd;
+            --muted: #b9c2b4;
+            --faint: #86958a;
+            --rule: rgba(241, 235, 221, 0.13);
+            --rule-strong: rgba(241, 235, 221, 0.26);
+            --gold: #e3c171;
+            --gold-soft: rgba(227, 193, 113, 0.14);
             position: relative;
-            background: var(--bg-glass);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 44px 36px;
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            color: var(--text);
+            background:
+                radial-gradient(90% 60% at 50% 0%, rgba(40, 128, 92, 0.35), transparent 70%),
+                radial-gradient(60% 50% at 100% 100%, rgba(0, 0, 0, 0.35), transparent 70%),
+                linear-gradient(180deg, var(--felt) 0%, #0b3022 60%, var(--felt-deep) 100%);
+            padding: clamp(90px, 12vw, 150px) 0 clamp(90px, 12vw, 140px);
             overflow: hidden;
         }
-
-        .service-card::before {
+        .felt::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(232, 200, 114, 0.04) 0%, transparent 50%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .service-card:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 60px var(--card-shadow);
-        }
-
-        .service-card:hover::before { opacity: 1; }
-
-        .service-icon {
-            width: 52px;
-            height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--accent-dim);
-            border: 1px solid rgba(232, 200, 114, 0.1);
-            border-radius: 14px;
-            margin-bottom: 28px;
-            font-size: 1.375rem;
-            position: relative;
-            z-index: 1;
-            transition: all 0.4s ease;
-        }
-
-        .service-card h3 {
-            font-family: var(--font-display);
-            font-size: 1.375rem;
-            font-weight: 400;
-            margin-bottom: 12px;
-            position: relative;
-            z-index: 1;
-            transition: color 0.4s ease;
-        }
-
-        .service-card p {
-            font-size: 0.9375rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            position: relative;
-            z-index: 1;
-            transition: color 0.4s ease;
-        }
-
-        /* ── Process ── */
-        .process {
-            padding: 140px 0;
-            border-top: 1px solid var(--border);
-            transition: border-color 0.4s ease;
-        }
-
-        .process-header { margin-bottom: 80px; }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0;
-            position: relative;
-        }
-
-        .process-steps::before {
-            content: '';
-            position: absolute;
-            top: 36px;
-            left: 36px;
-            right: 36px;
-            height: 1px;
-            background: linear-gradient(90deg, var(--accent), var(--border) 50%, var(--accent));
-            opacity: 0.3;
-        }
-
-        .process-step {
-            text-align: center;
-            padding: 0 20px;
-            position: relative;
-        }
-
-        .step-number {
-            width: 72px;
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 28px;
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--accent);
-            position: relative;
-            z-index: 1;
-            transition: all 0.4s ease;
-        }
-
-        .process-step:hover .step-number {
-            border-color: var(--accent);
-            background: var(--accent-dim);
-            box-shadow: 0 0 40px rgba(232, 200, 114, 0.1);
-        }
-
-        .process-step h3 {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 10px;
-            transition: color 0.4s ease;
-        }
-
-        .process-step p {
-            font-size: 0.875rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            transition: color 0.4s ease;
-        }
-
-        /* ── About ── */
-        .about {
-            padding: 140px 0;
-            border-top: 1px solid var(--border);
-            transition: border-color 0.4s ease;
-        }
-
-        .about-inner {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        .about-text .section-desc {
-            max-width: none;
-            margin-bottom: 36px;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 32px;
-        }
-
-        .stat {
-            padding: 32px;
-            background: var(--bg-glass);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .stat:hover {
-            border-color: var(--border-hover);
-            transform: translateY(-2px);
-        }
-
-        .stat-value {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            color: var(--accent);
-            line-height: 1;
-            margin-bottom: 8px;
-            transition: color 0.4s ease;
-        }
-
-        .stat-label {
-            font-size: 0.8125rem;
-            color: var(--text-secondary);
-            letter-spacing: 0.02em;
-            transition: color 0.4s ease;
-        }
-
-        /* ── CTA ── */
-        .cta {
-            padding: 140px 0;
-            border-top: 1px solid var(--border);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: border-color 0.4s ease;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            width: 900px;
-            height: 600px;
-            bottom: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: radial-gradient(ellipse, rgba(232, 200, 114, 0.06) 0%, transparent 60%);
+            opacity: 0.09;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+            background-size: 160px;
             pointer-events: none;
         }
+        .felt > .wrap { position: relative; }
 
-        .cta-content {
+        .app-intro {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+            gap: clamp(40px, 6vw, 90px);
+            align-items: center;
+        }
+        .app-id {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            margin: 28px 0 26px;
+        }
+        .app-icon {
+            width: 96px;
+            height: 96px;
+            border-radius: 22.5%;
+            box-shadow: 0 0 0 1px rgba(227, 193, 113, 0.25), 0 18px 40px -12px rgba(0, 0, 0, 0.6);
+            flex-shrink: 0;
+        }
+        .app-name {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: clamp(3.2rem, 7vw, 5rem);
+            line-height: 0.9;
+            letter-spacing: -0.02em;
+        }
+        .app-name span { color: var(--gold); }
+        .app-tagline {
+            font-family: var(--serif);
+            font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+            line-height: 1.25;
+            margin-bottom: 22px;
+        }
+        .app-copy { color: var(--muted); max-width: 520px; }
+        .facts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 28px 0 34px;
+            list-style: none;
+        }
+        .facts li {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 7px 12px;
+            border: 1px solid var(--rule-strong);
+            border-radius: 100px;
+            color: var(--text);
+        }
+        .facts li:first-child {
+            background: var(--gold);
+            border-color: var(--gold);
+            color: #0f2a1f;
+        }
+
+        /* Abanico de teléfonos, como una mano de cartas */
+        .fan {
             position: relative;
-            z-index: 1;
+            height: clamp(420px, 52vw, 600px);
+            --w: clamp(170px, 19vw, 250px);
+        }
+        .phone {
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: var(--w);
+            margin-left: calc(var(--w) / -2);
+            aspect-ratio: 640 / 1387;
+            padding: calc(var(--w) * 0.035);
+            border-radius: calc(var(--w) * 0.16);
+            background: linear-gradient(160deg, #2a2a28, #0a0a0a 40%, #161615);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.08) inset,
+                0 30px 60px -20px rgba(0, 0, 0, 0.7);
+            transform-origin: 50% 135%;
+            transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .phone img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: calc(var(--w) * 0.13);
+        }
+        .phone:nth-child(1) { transform: rotate(-13deg); z-index: 1; }
+        .phone:nth-child(2) { transform: rotate(0deg) translateY(-4%); z-index: 3; }
+        .phone:nth-child(3) { transform: rotate(13deg); z-index: 2; }
+        .fan:hover .phone:nth-child(1) { transform: rotate(-17deg); }
+        .fan:hover .phone:nth-child(3) { transform: rotate(17deg); }
+        .fan-caption {
+            text-align: center;
+            margin-top: 22px;
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--faint);
         }
 
-        .cta .section-title {
-            font-size: clamp(2.25rem, 5vw, 3.5rem);
-            margin-bottom: 24px;
+        /* Cartas de juego */
+        .games-head {
+            margin: clamp(90px, 11vw, 140px) 0 48px;
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 30px;
         }
-
-        .cta .section-desc {
-            max-width: 480px;
-            margin: 0 auto 48px;
+        .games-head h2 { max-width: 640px; }
+        .games {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+            list-style: none;
         }
+        .game-card {
+            position: relative;
+            background: var(--card);
+            color: var(--card-ink);
+            border-radius: 16px;
+            padding: 22px 22px 54px;
+            min-height: 360px;
+            box-shadow: 0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 24px 40px -22px rgba(0, 0, 0, 0.7);
+            transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .game-card::before {
+            content: '';
+            position: absolute;
+            inset: 7px;
+            border: 1px solid rgba(154, 117, 32, 0.35);
+            border-radius: 11px;
+            pointer-events: none;
+        }
+        .games li:nth-child(1) .game-card { transform: rotate(-1.6deg); }
+        .games li:nth-child(2) .game-card { transform: rotate(1deg) translateY(10px); }
+        .games li:nth-child(3) .game-card { transform: rotate(-0.8deg); }
+        .games li:nth-child(4) .game-card { transform: rotate(1.6deg) translateY(10px); }
+        .games li .game-card:hover { transform: rotate(0) translateY(-8px); }
+        .pip {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+            color: var(--card-gold);
+        }
+        .pip b {
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.9rem;
+            line-height: 0.8;
+            color: var(--card-ink);
+        }
+        .pip svg { width: 22px; height: 22px; }
+        .pip.bottom {
+            position: absolute;
+            right: 22px;
+            bottom: 18px;
+            transform: rotate(180deg);
+        }
+        .game-card h3 {
+            font-style: italic;
+            font-size: 2.15rem;
+            line-height: 1;
+            margin: 26px 0 8px;
+        }
+        .game-card .meta {
+            font-size: 0.6875rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--card-gold);
+            margin-bottom: 14px;
+        }
+        .game-card p { font-size: 0.9375rem; line-height: 1.55; color: #4a443a; }
 
-        /* ── Footer ── */
+        .extras {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0 30px;
+            list-style: none;
+        }
+        .extras-title {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 1.5rem;
+            margin: 86px 0 18px;
+        }
+        .extras li { border-top: 1px solid var(--rule-strong); padding-top: 18px; }
+        .extras h3 {
+            font-family: var(--sans);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 8px;
+        }
+        .extras p { font-size: 0.9375rem; color: var(--muted); line-height: 1.55; }
+
+        /* ── Principios ── */
+        .section { padding: clamp(90px, 12vw, 150px) 0; }
+        .principles-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: clamp(40px, 6vw, 100px);
+        }
+        .principles-grid > div:first-child { position: sticky; top: 110px; align-self: start; }
+        .principles-grid h2 { margin-top: 22px; }
+        .principles { list-style: none; counter-reset: p; }
+        .principles li {
+            counter-increment: p;
+            display: grid;
+            grid-template-columns: 64px minmax(0, 1fr);
+            gap: 8px 18px;
+            padding: 30px 0;
+            border-top: 1px solid var(--rule);
+        }
+        .principles li:last-child { border-bottom: 1px solid var(--rule); }
+        .principles li::before {
+            content: '0' counter(p);
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: 2rem;
+            line-height: 1;
+            color: var(--gold);
+        }
+        .principles h3 { font-size: 1.85rem; line-height: 1.1; margin-bottom: 8px; }
+        .principles p { color: var(--muted); }
+        .principles p a { color: var(--text); text-decoration-color: var(--gold); text-underline-offset: 3px; }
+
+        /* ── Bitácora ── */
+        .changelog-section { border-top: 1px solid var(--rule); background: var(--bg-2); }
+        .changelog-head {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 30px 60px;
+            align-items: end;
+            margin-bottom: 54px;
+        }
+        .changelog-head h2 { margin-top: 22px; }
+        .changelog-head p { color: var(--muted); max-width: 460px; }
+        .changelog { list-style: none; }
+        .changelog li {
+            display: grid;
+            grid-template-columns: 120px 140px minmax(0, 1fr);
+            gap: 8px 30px;
+            align-items: baseline;
+            padding: 22px 0;
+            border-top: 1px solid var(--rule);
+        }
+        .changelog li:last-child { border-bottom: 1px solid var(--rule); }
+        .changelog .v {
+            font-family: var(--serif);
+            font-size: 2.3rem;
+            line-height: 1;
+            color: var(--gold);
+            font-variant-numeric: tabular-nums;
+        }
+        .changelog time {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--faint);
+        }
+        .changelog p { color: var(--text); }
+        .changelog-more { margin-top: 34px; }
+
+        /* ── Estudio ── */
+        .studio-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+            gap: clamp(40px, 6vw, 100px);
+            align-items: start;
+        }
+        .studio-grid h2 { margin: 22px 0 26px; }
+        .studio-grid .lead { color: var(--muted); font-size: 1.125rem; max-width: 540px; }
+        .ficha {
+            border: 1px solid var(--rule-strong);
+            border-radius: 16px;
+            padding: 8px 26px;
+            background: var(--bg-2);
+            background: color-mix(in srgb, var(--bg-2) 60%, transparent);
+        }
+        .ficha div {
+            display: grid;
+            grid-template-columns: 150px minmax(0, 1fr);
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--rule);
+        }
+        .ficha div:last-child { border-bottom: 0; }
+        .ficha dt {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--faint);
+            padding-top: 3px;
+        }
+        .ficha dd { font-size: 1rem; }
+        .ficha dd a { text-decoration-color: var(--gold); text-underline-offset: 3px; }
+
+        /* ── Pie ── */
         footer {
-            border-top: 1px solid var(--border);
-            padding: 60px 0 40px;
-            transition: border-color 0.4s ease;
+            border-top: 1px solid var(--rule);
+            padding: 56px 0 calc(40px + env(safe-area-inset-bottom));
         }
-
-        .footer-inner {
+        .foot {
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            margin-bottom: 60px;
+            flex-wrap: wrap;
+            gap: 30px;
         }
-
-        .footer-brand .logo { display: block; margin-bottom: 12px; }
-
-        .footer-brand p {
-            font-size: 0.875rem;
-            color: var(--text-tertiary);
-            max-width: 280px;
-            line-height: 1.6;
-            transition: color 0.4s ease;
-        }
-
-        .footer-links { display: flex; gap: 64px; }
-
-        .footer-col h4 {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 20px;
-            transition: color 0.4s ease;
-        }
-
-        .footer-col ul {
+        .foot p { color: var(--faint); font-size: 0.875rem; margin-top: 10px; }
+        .foot ul {
             list-style: none;
             display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .footer-col a {
+            flex-wrap: wrap;
+            gap: 10px 28px;
             font-size: 0.875rem;
-            color: var(--text-tertiary);
-            text-decoration: none;
-            transition: color 0.3s ease;
         }
-
-        .footer-col a:hover { color: var(--text-primary); }
-
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-top: 32px;
-            border-top: 1px solid var(--border);
+        .foot ul a { color: var(--muted); text-decoration: none; }
+        .foot ul a:hover { color: var(--text); }
+        .foot-bottom {
+            margin-top: 40px;
+            padding-top: 22px;
+            border-top: 1px solid var(--rule);
             font-size: 0.8125rem;
-            color: var(--text-tertiary);
-            transition: all 0.4s ease;
+            color: var(--faint);
         }
 
-        .footer-legal a {
-            color: var(--text-tertiary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-legal a:hover { color: var(--text-secondary); }
-
-        /* ── Language toggle ── */
-        [data-lang="es"] { display: none; }
-        html[lang="es"] [data-lang="es"] { display: block; }
-        html[lang="es"] [data-lang="en"] { display: none; }
-        /* Inline variants for spans/links inside flex containers */
-        span[data-lang="es"], a[data-lang="es"] { display: none; }
-        html[lang="es"] span[data-lang="es"], html[lang="es"] a[data-lang="es"] { display: inline; }
-        html[lang="es"] span[data-lang="en"], html[lang="es"] a[data-lang="en"] { display: none; }
-        /* For list items */
-        li[data-lang="es"] { display: none; }
-        html[lang="es"] li[data-lang="es"] { display: list-item; }
-        html[lang="es"] li[data-lang="en"] { display: none; }
-        /* For divs used as inline-flex (badges, actions) */
-        div.hero-badge[data-lang="es"] { display: none; }
-        html[lang="es"] div.hero-badge[data-lang="es"] { display: inline-flex; }
-        html[lang="es"] div.hero-badge[data-lang="en"] { display: none; }
-        /* Section labels */
-        div.section-label[data-lang="es"] { display: none; }
-        html[lang="es"] div.section-label[data-lang="es"] { display: inline-flex; }
-        html[lang="es"] div.section-label[data-lang="en"] { display: none; }
-
-        /* ── Scroll animations ── */
-        .reveal {
+        /* ── Aparición al hacer scroll (sólo si hay JS) ── */
+        .js .reveal {
             opacity: 0;
-            transform: translateY(32px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(26px);
+            transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
+        .js .reveal.in { opacity: 1; transform: none; }
+        .js .reveal.d1 { transition-delay: 0.08s; }
+        .js .reveal.d2 { transition-delay: 0.16s; }
+        .js .reveal.d3 { transition-delay: 0.24s; }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-delay-1 { transition-delay: 0.1s; }
-        .reveal-delay-2 { transition-delay: 0.2s; }
-        .reveal-delay-3 { transition-delay: 0.3s; }
-        .reveal-delay-4 { transition-delay: 0.35s; }
-
-        /* ── Hero entrance ── */
-        .hero-content > * {
+        .js .hero-copy > * {
             opacity: 0;
-            transform: translateY(24px);
-            animation: hero-enter 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            transform: translateY(18px);
+            animation: rise 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+        .js .hero-copy > :nth-child(2) { animation-delay: 0.08s; }
+        .js .hero-copy > :nth-child(3) { animation-delay: 0.18s; }
+        .js .hero-copy > :nth-child(4) { animation-delay: 0.28s; }
+        .js .scoresheet { animation: settle 1.1s 0.15s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+        @keyframes rise { to { opacity: 1; transform: none; } }
+        @keyframes settle {
+            from { opacity: 0; transform: rotate(4deg) translateY(30px); }
+            to { opacity: 1; transform: rotate(-2.5deg); }
         }
 
-        .hero-content > *:nth-child(1), .hero-content > *:nth-child(2) { animation-delay: 0.1s; }
-        .hero-content > *:nth-child(3), .hero-content > *:nth-child(4) { animation-delay: 0.2s; }
-        .hero-content > *:nth-child(5), .hero-content > *:nth-child(6) { animation-delay: 0.35s; }
-        .hero-content > *:nth-child(7), .hero-content > *:nth-child(8) { animation-delay: 0.5s; }
-
-        @keyframes hero-enter {
-            to { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) {
+            .js .reveal, .js .hero-copy > *, .js .scoresheet {
+                opacity: 1 !important;
+                transform: none;
+                animation: none !important;
+                transition: none !important;
+            }
+            .js .scoresheet { transform: rotate(-2.5deg); }
+            .phone, .game-card { transition: none !important; }
         }
 
-        /* ── Mobile responsive ── */
-        @media (max-width: 960px) {
-            .services-grid { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: repeat(2, 1fr); gap: 40px; }
-            .process-steps::before { display: none; }
-            .about-inner { grid-template-columns: 1fr; gap: 48px; }
-            .footer-inner { flex-direction: column; gap: 48px; }
+        /* ── Responsive ── */
+        @media (max-width: 1020px) {
+            .games { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px; }
+            .extras { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 30px; }
+            .changelog li { grid-template-columns: 90px 120px minmax(0, 1fr); }
         }
-
-        @media (max-width: 640px) {
-            .nav-links { display: none; }
-            .hero { min-height: auto; padding: 160px 24px 100px; }
-            .scroll-indicator { display: none; }
-            .services, .process, .about, .cta { padding: 80px 0; }
-            .services-header, .process-header { margin-bottom: 48px; }
-            .process-steps { grid-template-columns: 1fr; gap: 32px; }
-            .about-stats { grid-template-columns: 1fr 1fr; gap: 16px; }
-            .stat { padding: 24px; }
-            .stat-value { font-size: 2rem; }
-            .footer-links { gap: 40px; flex-wrap: wrap; }
-            .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-            .hero-actions { flex-direction: column; }
-            .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+        @media (max-width: 860px) {
+            .nav-links li:not(.keep) { display: none; }
+            .hero { min-height: auto; padding: 120px 0 80px; }
+            .hero-grid, .app-intro, .principles-grid, .studio-grid, .changelog-head { grid-template-columns: 1fr; }
+            .scoresheet { width: min(100%, 320px); }
+            .principles-grid > div:first-child { position: static; }
+            .games-head { flex-direction: column; align-items: flex-start; }
+        }
+        @media (max-width: 560px) {
+            body { font-size: 16px; }
+            .wordmark { font-size: 1.4rem; }
+            .hero h1 { font-size: clamp(2.6rem, 12vw, 3.4rem); }
+            .sheet-col svg { height: 190px; }
+            .games { grid-template-columns: 1fr; }
+            .games li .game-card { transform: none !important; min-height: 0; }
+            .extras { grid-template-columns: 1fr; }
+            .changelog li { grid-template-columns: 64px minmax(0, 1fr); }
+            .changelog li p { grid-column: 1 / -1; }
+            .changelog .v { font-size: 1.9rem; }
+            .ficha { padding: 4px 18px; }
+            .ficha div { grid-template-columns: 1fr; gap: 4px; }
+            .principles li { grid-template-columns: 44px minmax(0, 1fr); }
+            .principles li::before { font-size: 1.6rem; }
+            .principles h3 { font-size: 1.55rem; }
+            .app-icon { width: 76px; height: 76px; }
+            .badge-link img { height: 48px; }
         }
     </style>
+    <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav id="nav">
-        <div class="container">
-            <a href="/" class="logo">Kodera</a>
-            <div class="nav-right">
-                <ul class="nav-links">
-                    <li data-lang="en"><a href="#services">Services</a></li>
-                    <li data-lang="es"><a href="#services">Servicios</a></li>
-                    <li data-lang="en"><a href="#process">Process</a></li>
-                    <li data-lang="es"><a href="#process">Proceso</a></li>
-                    <li data-lang="en"><a href="#about">About</a></li>
-                    <li data-lang="es"><a href="#about">Nosotros</a></li>
-                    <li data-lang="en"><a href="mailto:admin@koderastudio.com" class="nav-cta">Get in Touch</a></li>
-                    <li data-lang="es"><a href="mailto:admin@koderastudio.com" class="nav-cta">Contacto</a></li>
+    <header class="nav" id="nav">
+        <div class="wrap">
+            <a href="/" class="wordmark" aria-label="Kodera">Kodera<i>.</i></a>
+            <ul class="nav-links">
+                <li><a href="#puntitos">Puntitos</a></li>
+                <li><a href="#bitacora" data-i18n="nav_changelog">Bitácora</a></li>
+                <li><a href="#estudio" data-i18n="nav_studio">Estudio</a></li>
+                <li class="keep">
+                    <div class="lang" role="group" aria-label="Idioma / Language / Idioma">
+                        <button type="button" data-set-lang="es" aria-pressed="true" lang="es" title="Español">ES</button>
+                        <button type="button" data-set-lang="en" aria-pressed="false" lang="en" title="English">EN</button>
+                        <button type="button" data-set-lang="pt" aria-pressed="false" lang="pt" title="Português">PT</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Portada -->
+        <section class="hero">
+            <div class="wrap hero-grid">
+                <div class="hero-copy">
+                    <div class="label" data-i18n="hero_eyebrow">Estudio independiente de apps</div>
+                    <h1 data-i18n="hero_title">Hacemos <em>Puntitos</em>, el anotador de la mesa.</h1>
+                    <p class="hero-sub" data-i18n="hero_sub">Kodera es un estudio chico. Diseñamos, programamos y mantenemos Puntitos para que cada partida de Truco, Burako, Generala o Backgammon quede bien anotada: sin papel, sin publicidad y sin discusiones.</p>
+                    <div class="hero-actions">
+                        <a class="badge-link" href="https://apps.apple.com/app/id6761696563" rel="noopener">
+                            <img data-badge src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/es-mx" alt="Descargar en la App Store" width="150" height="50">
+                        </a>
+                        <a class="text-link" href="#puntitos"><span data-i18n="hero_link">Conocé la app</span> <span aria-hidden="true">↓</span></a>
+                    </div>
+                </div>
+
+                <figure class="scoresheet" aria-hidden="true" id="scoresheet">
+                    <div class="sheet-head">
+                        <div class="serif">Truco</div>
+                        <small data-i18n="sheet_to">a 30</small>
+                        <div class="diamond-rule"><span></span></div>
+                    </div>
+                    <div class="sheet-cols">
+                        <div class="sheet-col us">
+                            <span class="team-tag" data-i18n="sheet_team">Equipo</span>
+                            <span class="team" data-i18n="sheet_us">Nosotros</span>
+                            <svg viewBox="0 0 64 220" data-points="12"></svg>
+                            <div class="total"><small>12 / 30</small><b data-total>12</b></div>
+                        </div>
+                        <div class="sheet-col them">
+                            <span class="team-tag" data-i18n="sheet_team">Equipo</span>
+                            <span class="team" data-i18n="sheet_them">Ellos</span>
+                            <svg viewBox="0 0 64 220" data-points="8"></svg>
+                            <div class="total"><small>8 / 30</small><b data-total>8</b></div>
+                        </div>
+                    </div>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Puntitos -->
+        <section class="felt" id="puntitos" aria-labelledby="puntitos-title">
+            <div class="wrap">
+                <div class="app-intro">
+                    <div>
+                        <div class="label reveal" data-i18n="app_label">La app</div>
+                        <div class="app-id reveal d1">
+                            <img class="app-icon" src="/assets/puntitos-icon-192.webp" srcset="/assets/puntitos-icon-192.webp 1x, /assets/puntitos-icon-384.webp 2x" width="96" height="96" alt="" >
+                            <h2 class="app-name" id="puntitos-title">Puntitos<span>.</span></h2>
+                        </div>
+                        <p class="app-tagline reveal d1" data-i18n="app_tagline">Anotador de Truco, Burako, Generala y Backgammon.</p>
+                        <p class="app-copy reveal d2" data-i18n="app_copy">Los puntos de siempre, anotados como en la mesa: palitos para el truco, planilla para la generala, bajadas para el burako y el cubo para el backgammon. Pensada para usar con una mano mientras jugás.</p>
+                        <ul class="facts reveal d2">
+                            <li data-i18n="fact_free">Gratis</li>
+                            <li data-i18n="fact_devices">iPhone y iPad</li>
+                            <li>Español · Português · English</li>
+                            <li data-i18n="fact_since">Desde abril de 2026</li>
+                        </ul>
+                        <a class="badge-link reveal d3" href="https://apps.apple.com/app/id6761696563" rel="noopener">
+                            <img data-badge src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/es-mx" alt="Descargar en la App Store" width="150" height="50" loading="lazy">
+                        </a>
+                    </div>
+
+                    <figure class="reveal d1">
+                        <div class="fan">
+                            <div class="phone"><img src="/assets/shots/generala.webp" width="640" height="1387" loading="lazy" alt="Planilla de Generala con cuatro jugadores" data-i18n-alt="shot_generala"></div>
+                            <div class="phone"><img src="/assets/shots/truco.webp" width="640" height="1387" loading="lazy" alt="Partida de Truco anotada con palitos: Nosotros 12, Ellos 8" data-i18n-alt="shot_truco"></div>
+                            <div class="phone"><img src="/assets/shots/burako.webp" width="640" height="1387" loading="lazy" alt="Planilla de Burako por parejas, mano a mano" data-i18n-alt="shot_burako"></div>
+                        </div>
+                        <figcaption class="fan-caption" data-i18n="fan_caption">Capturas de la app</figcaption>
+                    </figure>
+                </div>
+
+                <div class="games-head">
+                    <h2 class="reveal" data-i18n="games_title">Cuatro juegos, cada uno con <em>su planilla</em>.</h2>
+                </div>
+                <ul class="games">
+                    <li class="reveal">
+                        <article class="game-card">
+                            <div class="pip"><b>T</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 4v16M5 4h14M19 4v16M5 20h14M5 20 19 4"/></svg></div>
+                            <h3>Truco</h3>
+                            <div class="meta" data-i18n="truco_meta">A 15 o a 30 · de 2 a 6</div>
+                            <p data-i18n="truco_desc">Los palitos, como en la mesa. Un toque por punto, deshacer cuando alguien se equivoca y, en 3 contra 3, el pica pica que sigue la mano solo.</p>
+                            <div class="pip bottom" aria-hidden="true"><b>T</b></div>
+                        </article>
+                    </li>
+                    <li class="reveal d1">
+                        <article class="game-card">
+                            <div class="pip"><b>B</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="8" height="12" rx="1.5"/><rect x="13" y="6" width="8" height="12" rx="1.5"/><circle cx="7" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="17" cy="12" r="1.3" fill="currentColor" stroke="none"/></svg></div>
+                            <h3 data-i18n="burako_name">Burako</h3>
+                            <div class="meta" data-i18n="burako_meta">De a dos o por parejas</div>
+                            <p data-i18n="burako_desc">Planilla por mano con bajadas y totales automáticos. La mesa aprende el orden y la app te dice a quién le toca empezar.</p>
+                            <div class="pip bottom" aria-hidden="true"><b>B</b></div>
+                        </article>
+                    </li>
+                    <li class="reveal d2">
+                        <article class="game-card">
+                            <div class="pip"><b>G</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="3.5"/><g fill="currentColor" stroke="none"><circle cx="8.5" cy="8.5" r="1.4"/><circle cx="15.5" cy="8.5" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="8.5" cy="15.5" r="1.4"/><circle cx="15.5" cy="15.5" r="1.4"/></g></svg></div>
+                            <h3>Generala</h3>
+                            <div class="meta" data-i18n="generala_meta">Cinco dados</div>
+                            <p data-i18n="generala_desc">La planilla completa —escalera, full, póker, generala y doble— con los totales al instante para todos los jugadores.</p>
+                            <div class="pip bottom" aria-hidden="true"><b>G</b></div>
+                        </article>
+                    </li>
+                    <li class="reveal d3">
+                        <article class="game-card">
+                            <div class="pip"><b data-i18n="bg_pip">Bg</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M3 4h18M3 20h18M4 4l2.5 7L9 4M15 4l2.5 7L20 4M4 20l2.5-7L9 20M15 20l2.5-7L20 20"/></svg></div>
+                            <h3 data-i18n="bg_name">Backgammon</h3>
+                            <div class="meta" data-i18n="bg_meta">A 3, 5, 7, 11 o 15</div>
+                            <p data-i18n="bg_desc">Cubo de doblar con posesión: doblás, aceptás o rechazás y la app hace las cuentas. Gammon y backgammon valen doble y triple.</p>
+                            <div class="pip bottom" aria-hidden="true"><b data-i18n="bg_pip">Bg</b></div>
+                        </article>
+                    </li>
                 </ul>
-                <button class="toggle-btn" id="lang-toggle" aria-label="Switch language">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
-                </button>
-                <button class="toggle-btn" id="theme-toggle" aria-label="Toggle theme">
-                    <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                    <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-                </button>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero -->
-    <section class="hero" id="hero">
-        <div class="hero-grid"></div>
-        <div class="hero-content">
-            <div class="hero-badge" data-lang="en">iOS App Development Studio</div>
-            <div class="hero-badge" data-lang="es">Estudio de Desarrollo iOS</div>
-            <h1 data-lang="en">We craft apps<br>people <em>love</em> to use</h1>
-            <h1 data-lang="es">Creamos apps<br>que la gente <em>ama</em> usar</h1>
-            <p class="hero-sub" data-lang="en">Kodera is a boutique software studio dedicated to building exceptional mobile experiences for the Apple ecosystem.</p>
-            <p class="hero-sub" data-lang="es">Kodera es un estudio de software dedicado a crear experiencias móviles excepcionales para el ecosistema Apple.</p>
-            <div class="hero-actions" data-lang="en">
-                <a href="mailto:admin@koderastudio.com" class="btn-primary">
-                    Start a Project
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8.67 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <a href="#services" class="btn-secondary">See Our Work</a>
+                <p class="extras-title reveal" data-i18n="extras_title">Y para la mesa de siempre:</p>
+                <ul class="extras">
+                    <li class="reveal">
+                        <h3 data-i18n="ex_t_title">Torneos</h3>
+                        <p data-i18n="ex_t_desc">Armá la llave con tus amigos: eliminación, liga o grupos, con tabla, cuadro y podio para compartir.</p>
+                    </li>
+                    <li class="reveal d1">
+                        <h3 data-i18n="ex_f_title">Amigos</h3>
+                        <p data-i18n="ex_f_desc">Con cuenta, la partida aparece en el historial de todos los que jugaron, sin importar quién anotó.</p>
+                    </li>
+                    <li class="reveal d2">
+                        <h3 data-i18n="ex_s_title">Estadísticas</h3>
+                        <p data-i18n="ex_s_desc">Récords, rachas, remontadas, palizas y el cara a cara con cada amigo.</p>
+                    </li>
+                    <li class="reveal d3">
+                        <h3 data-i18n="ex_c_title">Tarjetas</h3>
+                        <p data-i18n="ex_c_desc">El resultado final en una imagen lista para mandar al grupo.</p>
+                    </li>
+                </ul>
             </div>
-            <div class="hero-actions" data-lang="es">
-                <a href="mailto:admin@koderastudio.com" class="btn-primary">
-                    Iniciar un Proyecto
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8.67 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </a>
-                <a href="#services" class="btn-secondary">Ver Nuestro Trabajo</a>
-            </div>
-        </div>
-        <div class="scroll-indicator">Scroll</div>
-    </section>
+        </section>
 
-    <!-- Services -->
-    <section class="services" id="services">
-        <div class="container">
-            <div data-lang="en">
-                <div class="services-header">
-                    <div class="section-label reveal">What We Do</div>
-                    <h2 class="section-title reveal reveal-delay-1">Expertise across the entire<br>product lifecycle</h2>
-                    <p class="section-desc reveal reveal-delay-2">From initial concept to App Store launch, we handle every detail with precision and care.</p>
+        <!-- Principios -->
+        <section class="section" aria-labelledby="principios-title">
+            <div class="wrap principles-grid">
+                <div>
+                    <div class="label reveal" data-i18n="pr_label">Principios</div>
+                    <h2 class="reveal d1" id="principios-title" data-i18n="pr_title">Hecha para la mesa, <em>no para los anuncios</em>.</h2>
                 </div>
-                <div class="services-grid">
-                    <div class="service-card reveal reveal-delay-1">
-                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="19" x2="14" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-                        <h3>iOS Development</h3>
-                        <p>Native applications built with Swift and SwiftUI, engineered for performance and crafted for seamless user experiences across all Apple devices.</p>
-                    </div>
-                    <div class="service-card reveal reveal-delay-2">
-                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4m-2.83-7.17l-2.83 2.83M7.76 16.24l-2.83 2.83m14.14 0l-2.83-2.83M7.76 7.76L4.93 4.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-                        <h3>Product Design</h3>
-                        <p>Intuitive, beautiful interfaces informed by Apple's Human Interface Guidelines. Every interaction is considered, every pixel intentional.</p>
-                    </div>
-                    <div class="service-card reveal reveal-delay-3">
-                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-                        <h3>App Store Launch</h3>
-                        <p>End-to-end launch strategy, from App Store Optimization and metadata to submission review and post-launch iteration.</p>
-                    </div>
-                </div>
+                <ol class="principles">
+                    <li class="reveal">
+                        <div>
+                            <h3 data-i18n="pr1_t">Sin publicidad.</h3>
+                            <p data-i18n="pr1_d">Ni banners ni videos entre mano y mano. Puntitos es gratis y no muestra anuncios.</p>
+                        </div>
+                    </li>
+                    <li class="reveal">
+                        <div>
+                            <h3 data-i18n="pr2_t">Anda sin internet.</h3>
+                            <p data-i18n="pr2_d">Lo que anotás se guarda en tu teléfono. En el quincho, en la playa o en el campo, sin señal.</p>
+                        </div>
+                    </li>
+                    <li class="reveal">
+                        <div>
+                            <h3 data-i18n="pr3_t">La cuenta es opcional.</h3>
+                            <p data-i18n="pr3_d">Podés usarla sin registrarte. La cuenta suma amigos y tu historial en la nube.</p>
+                        </div>
+                    </li>
+                    <li class="reveal">
+                        <div>
+                            <h3 data-i18n="pr4_t">Tus datos no se venden.</h3>
+                            <p data-i18n="pr4_d">No usamos herramientas de publicidad ni de rastreo de terceros. La <a href="/puntos/privacy">política de privacidad</a> explica qué se guarda y por qué.</p>
+                        </div>
+                    </li>
+                </ol>
             </div>
-            <div data-lang="es">
-                <div class="services-header">
-                    <div class="section-label reveal">Lo Que Hacemos</div>
-                    <h2 class="section-title reveal reveal-delay-1">Experiencia en todo el<br>ciclo de vida del producto</h2>
-                    <p class="section-desc reveal reveal-delay-2">Desde el concepto inicial hasta el lanzamiento en la App Store, manejamos cada detalle con precisión y cuidado.</p>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card reveal reveal-delay-1">
-                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="5" y="2" width="14" height="20" rx="3" stroke="currentColor" stroke-width="1.5"/><line x1="10" y1="19" x2="14" y2="19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-                        <h3>Desarrollo iOS</h3>
-                        <p>Aplicaciones nativas construidas con Swift y SwiftUI, diseñadas para rendimiento y experiencias de usuario fluidas en todos los dispositivos Apple.</p>
-                    </div>
-                    <div class="service-card reveal reveal-delay-2">
-                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v4m0 12v4M2 12h4m12 0h4m-2.83-7.17l-2.83 2.83M7.76 16.24l-2.83 2.83m14.14 0l-2.83-2.83M7.76 7.76L4.93 4.93" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
-                        <h3>Diseño de Producto</h3>
-                        <p>Interfaces intuitivas y hermosas basadas en las Human Interface Guidelines de Apple. Cada interacción es considerada, cada píxel intencional.</p>
-                    </div>
-                    <div class="service-card reveal reveal-delay-3">
-                        <div class="service-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.27 5.82 21 7 14.14l-5-4.87 6.91-1.01L12 2z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div>
-                        <h3>Lanzamiento en App Store</h3>
-                        <p>Estrategia de lanzamiento integral, desde optimización en App Store y metadata hasta revisión de envío e iteración post-lanzamiento.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Process -->
-    <section class="process" id="process">
-        <div class="container">
-            <div data-lang="en">
-                <div class="process-header">
-                    <div class="section-label reveal">How We Work</div>
-                    <h2 class="section-title reveal reveal-delay-1">A proven process built<br>for clarity and speed</h2>
-                    <p class="section-desc reveal reveal-delay-2">We move fast without cutting corners. Each phase is designed to keep your project on track.</p>
+        <!-- Bitácora -->
+        <section class="section changelog-section" id="bitacora" aria-labelledby="bitacora-title">
+            <div class="wrap">
+                <div class="changelog-head">
+                    <div>
+                        <div class="label reveal" data-i18n="cl_label">Bitácora</div>
+                        <h2 class="reveal d1" id="bitacora-title" data-i18n="cl_title">Una app que <em>se cuida</em>.</h2>
+                    </div>
+                    <p class="reveal d2" data-i18n="cl_sub">Más de 30 versiones desde que salió, en abril de 2026. Estas son algunas:</p>
                 </div>
-                <div class="process-steps">
-                    <div class="process-step reveal reveal-delay-1"><div class="step-number">01</div><h3>Discover</h3><p>We learn your goals, audience, and competitive landscape to define a clear product vision.</p></div>
-                    <div class="process-step reveal reveal-delay-2"><div class="step-number">02</div><h3>Design</h3><p>Wireframes evolve into polished prototypes. Every interaction is mapped and refined.</p></div>
-                    <div class="process-step reveal reveal-delay-3"><div class="step-number">03</div><h3>Develop</h3><p>Clean, testable Swift code brought to life with weekly builds and transparent progress.</p></div>
-                    <div class="process-step reveal reveal-delay-4"><div class="step-number">04</div><h3>Deliver</h3><p>App Store submission, launch support, and ongoing iteration to ensure long-term success.</p></div>
-                </div>
+                <ol class="changelog">
+                    <li class="reveal"><span class="v">5.1</span><time datetime="2026-09" data-i18n="m_sep">Sep 2026</time><p data-i18n="cl_51">Más ágil: el historial completo al instante y un aviso si el teléfono se queda sin lugar en medio de una partida.</p></li>
+                    <li class="reveal"><span class="v">5.0</span><time datetime="2026-09" data-i18n="m_sep">Sep 2026</time><p data-i18n="cl_50">Torneos: la llave con amigos en Truco, Burako o Backgammon, por eliminación, liga o grupos.</p></li>
+                    <li class="reveal"><span class="v">4.8</span><time datetime="2026-09" data-i18n="m_sep">Sep 2026</time><p data-i18n="cl_48">Pica pica renovado: se carga una sola vez quién es mano y la app sigue la ronda sola.</p></li>
+                    <li class="reveal"><span class="v">4.0</span><time datetime="2026-08" data-i18n="m_aug">Ago 2026</time><p data-i18n="cl_40">Llega el Backgammon, con cubo de doblar, gammon y backgammon.</p></li>
+                    <li class="reveal"><span class="v">3.11</span><time datetime="2026-06" data-i18n="m_jun">Jun 2026</time><p data-i18n="cl_311">Cara a cara: tu récord contra cada amigo y como compañeros.</p></li>
+                    <li class="reveal"><span class="v">1.0</span><time datetime="2026-04" data-i18n="m_apr">Abr 2026</time><p data-i18n="cl_10">Puntitos llega a la App Store.</p></li>
+                </ol>
+                <p class="changelog-more reveal">
+                    <a class="text-link" href="https://apps.apple.com/app/id6761696563" rel="noopener"><span data-i18n="cl_more">Ver el historial completo en la App Store</span> <span aria-hidden="true">→</span></a>
+                </p>
             </div>
-            <div data-lang="es">
-                <div class="process-header">
-                    <div class="section-label reveal">Cómo Trabajamos</div>
-                    <h2 class="section-title reveal reveal-delay-1">Un proceso probado<br>para claridad y velocidad</h2>
-                    <p class="section-desc reveal reveal-delay-2">Avanzamos rápido sin tomar atajos. Cada fase está diseñada para mantener tu proyecto en curso.</p>
-                </div>
-                <div class="process-steps">
-                    <div class="process-step reveal reveal-delay-1"><div class="step-number">01</div><h3>Descubrir</h3><p>Conocemos tus objetivos, audiencia y panorama competitivo para definir una visión de producto clara.</p></div>
-                    <div class="process-step reveal reveal-delay-2"><div class="step-number">02</div><h3>Diseñar</h3><p>Los wireframes evolucionan en prototipos pulidos. Cada interacción se mapea y se refina.</p></div>
-                    <div class="process-step reveal reveal-delay-3"><div class="step-number">03</div><h3>Desarrollar</h3><p>Código Swift limpio y testeable, con builds semanales y progreso transparente.</p></div>
-                    <div class="process-step reveal reveal-delay-4"><div class="step-number">04</div><h3>Entregar</h3><p>Envío a App Store, soporte de lanzamiento e iteración continua para asegurar el éxito a largo plazo.</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="about-inner">
-                <div data-lang="en">
-                    <div class="about-text">
-                        <div class="section-label reveal">About Kodera</div>
-                        <h2 class="section-title reveal reveal-delay-1">Built on craft,<br>driven by quality</h2>
-                        <p class="section-desc reveal reveal-delay-2">Kodera LLC is a focused app development studio dedicated to building thoughtful, well-crafted software for Apple platforms. We combine clean code with great design to create applications that stand apart.</p>
-                    </div>
+        <!-- Estudio -->
+        <section class="section" id="estudio" aria-labelledby="estudio-title">
+            <div class="wrap studio-grid">
+                <div>
+                    <div class="label reveal" data-i18n="st_label">El estudio</div>
+                    <h2 class="reveal d1" id="estudio-title" data-i18n="st_title">Un estudio chico, <em>a propósito</em>.</h2>
+                    <p class="lead reveal d2" data-i18n="st_lead">Kodera es un estudio de software independiente. Hoy toda nuestra energía está puesta en Puntitos: la diseñamos, la programamos y la mantenemos nosotros, versión tras versión. Cada mensaje que llega a soporte lo lee una persona.</p>
                 </div>
-                <div data-lang="es">
-                    <div class="about-text">
-                        <div class="section-label reveal">Sobre Kodera</div>
-                        <h2 class="section-title reveal reveal-delay-1">Construido con oficio,<br>impulsado por la calidad</h2>
-                        <p class="section-desc reveal reveal-delay-2">Kodera LLC es un estudio de desarrollo enfocado en construir software cuidadoso y bien elaborado para plataformas Apple. Combinamos código limpio con gran diseño para crear aplicaciones que se destacan.</p>
-                    </div>
-                </div>
-                <div class="about-stats">
-                    <div class="stat reveal reveal-delay-1">
-                        <div class="stat-value">100%</div>
-                        <div class="stat-label" data-lang="en">Apple Ecosystem Focus</div>
-                        <div class="stat-label" data-lang="es">Enfoque Ecosistema Apple</div>
-                    </div>
-                    <div class="stat reveal reveal-delay-2">
-                        <div class="stat-value">Swift</div>
-                        <div class="stat-label" data-lang="en">Native Development</div>
-                        <div class="stat-label" data-lang="es">Desarrollo Nativo</div>
-                    </div>
-                    <div class="stat reveal reveal-delay-3">
-                        <div class="stat-value">HIG</div>
-                        <div class="stat-label" data-lang="en">Design Compliant</div>
-                        <div class="stat-label" data-lang="es">Cumple con Diseño</div>
-                    </div>
-                    <div class="stat reveal reveal-delay-4">
-                        <div class="stat-value">5&#9733;</div>
-                        <div class="stat-label" data-lang="en">Quality Standard</div>
-                        <div class="stat-label" data-lang="es">Estándar de Calidad</div>
-                    </div>
-                </div>
+                <dl class="ficha reveal d2">
+                    <div><dt data-i18n="fi_company">Empresa</dt><dd>Kodera LLC</dd></div>
+                    <div><dt data-i18n="fi_country">Registrada en</dt><dd data-i18n="fi_country_v">Estados Unidos</dd></div>
+                    <div><dt data-i18n="fi_store">En la App Store</dt><dd data-i18n="fi_store_v">Desarrollador de Puntitos</dd></div>
+                    <div><dt data-i18n="fi_contact">Contacto</dt><dd><a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a></dd></div>
+                    <div><dt>Puntitos</dt><dd><a href="/puntos/privacy" data-i18n="fi_privacy">Privacidad</a> · <a href="/puntos/support" data-i18n="fi_support">Soporte</a></dd></div>
+                </dl>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- CTA -->
-    <section class="cta">
-        <div class="container">
-            <div class="cta-content">
-                <div data-lang="en">
-                    <div class="section-label reveal">Work With Us</div>
-                    <h2 class="section-title reveal reveal-delay-1">Ready to build something<br>extraordinary?</h2>
-                    <p class="section-desc reveal reveal-delay-2">Whether you have a fully scoped product or just an idea, we'd love to hear about it.</p>
-                    <div class="reveal reveal-delay-3">
-                        <a href="mailto:admin@koderastudio.com" class="btn-primary">
-                            Start the Conversation
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8.67 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </div>
-                <div data-lang="es">
-                    <div class="section-label reveal">Trabajá con Nosotros</div>
-                    <h2 class="section-title reveal reveal-delay-1">¿Listo para construir algo<br>extraordinario?</h2>
-                    <p class="section-desc reveal reveal-delay-2">Ya sea que tengas un producto definido o solo una idea, nos encantaría escucharte.</p>
-                    <div class="reveal reveal-delay-3">
-                        <a href="mailto:admin@koderastudio.com" class="btn-primary">
-                            Iniciar la Conversación
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3.33 8h9.34M8.67 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-inner">
-                <div class="footer-brand">
-                    <a href="/" class="logo">Kodera</a>
-                    <p data-lang="en">Thoughtfully crafted mobile applications for the Apple ecosystem.</p>
-                    <p data-lang="es">Aplicaciones móviles cuidadosamente creadas para el ecosistema Apple.</p>
+        <div class="wrap">
+            <div class="foot">
+                <div>
+                    <a href="/" class="wordmark" aria-label="Kodera">Kodera<i>.</i></a>
+                    <p data-i18n="ft_tag">El estudio detrás de Puntitos.</p>
                 </div>
-                <div class="footer-links">
-                    <div class="footer-col">
-                        <h4 data-lang="en">Studio</h4>
-                        <h4 data-lang="es">Estudio</h4>
-                        <ul>
-                            <li data-lang="en"><a href="#services">Services</a></li>
-                            <li data-lang="es"><a href="#services">Servicios</a></li>
-                            <li data-lang="en"><a href="#process">Process</a></li>
-                            <li data-lang="es"><a href="#process">Proceso</a></li>
-                            <li data-lang="en"><a href="#about">About</a></li>
-                            <li data-lang="es"><a href="#about">Nosotros</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-col">
-                        <h4 data-lang="en">Connect</h4>
-                        <h4 data-lang="es">Contacto</h4>
-                        <ul>
-                            <li><a href="mailto:admin@koderastudio.com">Email</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <ul>
+                    <li><a href="https://apps.apple.com/app/id6761696563" rel="noopener" data-i18n="ft_store">Puntitos en la App Store</a></li>
+                    <li><a href="/puntos/privacy" data-i18n="ft_privacy">Privacidad de Puntitos</a></li>
+                    <li><a href="/puntos/support" data-i18n="ft_support">Soporte</a></li>
+                    <li><a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a></li>
+                </ul>
             </div>
-            <div class="footer-bottom">
-                <span>&copy; 2026 Kodera LLC. All rights reserved.</span>
-                <span class="footer-legal"><a href="/puntos/privacy.html">Privacy</a> · <a href="/puntos/support.html">Support</a></span>
-                <span data-lang="en">Crafted in the United States</span>
-                <span data-lang="es">Hecho en Estados Unidos</span>
-            </div>
+            <div class="foot-bottom">© <span id="year">2026</span> Kodera LLC</div>
         </div>
     </footer>
 
     <script>
-        // Sticky nav
-        const nav = document.getElementById('nav');
-        window.addEventListener('scroll', () => {
-            nav.classList.toggle('scrolled', window.scrollY > 40);
-        }, { passive: true });
+    (function () {
+        'use strict';
 
-        // Scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+        var root = document.documentElement;
+        var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        /* ── Idioma ── */
+        var BADGE = {
+            es: 'https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/es-mx',
+            en: 'https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us',
+            pt: 'https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/pt-br'
+        };
+        var META = {
+            es: {
+                title: 'Kodera — el estudio detrás de Puntitos',
+                badge: 'Descargar en la App Store'
+            },
+            en: {
+                title: 'Kodera — the studio behind Puntitos',
+                badge: 'Download on the App Store'
+            },
+            pt: {
+                title: 'Kodera — o estúdio por trás do Puntitos',
+                badge: 'Baixar na App Store'
+            }
+        };
+        var T = {
+            en: {
+                nav_changelog: 'Changelog',
+                nav_studio: 'Studio',
+                hero_eyebrow: 'Independent app studio',
+                hero_title: 'We make <em>Puntitos</em>, the scorekeeper for the table.',
+                hero_sub: 'Kodera is a small studio. We design, build and maintain Puntitos so every game of Truco, Burako, Generala or Backgammon is scored right — no paper, no ads, no arguments.',
+                hero_link: 'Meet the app',
+                sheet_to: 'to 30',
+                sheet_team: 'Team',
+                sheet_us: 'Us',
+                sheet_them: 'Them',
+                app_label: 'The app',
+                app_tagline: 'Scorekeeper for Truco, Burako, Generala and Backgammon.',
+                app_copy: 'Scores kept the way they are at the table: tally marks for Truco, a full sheet for Generala, melds for Burako and the doubling cube for Backgammon. Designed to use one-handed while you play.',
+                fact_free: 'Free',
+                fact_devices: 'iPhone & iPad',
+                fact_since: 'Since April 2026',
+                shot_generala: 'Generala scoresheet with four players',
+                shot_truco: 'A Truco game scored with tally marks: Us 12, Them 8',
+                shot_burako: 'Burako scoresheet for two pairs, hand by hand',
+                fan_caption: 'Screens from the app',
+                games_title: 'Four games, each with <em>its own scoresheet</em>.',
+                truco_meta: 'To 15 or 30 · 2 to 6 players',
+                truco_desc: 'Tally marks, just like at the table. One tap per point, undo when someone slips, and in 3-vs-3 the pica pica rounds follow the hand on their own.',
+                burako_name: 'Burako',
+                burako_meta: 'One-on-one or in pairs',
+                burako_desc: 'A sheet per hand with melds and automatic totals. The table learns the seating order and the app tells you who starts.',
+                generala_meta: 'Five dice',
+                generala_desc: 'The full scoresheet — straight, full house, four of a kind, generala and double — with instant totals for every player.',
+                bg_pip: 'Bg',
+                bg_name: 'Backgammon',
+                bg_meta: 'To 3, 5, 7, 11 or 15',
+                bg_desc: 'Doubling cube with ownership: double, take or drop and the app does the math. Gammons and backgammons count double and triple.',
+                extras_title: 'And for game night:',
+                ex_t_title: 'Tournaments',
+                ex_t_desc: 'Set up a bracket with friends: knockout, league or groups, with standings, bracket and a podium to share.',
+                ex_f_title: 'Friends',
+                ex_f_desc: 'With an account, a game shows up in the history of everyone who played, no matter who kept score.',
+                ex_s_title: 'Stats',
+                ex_s_desc: 'Records, streaks, comebacks, blowouts and your head-to-head with each friend.',
+                ex_c_title: 'Share cards',
+                ex_c_desc: 'The final result as an image, ready for the group chat.',
+                pr_label: 'Principles',
+                pr_title: 'Made for the table, <em>not for ads</em>.',
+                pr1_t: 'No ads.',
+                pr1_d: 'No banners, no videos between hands. Puntitos is free and shows no advertising.',
+                pr2_t: 'Works offline.',
+                pr2_d: 'Everything you score is saved on your phone. At the beach, in the countryside, with no signal.',
+                pr3_t: 'Accounts are optional.',
+                pr3_d: 'Use it without signing up. An account adds friends and your history in the cloud.',
+                pr4_t: 'Your data isn’t for sale.',
+                pr4_d: 'No third-party advertising or tracking tools. The <a href="/puntos/privacy">privacy policy</a> explains what is stored and why.',
+                cl_label: 'Changelog',
+                cl_title: 'An app that’s <em>looked after</em>.',
+                cl_sub: 'More than 30 releases since it launched in April 2026. A few of them:',
+                m_sep: 'Sep 2026',
+                m_aug: 'Aug 2026',
+                m_jun: 'Jun 2026',
+                m_apr: 'Apr 2026',
+                cl_51: 'Faster: your full history loads instantly, and you get a warning if your phone runs out of space mid-game.',
+                cl_50: 'Tournaments: brackets with friends in Truco, Burako or Backgammon — knockout, league or groups.',
+                cl_48: 'Pica pica, redone: set who leads once and the app follows the rounds on its own.',
+                cl_40: 'Backgammon arrives, with the doubling cube, gammons and backgammons.',
+                cl_311: 'Head-to-head: your record against each friend, and as partners.',
+                cl_10: 'Puntitos launches on the App Store.',
+                cl_more: 'See the full version history on the App Store',
+                st_label: 'The studio',
+                st_title: 'A small studio, <em>on purpose</em>.',
+                st_lead: 'Kodera is an independent software studio. Right now all of our energy goes into Puntitos: we design it, build it and maintain it ourselves, release after release. Every message sent to support is read by a person.',
+                fi_company: 'Company',
+                fi_country: 'Registered in',
+                fi_country_v: 'United States',
+                fi_store: 'On the App Store',
+                fi_store_v: 'Developer of Puntitos',
+                fi_contact: 'Contact',
+                fi_privacy: 'Privacy',
+                fi_support: 'Support',
+                ft_tag: 'The studio behind Puntitos.',
+                ft_store: 'Puntitos on the App Store',
+                ft_privacy: 'Puntitos privacy',
+                ft_support: 'Support'
+            },
+            pt: {
+                nav_changelog: 'Versões',
+                nav_studio: 'Estúdio',
+                hero_eyebrow: 'Estúdio independente de apps',
+                hero_title: 'Fazemos o <em>Puntitos</em>, o anotador da mesa.',
+                hero_sub: 'A Kodera é um estúdio pequeno. Criamos, programamos e mantemos o Puntitos para que cada partida de Truco, Buraco, Generala ou Gamão fique bem anotada: sem papel, sem anúncios e sem discussão.',
+                hero_link: 'Conheça o app',
+                sheet_to: 'até 30',
+                sheet_team: 'Equipe',
+                sheet_us: 'Nós',
+                sheet_them: 'Eles',
+                app_label: 'O app',
+                app_tagline: 'Anotador de Truco, Buraco, Generala e Gamão.',
+                app_copy: 'Os pontos de sempre, anotados como na mesa: risquinhos para o truco, planilha para a generala, jogos baixados para o buraco e o dado de dobra para o gamão. Feito para usar com uma mão enquanto você joga.',
+                fact_free: 'Grátis',
+                fact_devices: 'iPhone e iPad',
+                fact_since: 'Desde abril de 2026',
+                shot_generala: 'Planilha de Generala com quatro jogadores',
+                shot_truco: 'Partida de Truco anotada com risquinhos: Nós 12, Eles 8',
+                shot_burako: 'Planilha de Buraco em duplas, rodada a rodada',
+                fan_caption: 'Telas do app',
+                games_title: 'Quatro jogos, cada um com <em>sua planilha</em>.',
+                truco_meta: 'Até 15 ou 30 · de 2 a 6',
+                truco_desc: 'Os risquinhos, como na mesa. Um toque por ponto, desfazer quando alguém erra e, no 3 contra 3, o pica pica que segue a mão sozinho.',
+                burako_name: 'Buraco',
+                burako_meta: 'Em dois ou em duplas',
+                burako_desc: 'Planilha por rodada com jogos baixados e totais automáticos. A mesa aprende a ordem e o app diz quem começa.',
+                generala_meta: 'Cinco dados',
+                generala_desc: 'A planilha completa — sequência, full, quadra, generala e dupla — com os totais na hora para todos os jogadores.',
+                bg_pip: 'Gm',
+                bg_name: 'Gamão',
+                bg_meta: 'Até 3, 5, 7, 11 ou 15',
+                bg_desc: 'Dado de dobra com posse: dobre, aceite ou recuse e o app faz as contas. Gammon e backgammon valem o dobro e o triplo.',
+                extras_title: 'E para a mesa de sempre:',
+                ex_t_title: 'Torneios',
+                ex_t_desc: 'Monte a chave com os amigos: mata-mata, liga ou grupos, com tabela, chave e pódio para compartilhar.',
+                ex_f_title: 'Amigos',
+                ex_f_desc: 'Com conta, a partida aparece no histórico de todo mundo que jogou, não importa quem anotou.',
+                ex_s_title: 'Estatísticas',
+                ex_s_desc: 'Recordes, sequências, viradas, goleadas e o confronto direto com cada amigo.',
+                ex_c_title: 'Cartões',
+                ex_c_desc: 'O resultado final numa imagem pronta para mandar no grupo.',
+                pr_label: 'Princípios',
+                pr_title: 'Feito para a mesa, <em>não para anúncios</em>.',
+                pr1_t: 'Sem anúncios.',
+                pr1_d: 'Nem banners nem vídeos entre uma mão e outra. O Puntitos é grátis e não mostra publicidade.',
+                pr2_t: 'Funciona sem internet.',
+                pr2_d: 'Tudo o que você anota fica salvo no seu celular. Na praia, no sítio, sem sinal.',
+                pr3_t: 'A conta é opcional.',
+                pr3_d: 'Use sem se cadastrar. A conta adiciona amigos e seu histórico na nuvem.',
+                pr4_t: 'Seus dados não estão à venda.',
+                pr4_d: 'Não usamos ferramentas de publicidade ou de rastreamento de terceiros. A <a href="/puntos/privacy">política de privacidade</a> explica o que é guardado e por quê.',
+                cl_label: 'Versões',
+                cl_title: 'Um app <em>bem cuidado</em>.',
+                cl_sub: 'Mais de 30 versões desde o lançamento, em abril de 2026. Algumas delas:',
+                m_sep: 'Set 2026',
+                m_aug: 'Ago 2026',
+                m_jun: 'Jun 2026',
+                m_apr: 'Abr 2026',
+                cl_51: 'Mais ágil: o histórico completo na hora e um aviso se o celular ficar sem espaço no meio da partida.',
+                cl_50: 'Torneios: a chave com os amigos no Truco, Buraco ou Gamão — mata-mata, liga ou grupos.',
+                cl_48: 'Pica pica renovado: marque uma vez quem é mão e o app segue a rodada sozinho.',
+                cl_40: 'Chega o Gamão, com dado de dobra, gammon e backgammon.',
+                cl_311: 'Confronto direto: seu retrospecto contra cada amigo e como parceiros.',
+                cl_10: 'O Puntitos chega à App Store.',
+                cl_more: 'Ver o histórico completo na App Store',
+                st_label: 'O estúdio',
+                st_title: 'Um estúdio pequeno, <em>de propósito</em>.',
+                st_lead: 'A Kodera é um estúdio de software independente. Hoje toda a nossa energia está no Puntitos: nós o criamos, programamos e mantemos, versão após versão. Cada mensagem enviada ao suporte é lida por uma pessoa.',
+                fi_company: 'Empresa',
+                fi_country: 'Registrada em',
+                fi_country_v: 'Estados Unidos',
+                fi_store: 'Na App Store',
+                fi_store_v: 'Desenvolvedora do Puntitos',
+                fi_contact: 'Contato',
+                fi_privacy: 'Privacidade',
+                fi_support: 'Suporte',
+                ft_tag: 'O estúdio por trás do Puntitos.',
+                ft_store: 'Puntitos na App Store',
+                ft_privacy: 'Privacidade do Puntitos',
+                ft_support: 'Suporte'
+            }
+        };
+
+        // El español es el HTML estático: se guarda tal cual para poder volver.
+        var nodes = document.querySelectorAll('[data-i18n]');
+        var altNodes = document.querySelectorAll('[data-i18n-alt]');
+        T.es = {};
+        nodes.forEach(function (el) { T.es[el.getAttribute('data-i18n')] = el.innerHTML; });
+        altNodes.forEach(function (el) { T.es[el.getAttribute('data-i18n-alt')] = el.getAttribute('alt'); });
+
+        function store(fn) { try { return fn(); } catch (e) { return null; } }
+
+        function pickLang() {
+            var q = new URLSearchParams(location.search).get('lang');
+            if (q && T[q]) return q;
+            var saved = store(function () { return localStorage.getItem('kodera.lang'); });
+            if (saved && T[saved]) return saved;
+            var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'es'];
+            for (var i = 0; i < prefs.length; i++) {
+                var code = String(prefs[i]).slice(0, 2).toLowerCase();
+                if (T[code]) return code;
+            }
+            return 'en';
+        }
+
+        function setLang(lang, persist) {
+            var dict = T[lang] || T.es;
+            nodes.forEach(function (el) {
+                var k = el.getAttribute('data-i18n');
+                if (dict[k] != null) el.innerHTML = dict[k];
+            });
+            altNodes.forEach(function (el) {
+                var k = el.getAttribute('data-i18n-alt');
+                if (dict[k] != null) el.setAttribute('alt', dict[k]);
+            });
+            document.querySelectorAll('[data-badge]').forEach(function (img) {
+                img.src = BADGE[lang];
+                img.alt = META[lang].badge;
+            });
+            document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+                b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === lang));
+            });
+            root.lang = lang;
+            document.title = META[lang].title;
+            if (persist) store(function () { localStorage.setItem('kodera.lang', lang); });
+        }
+
+        document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+            b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang'), true); });
+        });
+        var initial = pickLang();
+        if (initial !== 'es') setLang(initial, false);
+
+        /* ── Navegación con fondo al scrollear ── */
+        var nav = document.getElementById('nav');
+        function onScroll() { nav.classList.toggle('is-scrolled', window.scrollY > 30); }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        /* ── Palitos: cuadrado de 4 trazos + diagonal = 5 (como en la app) ── */
+        var NS = 'http://www.w3.org/2000/svg';
+        var BOX = 40, X = 12, GAP = 14, TOP = 6;
+        function strokes(points) {
+            var out = [];
+            for (var i = 0; i < points; i++) {
+                var g = Math.floor(i / 5), s = i % 5;
+                var x1 = X, y1 = TOP + g * (BOX + GAP), x2 = X + BOX, y2 = y1 + BOX;
+                // orden de la app: izquierda, arriba, derecha, abajo, diagonal
+                out.push([
+                    [x1, y1, x1, y2],
+                    [x1, y1, x2, y1],
+                    [x2, y1, x2, y2],
+                    [x1, y2, x2, y2],
+                    [x1, y2, x2, y1]
+                ][s]);
+            }
+            return out;
+        }
+        var cols = [];
+        document.querySelectorAll('.scoresheet svg[data-points]').forEach(function (svg) {
+            var lines = strokes(+svg.getAttribute('data-points')).map(function (c) {
+                var l = document.createElementNS(NS, 'line');
+                l.setAttribute('x1', c[0]); l.setAttribute('y1', c[1]);
+                l.setAttribute('x2', c[2]); l.setAttribute('y2', c[3]);
+                l.setAttribute('pathLength', '1');
+                svg.appendChild(l);
+                return l;
+            });
+            cols.push({ lines: lines, total: svg.parentNode.querySelector('[data-total]') });
+        });
+
+        if (!reduceMotion && cols.length === 2) {
+            var sheet = document.getElementById('scoresheet');
+            sheet.classList.add('anim');
+            cols.forEach(function (c) { c.total.textContent = '0'; });
+            // Se anota alternando, como una partida real: a veces 1, a veces 2 o 3 puntos.
+            var plays = [[0, 2], [1, 1], [0, 3], [1, 2], [0, 1], [1, 3], [0, 3], [1, 2], [0, 3]];
+            var drawn = [0, 0], t = 700;
+            plays.forEach(function (p) {
+                var who = p[0], n = p[1];
+                for (var k = 0; k < n; k++) {
+                    (function (who, idx, delay) {
+                        setTimeout(function () {
+                            var c = cols[who];
+                            if (c.lines[idx]) {
+                                c.lines[idx].classList.add('drawn');
+                                c.total.textContent = String(idx + 1);
+                            }
+                        }, delay);
+                    })(who, drawn[who], t);
+                    drawn[who]++;
+                    t += 150;
                 }
+                t += 260;
             });
-        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+        }
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        /* ── Aparición al scrollear ── */
+        var reveals = document.querySelectorAll('.reveal');
+        if (reduceMotion || !('IntersectionObserver' in window)) {
+            reveals.forEach(function (el) { el.classList.add('in'); });
+        } else {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) {
+                    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+            reveals.forEach(function (el) { io.observe(el); });
+        }
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(link => {
-            link.addEventListener('click', e => {
-                e.preventDefault();
-                const target = document.querySelector(link.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-
-        // Language toggle
-        const langBtn = document.getElementById('lang-toggle');
-        const html = document.documentElement;
-        langBtn.addEventListener('click', () => {
-            const isEn = html.lang === 'en';
-            html.lang = isEn ? 'es' : 'en';
-            // Re-observe newly visible reveal elements
-            document.querySelectorAll('.reveal:not(.visible)').forEach(el => observer.observe(el));
-        });
-
-        // Theme toggle
-        const themeBtn = document.getElementById('theme-toggle');
-        const iconMoon = document.getElementById('icon-moon');
-        const iconSun = document.getElementById('icon-sun');
-        themeBtn.addEventListener('click', () => {
-            const isLight = html.classList.toggle('light');
-            iconMoon.style.display = isLight ? 'none' : 'block';
-            iconSun.style.display = isLight ? 'block' : 'none';
-        });
+        document.getElementById('year').textContent = String(new Date().getFullYear());
+    })();
     </script>
-
 </body>
 </html>

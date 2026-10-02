@@ -1,9 +1,29 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/puntos", "destination": "/#puntitos", "permanent": false },
+    { "source": "/puntos/", "destination": "/#puntitos", "permanent": false },
+    { "source": "/puntitos", "destination": "/#puntitos", "permanent": false },
+    { "source": "/puntitos/", "destination": "/#puntitos", "permanent": false }
+  ],
   "rewrites": [
     {
       "source": "/puntos/invite/:username([A-Za-z0-9_.]+)",
-      "destination": "/puntos/invite.html"
+      "destination": "/puntos/invite"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" }
+      ]
+    },
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800" }]
     }
   ]
 }

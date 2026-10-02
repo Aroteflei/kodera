@@ -1,379 +1,283 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support — Puntos</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌘</text></svg>">
+    <title>Soporte de Puntitos — Kodera</title>
+    <meta name="description" content="Ayuda y contacto para Puntitos, el anotador de Truco, Burako, Generala y Backgammon de Kodera LLC.">
+    <link rel="canonical" href="https://www.koderastudio.com/puntos/support">
+    <meta name="theme-color" content="#0c0b09" media="(prefers-color-scheme: dark)">
+    <meta name="theme-color" content="#f4eee2" media="(prefers-color-scheme: light)">
+    <meta name="apple-itunes-app" content="app-id=6761696563">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Kodera">
+    <meta property="og:title" content="Soporte de Puntitos">
+    <meta property="og:description" content="Preguntas frecuentes y contacto de Puntitos.">
+    <meta property="og:image" content="https://www.koderastudio.com/og.jpg">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=General+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-primary: #0a0a0b;
-            --bg-secondary: #111113;
-            --text-primary: #f4f4f5;
-            --text-secondary: #a1a1aa;
-            --text-tertiary: #52525b;
-            --accent: #e8c872;
-            --accent-dim: rgba(232, 200, 114, 0.12);
-            --border: rgba(255, 255, 255, 0.06);
-            --border-hover: rgba(255, 255, 255, 0.12);
-            --font-display: 'Instrument Serif', Georgia, serif;
-            --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --bg: #0c0b09;
+            --bg-2: #141210;
+            --text: #f1ebdd;
+            --muted: #a59f92;
+            --faint: #8a8478;
+            --rule: rgba(241, 235, 221, 0.11);
+            --rule-strong: rgba(241, 235, 221, 0.22);
+            --gold: #e3c171;
+            --serif: 'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+            --sans: 'Instrument Sans', ui-sans-serif, -apple-system, 'Segoe UI', sans-serif;
+            color-scheme: dark;
         }
-
-        :root.light {
-            --bg-primary: #fafaf9;
-            --bg-secondary: #f5f5f4;
-            --text-primary: #1c1917;
-            --text-secondary: #57534e;
-            --text-tertiary: #a8a29e;
-            --accent: #b8960a;
-            --accent-dim: rgba(184, 150, 10, 0.08);
-            --border: rgba(0, 0, 0, 0.06);
-            --border-hover: rgba(0, 0, 0, 0.12);
+        @media (prefers-color-scheme: light) {
+            :root {
+                --bg: #f4eee2;
+                --bg-2: #ebe3d3;
+                --text: #1b1813;
+                --muted: #5d564a;
+                --faint: #696155;
+                --rule: rgba(27, 24, 19, 0.12);
+                --rule-strong: rgba(27, 24, 19, 0.24);
+                --gold: #7a5a10;
+                color-scheme: light;
+            }
         }
-
-        html { transition: background 0.4s ease; }
 
         body {
-            font-family: var(--font-body);
-            background: var(--bg-primary);
-            color: var(--text-secondary);
-            line-height: 1.7;
+            font-family: var(--sans);
+            font-size: 17px;
+            line-height: 1.6;
+            background: var(--bg);
+            color: var(--text);
             -webkit-font-smoothing: antialiased;
-            transition: background 0.4s ease, color 0.4s ease;
         }
+        a { color: inherit; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+        :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
 
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 0.025;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-            background-size: 200px;
+        .wrap { max-width: 760px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 32px); }
+
+        header { padding: 20px 0; border-bottom: 1px solid var(--rule); }
+        header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .wordmark { font-family: var(--serif); font-size: 1.5rem; line-height: 1; text-decoration: none; }
+        .wordmark i { font-style: normal; color: var(--gold); }
+
+        .lang { display: inline-flex; border: 1px solid var(--rule-strong); border-radius: 100px; padding: 3px; gap: 2px; }
+        .lang button {
+            appearance: none; border: 0; background: transparent; color: var(--muted);
+            font: 600 0.6875rem/1 var(--sans); letter-spacing: 0.12em;
+            padding: 7px 10px; border-radius: 100px; cursor: pointer;
         }
+        .lang button[aria-pressed="true"] { background: var(--gold); color: var(--bg); }
 
-        .container {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 0 28px;
+        main { padding: clamp(56px, 9vw, 96px) 0 80px; }
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold);
         }
+        .eyebrow::before { content: ''; width: 7px; height: 7px; background: currentColor; transform: rotate(45deg); }
+        h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.6rem, 8vw, 4rem); line-height: 1; letter-spacing: -0.02em; margin: 18px 0 18px; }
+        h1 em { color: var(--gold); }
+        .lead { color: var(--muted); font-size: 1.125rem; max-width: 560px; }
 
-        header {
-            border-bottom: 1px solid var(--border);
-            padding: 24px 0;
-            transition: border-color 0.4s ease;
+        .contact {
+            margin: 44px 0 64px;
+            padding: 26px 28px;
+            border: 1px solid var(--rule-strong);
+            border-radius: 16px;
+            background: var(--bg-2);
+            background: color-mix(in srgb, var(--bg-2) 60%, transparent);
         }
+        .contact h2 { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; margin-bottom: 8px; }
+        .contact p { color: var(--muted); }
+        .contact .mail { display: inline-block; margin-top: 14px; font-family: var(--serif); font-size: 1.5rem; color: var(--gold); text-decoration: none; word-break: break-all; }
 
-        header .container {
+        .faq h2 { font-family: var(--serif); font-weight: 400; font-size: 2rem; margin-bottom: 10px; }
+        details { border-top: 1px solid var(--rule); }
+        details:last-of-type { border-bottom: 1px solid var(--rule); }
+        summary {
+            list-style: none;
+            cursor: pointer;
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            gap: 20px;
+            padding: 20px 0;
+            font-family: var(--serif);
+            font-size: 1.35rem;
+            line-height: 1.25;
         }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; display: inline-block; flex-shrink: 0; color: var(--gold); font-family: var(--sans); font-weight: 400; transition: transform 0.2s ease; }
+        details[open] summary::after { transform: rotate(45deg); }
+        details p { color: var(--muted); padding: 0 0 22px; max-width: 640px; }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: color 0.4s ease;
-        }
-
-        .back-link {
-            font-size: 0.875rem;
-            color: var(--text-tertiary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .back-link:hover { color: var(--text-secondary); }
-
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .toggle-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 14px;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 100px;
-            color: var(--text-tertiary);
-            font-family: var(--font-body);
-            font-size: 0.75rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            letter-spacing: 0.02em;
-        }
-
-        .toggle-btn:hover {
-            color: var(--text-secondary);
-            border-color: var(--border-hover);
-        }
-
-        .toggle-btn svg {
-            width: 14px;
-            height: 14px;
-            flex-shrink: 0;
-        }
-
-        main {
-            padding: 80px 0 120px;
-        }
-
-        h1 {
-            font-family: var(--font-display);
-            font-size: clamp(2rem, 4vw, 2.75rem);
-            font-weight: 400;
-            color: var(--text-primary);
-            letter-spacing: -0.02em;
-            line-height: 1.15;
-            margin-bottom: 48px;
-            transition: color 0.4s ease;
-        }
-
-        .contact-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 36px 32px;
-            margin-bottom: 48px;
-            transition: all 0.4s ease;
-        }
-
-        :root.light .contact-card {
-            background: rgba(0, 0, 0, 0.02);
-        }
-
-        .contact-card h2 {
-            font-family: var(--font-display);
-            font-size: 1.25rem;
-            font-weight: 400;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            transition: color 0.4s ease;
-        }
-
-        .contact-card p {
-            font-size: 0.9375rem;
-            margin-bottom: 16px;
-        }
-
-        .contact-card p:last-of-type { margin-bottom: 20px; }
-
-        .email-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 24px;
-            background: var(--accent-dim);
-            border: 1px solid rgba(232, 200, 114, 0.15);
-            border-radius: 100px;
-            color: var(--accent);
-            font-size: 0.875rem;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        :root.light .email-link {
-            border-color: rgba(184, 150, 10, 0.2);
-        }
-
-        .email-link:hover {
-            background: rgba(232, 200, 114, 0.18);
-            transform: translateY(-1px);
-        }
-
-        .faq-section h2 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            font-weight: 400;
-            color: var(--text-primary);
-            margin-bottom: 28px;
-            transition: color 0.4s ease;
-        }
-
-        .faq-item {
-            border-top: 1px solid var(--border);
-            padding: 24px 0;
-            transition: border-color 0.4s ease;
-        }
-
-        .faq-item:last-child {
-            border-bottom: 1px solid var(--border);
-        }
-
-        .faq-item h3 {
-            font-family: var(--font-display);
-            font-size: 1.125rem;
-            font-weight: 400;
-            color: var(--text-primary);
-            margin-bottom: 8px;
-            transition: color 0.4s ease;
-        }
-
-        .faq-item p {
-            font-size: 0.9375rem;
-            margin: 0;
-        }
-
-        a { color: var(--accent); text-decoration: none; transition: opacity 0.3s ease, color 0.4s ease; }
-        a:hover { opacity: 0.8; }
-
-        footer {
-            border-top: 1px solid var(--border);
-            padding: 32px 0;
-            text-align: center;
-            font-size: 0.8125rem;
-            color: var(--text-tertiary);
-            transition: all 0.4s ease;
-        }
-
-        [data-lang="es"] { display: none; }
-        html[lang="es"] [data-lang="es"] { display: block; }
-        html[lang="es"] [data-lang="en"] { display: none; }
-
-        @media (max-width: 640px) {
-            .header-left { gap: 16px; }
-            .back-link { display: none; }
-            .toggle-btn { padding: 7px 10px; font-size: 0.6875rem; }
-            .toggle-btn span { display: none; }
-        }
+        footer { border-top: 1px solid var(--rule); padding: 32px 0 calc(32px + env(safe-area-inset-bottom)); font-size: 0.875rem; color: var(--faint); }
+        footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
+        footer a { color: var(--muted); text-decoration: none; }
+        footer a:hover { color: var(--text); }
     </style>
 </head>
 <body>
-
     <header>
-        <div class="container">
-            <div class="header-left">
-                <a href="/" class="logo">Kodera</a>
-                <a href="/" class="back-link" data-lang="en">&larr; Back to home</a>
-                <a href="/" class="back-link" data-lang="es">&larr; Volver al inicio</a>
-            </div>
-            <div class="header-controls">
-                <button class="toggle-btn" id="lang-toggle" aria-label="Switch language">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
-                    <span>ES</span>
-                </button>
-                <button class="toggle-btn" id="theme-toggle" aria-label="Toggle theme">
-                    <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                    <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-                </button>
+        <div class="wrap">
+            <a href="/" class="wordmark" aria-label="Kodera">Kodera<i>.</i></a>
+            <div class="lang" role="group" aria-label="Idioma / Language / Idioma">
+                <button type="button" data-set-lang="es" aria-pressed="true" lang="es" title="Español">ES</button>
+                <button type="button" data-set-lang="en" aria-pressed="false" lang="en" title="English">EN</button>
+                <button type="button" data-set-lang="pt" aria-pressed="false" lang="pt" title="Português">PT</button>
             </div>
         </div>
     </header>
 
     <main>
-        <div class="container">
-            <!-- English -->
-            <div data-lang="en">
-                <h1>Support — Puntos</h1>
+        <div class="wrap">
+            <div class="eyebrow">Puntitos</div>
+            <h1 data-i18n="title"><em>Soporte</em></h1>
+            <p class="lead" data-i18n="lead">¿Algo no anda, tenés una idea o una duda? Escribinos, te respondemos nosotros.</p>
 
-                <div class="contact-card">
-                    <h2>Contact</h2>
-                    <p>If you have any issues, suggestions, or questions about Puntos, reach out to us at:</p>
-                    <a href="mailto:admin@koderastudio.com" class="email-link">admin@koderastudio.com</a>
-                </div>
-
-                <div class="faq-section">
-                    <h2>Frequently Asked Questions</h2>
-
-                    <div class="faq-item">
-                        <h3>Is my data stored in the cloud?</h3>
-                        <p>No. All data is stored locally on your device. We do not collect any personal information.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>Do I need internet to use Puntos?</h3>
-                        <p>No. Puntos works completely offline.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>How do I report a bug?</h3>
-                        <p>Send us an email at <a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a> with a description of the issue and screenshots if possible.</p>
-                    </div>
-                </div>
+            <div class="contact">
+                <h2 data-i18n="contact_t">Contacto</h2>
+                <p data-i18n="contact_d">Por mail, o desde la app con el botón «Contanos».</p>
+                <a class="mail" href="mailto:admin@koderastudio.com">admin@koderastudio.com</a>
             </div>
 
-            <!-- Spanish -->
-            <div data-lang="es">
-                <h1>Soporte — Puntos</h1>
+            <section class="faq">
+                <h2 data-i18n="faq_t">Preguntas frecuentes</h2>
 
-                <div class="contact-card">
-                    <h2>Contacto</h2>
-                    <p>Si tenés algún problema, sugerencia o pregunta sobre Puntos, escribinos a:</p>
-                    <a href="mailto:admin@koderastudio.com" class="email-link">admin@koderastudio.com</a>
-                </div>
-
-                <div class="faq-section">
-                    <h2>Preguntas frecuentes</h2>
-
-                    <div class="faq-item">
-                        <h3>¿Mis datos se guardan en la nube?</h3>
-                        <p>No. Todos los datos se guardan localmente en tu dispositivo. No recopilamos ninguna información personal.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>¿Necesito internet para usar Puntos?</h3>
-                        <p>No. Puntos funciona completamente offline.</p>
-                    </div>
-
-                    <div class="faq-item">
-                        <h3>¿Cómo reporto un bug?</h3>
-                        <p>Envianos un mail a <a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a> con una descripción del problema y capturas de pantalla si es posible.</p>
-                    </div>
-                </div>
-            </div>
+                <details>
+                    <summary data-i18n="q1">¿Cuánto cuesta?</summary>
+                    <p data-i18n="a1">Nada. Puntitos es gratis y no tiene publicidad.</p>
+                </details>
+                <details>
+                    <summary data-i18n="q2">¿Necesito una cuenta?</summary>
+                    <p data-i18n="a2">No. Podés anotar sin registrarte. La cuenta (con Apple, Google o email) suma amigos, partidas compartidas y tu historial en la nube.</p>
+                </details>
+                <details>
+                    <summary data-i18n="q3">¿Mis partidas se guardan en la nube?</summary>
+                    <p data-i18n="a3">Sin cuenta, tus partidas se guardan sólo en tu teléfono. Con cuenta, tu historial también se guarda en nuestros servidores para que lo veas en tus dispositivos y con tus amigos. La <a href="/puntos/privacy">política de privacidad</a> detalla qué se guarda y por qué.</p>
+                </details>
+                <details>
+                    <summary data-i18n="q4">¿Necesito internet?</summary>
+                    <p data-i18n="a4">No para anotar: Puntitos funciona sin conexión. Hace falta internet para crear la cuenta, sumar amigos y sincronizar el historial.</p>
+                </details>
+                <details>
+                    <summary data-i18n="q5">¿Cómo borro mi cuenta?</summary>
+                    <p data-i18n="a5">Desde la app: abrí Cuenta y tocá «Eliminar cuenta». El borrado es inmediato y definitivo. La <a href="/puntos/privacy">política de privacidad</a> explica qué se elimina y qué queda (por ejemplo, las partidas que ya les llegaron a tus amigos).</p>
+                </details>
+                <details>
+                    <summary data-i18n="q6">¿Cómo reporto un error?</summary>
+                    <p data-i18n="a6">Con el botón «Contanos» dentro de la app o por mail. Si podés, contanos el modelo de teléfono, la versión de la app y mandanos una captura.</p>
+                </details>
+                <details>
+                    <summary data-i18n="q7">¿En qué dispositivos funciona?</summary>
+                    <p data-i18n="a7">En iPhone y iPad con iOS 15 o posterior.</p>
+                </details>
+            </section>
         </div>
     </main>
 
     <footer>
-        <div class="container">
-            &copy; 2026 Kodera LLC. All rights reserved.
+        <div class="wrap">
+            <span>© <span id="year">2026</span> Kodera LLC</span>
+            <span><a href="/" data-i18n="f_home">Kodera</a> · <a href="/puntos/privacy" data-i18n="f_privacy">Privacidad</a> · <a href="https://apps.apple.com/app/id6761696563" rel="noopener">App Store</a></span>
         </div>
     </footer>
 
     <script>
-        // Language toggle
-        const langBtn = document.getElementById('lang-toggle');
-        const html = document.documentElement;
+    (function () {
+        'use strict';
+        var TITLES = { es: 'Soporte de Puntitos — Kodera', en: 'Puntitos Support — Kodera', pt: 'Suporte do Puntitos — Kodera' };
+        var T = {
+            en: {
+                title: '<em>Support</em>',
+                lead: 'Something not working, an idea, a question? Write to us and you’ll hear back from us, not a bot.',
+                contact_t: 'Contact',
+                contact_d: 'By email, or from the app with the “Tell us” button.',
+                faq_t: 'Frequently asked questions',
+                q1: 'How much does it cost?',
+                a1: 'Nothing. Puntitos is free and has no ads.',
+                q2: 'Do I need an account?',
+                a2: 'No. You can keep score without signing up. An account (with Apple, Google or email) adds friends, shared games and your history in the cloud.',
+                q3: 'Are my games stored in the cloud?',
+                a3: 'Without an account, your games are stored only on your phone. With an account, your history is also stored on our servers so you can see it across your devices and with your friends. The <a href="/puntos/privacy">privacy policy</a> details what is stored and why.',
+                q4: 'Do I need an internet connection?',
+                a4: 'Not to keep score: Puntitos works offline. You need a connection to create an account, add friends and sync your history.',
+                q5: 'How do I delete my account?',
+                a5: 'In the app: open Account and tap “Delete account”. Deletion is immediate and permanent. The <a href="/puntos/privacy">privacy policy</a> explains what is removed and what remains (for example, games already delivered to your friends).',
+                q6: 'How do I report a bug?',
+                a6: 'Use the “Tell us” button in the app or send us an email. If you can, include your phone model, the app version and a screenshot.',
+                q7: 'Which devices does it run on?',
+                a7: 'iPhone and iPad with iOS 15 or later.',
+                f_home: 'Kodera',
+                f_privacy: 'Privacy'
+            },
+            pt: {
+                title: '<em>Suporte</em>',
+                lead: 'Algo não funciona, tem uma ideia ou uma dúvida? Escreva pra gente — quem responde somos nós.',
+                contact_t: 'Contato',
+                contact_d: 'Por e-mail, ou pelo app com o botão “Conta pra gente”.',
+                faq_t: 'Perguntas frequentes',
+                q1: 'Quanto custa?',
+                a1: 'Nada. O Puntitos é grátis e não tem anúncios.',
+                q2: 'Preciso de uma conta?',
+                a2: 'Não. Você pode anotar sem se cadastrar. A conta (com Apple, Google ou e-mail) adiciona amigos, partidas compartilhadas e seu histórico na nuvem.',
+                q3: 'Minhas partidas ficam salvas na nuvem?',
+                a3: 'Sem conta, suas partidas ficam salvas só no seu celular. Com conta, seu histórico também fica nos nossos servidores para você ver em todos os seus aparelhos e com seus amigos. A <a href="/puntos/privacy">política de privacidade</a> detalha o que é guardado e por quê.',
+                q4: 'Preciso de internet?',
+                a4: 'Não para anotar: o Puntitos funciona sem conexão. Você precisa de internet para criar a conta, adicionar amigos e sincronizar o histórico.',
+                q5: 'Como excluo minha conta?',
+                a5: 'No app: abra Conta e toque em “Excluir conta”. A exclusão é imediata e definitiva. A <a href="/puntos/privacy">política de privacidade</a> explica o que é apagado e o que fica (por exemplo, as partidas que já chegaram aos seus amigos).',
+                q6: 'Como informo um erro?',
+                a6: 'Use o botão “Conta pra gente” no app ou mande um e-mail. Se puder, diga o modelo do celular, a versão do app e mande uma captura de tela.',
+                q7: 'Em quais aparelhos funciona?',
+                a7: 'Em iPhone e iPad com iOS 15 ou posterior.',
+                f_home: 'Kodera',
+                f_privacy: 'Privacidade'
+            }
+        };
+        var nodes = document.querySelectorAll('[data-i18n]');
+        T.es = {};
+        nodes.forEach(function (el) { T.es[el.getAttribute('data-i18n')] = el.innerHTML; });
 
-        langBtn.addEventListener('click', () => {
-            const isEn = html.lang === 'en';
-            html.lang = isEn ? 'es' : 'en';
-            langBtn.querySelector('span').textContent = isEn ? 'EN' : 'ES';
-            document.title = isEn ? 'Soporte — Puntos' : 'Support — Puntos';
+        function store(fn) { try { return fn(); } catch (e) { return null; } }
+        function pickLang() {
+            var q = new URLSearchParams(location.search).get('lang');
+            if (q && Object.prototype.hasOwnProperty.call(T, q)) return q;
+            var saved = store(function () { return localStorage.getItem('kodera.lang'); });
+            if (saved && Object.prototype.hasOwnProperty.call(T, saved)) return saved;
+            var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'es'];
+            for (var i = 0; i < prefs.length; i++) {
+                var code = String(prefs[i]).slice(0, 2).toLowerCase();
+                if (Object.prototype.hasOwnProperty.call(T, code)) return code;
+            }
+            return 'en';
+        }
+        function setLang(lang, persist) {
+            var dict = T[lang] || T.es;
+            nodes.forEach(function (el) {
+                var k = el.getAttribute('data-i18n');
+                if (dict[k] != null) el.innerHTML = dict[k];
+            });
+            document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+                b.setAttribute('aria-pressed', String(b.getAttribute('data-set-lang') === lang));
+            });
+            document.documentElement.lang = lang;
+            document.title = TITLES[lang];
+            if (persist) store(function () { localStorage.setItem('kodera.lang', lang); });
+        }
+        document.querySelectorAll('[data-set-lang]').forEach(function (b) {
+            b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang'), true); });
         });
-
-        // Theme toggle
-        const themeBtn = document.getElementById('theme-toggle');
-        const iconMoon = document.getElementById('icon-moon');
-        const iconSun = document.getElementById('icon-sun');
-
-        themeBtn.addEventListener('click', () => {
-            const isLight = html.classList.toggle('light');
-            iconMoon.style.display = isLight ? 'none' : 'block';
-            iconSun.style.display = isLight ? 'block' : 'none';
-        });
+        var initial = pickLang();
+        if (initial !== 'es') setLang(initial, false);
+        document.getElementById('year').textContent = String(new Date().getFullYear());
+    })();
     </script>
-
 </body>
 </html>

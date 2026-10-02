@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kodera — el estudio detrás de Puntitos</title>
     <meta name="description" content="Kodera LLC es el estudio independiente que diseña y mantiene Puntitos, el anotador de Truco, Burako, Generala y Backgammon para iPhone y iPad.">
     <link rel="canonical" href="https://www.koderastudio.com/">
@@ -67,7 +67,7 @@
             --bg-2: #141210;
             --text: #f1ebdd;
             --muted: #a59f92;
-            --faint: #6f6a60;
+            --faint: #8a8478;
             --rule: rgba(241, 235, 221, 0.11);
             --rule-strong: rgba(241, 235, 221, 0.22);
             --gold: #e3c171;
@@ -81,7 +81,7 @@
             --card: #f6f0e3;
             --card-ink: #1c1915;
             --card-muted: #6d6558;
-            --card-gold: #9a7520;
+            --card-gold: #7a5a10;
             --red: #c4553b;
 
             --serif: 'Instrument Serif', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
@@ -97,11 +97,11 @@
                 --bg-2: #ebe3d3;
                 --text: #1b1813;
                 --muted: #5d564a;
-                --faint: #8d8578;
+                --faint: #696155;
                 --rule: rgba(27, 24, 19, 0.12);
                 --rule-strong: rgba(27, 24, 19, 0.24);
-                --gold: #94701b;
-                --gold-soft: rgba(148, 112, 27, 0.11);
+                --gold: #7a5a10;
+                --gold-soft: rgba(122, 90, 16, 0.11);
                 color-scheme: light;
             }
         }
@@ -457,7 +457,7 @@
         .felt {
             --text: #f1ebdd;
             --muted: #b9c2b4;
-            --faint: #86958a;
+            --faint: #9aa99e;
             --rule: rgba(241, 235, 221, 0.13);
             --rule-strong: rgba(241, 235, 221, 0.26);
             --gold: #e3c171;
@@ -894,6 +894,7 @@
     <header class="nav" id="nav">
         <div class="wrap">
             <a href="/" class="wordmark" aria-label="Kodera">Kodera<i>.</i></a>
+            <nav aria-label="Principal">
             <ul class="nav-links">
                 <li><a href="#puntitos">Puntitos</a></li>
                 <li><a href="#bitacora" data-i18n="nav_changelog">Bitácora</a></li>
@@ -906,6 +907,7 @@
                     </div>
                 </li>
             </ul>
+            </nav>
         </div>
     </header>
 
@@ -1348,13 +1350,13 @@
 
         function pickLang() {
             var q = new URLSearchParams(location.search).get('lang');
-            if (q && T[q]) return q;
+            if (q && Object.prototype.hasOwnProperty.call(T, q)) return q;
             var saved = store(function () { return localStorage.getItem('kodera.lang'); });
-            if (saved && T[saved]) return saved;
+            if (saved && Object.prototype.hasOwnProperty.call(T, saved)) return saved;
             var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'es'];
             for (var i = 0; i < prefs.length; i++) {
                 var code = String(prefs[i]).slice(0, 2).toLowerCase();
-                if (T[code]) return code;
+                if (Object.prototype.hasOwnProperty.call(T, code)) return code;
             }
             return 'en';
         }

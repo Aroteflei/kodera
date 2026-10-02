@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soporte de Puntitos — Kodera</title>
     <meta name="description" content="Ayuda y contacto para Puntitos, el anotador de Truco, Burako, Generala y Backgammon de Kodera LLC.">
     <link rel="canonical" href="https://www.koderastudio.com/puntos/support">
@@ -28,7 +28,7 @@
             --bg-2: #141210;
             --text: #f1ebdd;
             --muted: #a59f92;
-            --faint: #6f6a60;
+            --faint: #8a8478;
             --rule: rgba(241, 235, 221, 0.11);
             --rule-strong: rgba(241, 235, 221, 0.22);
             --gold: #e3c171;
@@ -42,10 +42,10 @@
                 --bg-2: #ebe3d3;
                 --text: #1b1813;
                 --muted: #5d564a;
-                --faint: #8d8578;
+                --faint: #696155;
                 --rule: rgba(27, 24, 19, 0.12);
                 --rule-strong: rgba(27, 24, 19, 0.24);
-                --gold: #94701b;
+                --gold: #7a5a10;
                 color-scheme: light;
             }
         }
@@ -248,13 +248,13 @@
         function store(fn) { try { return fn(); } catch (e) { return null; } }
         function pickLang() {
             var q = new URLSearchParams(location.search).get('lang');
-            if (q && T[q]) return q;
+            if (q && Object.prototype.hasOwnProperty.call(T, q)) return q;
             var saved = store(function () { return localStorage.getItem('kodera.lang'); });
-            if (saved && T[saved]) return saved;
+            if (saved && Object.prototype.hasOwnProperty.call(T, saved)) return saved;
             var prefs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'es'];
             for (var i = 0; i < prefs.length; i++) {
                 var code = String(prefs[i]).slice(0, 2).toLowerCase();
-                if (T[code]) return code;
+                if (Object.prototype.hasOwnProperty.call(T, code)) return code;
             }
             return 'en';
         }

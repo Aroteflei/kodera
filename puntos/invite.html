@@ -334,7 +334,9 @@
             openBtn.style.display = 'none';
         } else {
             usernameLine.textContent = '@' + username;
-            const deepLink = 'puntitos://invite/' + username;
+            // El uid valida que el @ no se haya reciclado: la app lo espera también por acá.
+            const uid = new URLSearchParams(location.search).get('i');
+            const deepLink = 'puntitos://invite/' + username + (uid && /^[A-Za-z0-9_-]{6,128}$/.test(uid) ? '?i=' + encodeURIComponent(uid) : '');
             openBtn.addEventListener('click', () => {
                 // Trigger the iOS URL scheme. If Puntitos is installed,
                 // the OS catches the scheme and opens the app (showing

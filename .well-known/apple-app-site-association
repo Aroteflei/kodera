@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "X4UF5XU9MA.com.puntos.app"
+        ],
+        "components": [
+          {
+            "/": "/puntos/invite*",
+            "comment": "Invitaciones de Puntitos: el QR y los links abren la app."
+          }
+        ]
+      }
+    ]
+  }
+}

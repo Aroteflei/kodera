@@ -166,9 +166,9 @@
                     <summary data-i18n="q4">¿Necesito internet?</summary>
                     <p data-i18n="a4">No para anotar: Puntitos funciona sin conexión. Hace falta internet para crear la cuenta, sumar amigos y sincronizar el historial.</p>
                 </details>
-                <details>
+                <details id="eliminar-cuenta">
                     <summary data-i18n="q5">¿Cómo borro mi cuenta?</summary>
-                    <p data-i18n="a5">Desde la app: abrí Cuenta y tocá «Eliminar cuenta». El borrado es inmediato y definitivo. La <a href="/puntos/privacy">política de privacidad</a> explica qué se elimina y qué queda (por ejemplo, las partidas que ya les llegaron a tus amigos).</p>
+                    <p data-i18n="a5">Desde la app: tocá tu avatar → Cuenta y privacidad → Eliminar cuenta. El borrado es inmediato y definitivo. Si ya no tenés la app, escribinos a <a href="mailto:admin@koderastudio.com?subject=Eliminar%20mi%20cuenta%20de%20Puntitos">admin@koderastudio.com</a> desde el email de tu cuenta (o decinos tu @) y la borramos nosotros. La <a href="/puntos/privacy">política de privacidad</a> explica qué se elimina y qué queda (por ejemplo, las partidas que ya les llegaron a tus amigos).</p>
                 </details>
                 <details>
                     <summary data-i18n="q6">¿Cómo reporto un error?</summary>
@@ -176,7 +176,7 @@
                 </details>
                 <details>
                     <summary data-i18n="q7">¿En qué dispositivos funciona?</summary>
-                    <p data-i18n="a7">En iPhone y iPad con iOS 15 o posterior.</p>
+                    <p data-i18n="a7">En iPhone y iPad con iOS 15 o posterior, y en teléfonos y tablets Android 7 o posterior.</p>
                 </details>
             </section>
         </div>
@@ -209,11 +209,11 @@
                 q4: 'Do I need an internet connection?',
                 a4: 'Not to keep score: Puntitos works offline. You need a connection to create an account, add friends and sync your history.',
                 q5: 'How do I delete my account?',
-                a5: 'In the app: open Account and tap “Delete account”. Deletion is immediate and permanent. The <a href="/puntos/privacy">privacy policy</a> explains what is removed and what remains (for example, games already delivered to your friends).',
+                a5: 'In the app: tap your avatar → Account &amp; privacy → Delete account. Deletion is immediate and permanent. If you no longer have the app, email us at <a href="mailto:admin@koderastudio.com?subject=Eliminar%20mi%20cuenta%20de%20Puntitos">admin@koderastudio.com</a> from your account’s email (or tell us your @) and we’ll delete it for you. The <a href="/puntos/privacy">privacy policy</a> explains what is removed and what remains (for example, games already delivered to your friends).',
                 q6: 'How do I report a bug?',
                 a6: 'Use the “Tell us” button in the app or send us an email. If you can, include your phone model, the app version and a screenshot.',
                 q7: 'Which devices does it run on?',
-                a7: 'iPhone and iPad with iOS 15 or later.',
+                a7: 'iPhone and iPad with iOS 15 or later, and Android phones and tablets with Android 7 or later.',
                 f_home: 'Kodera',
                 f_privacy: 'Privacy',
                 f_terms: 'Terms'
@@ -233,11 +233,11 @@
                 q4: 'Preciso de internet?',
                 a4: 'Não para anotar: o Puntitos funciona sem conexão. Você precisa de internet para criar a conta, adicionar amigos e sincronizar o histórico.',
                 q5: 'Como excluo minha conta?',
-                a5: 'No app: abra Conta e toque em “Excluir conta”. A exclusão é imediata e definitiva. A <a href="/puntos/privacy">política de privacidade</a> explica o que é apagado e o que fica (por exemplo, as partidas que já chegaram aos seus amigos).',
+                a5: 'No app: toque no seu avatar → Conta e privacidade → Excluir conta. A exclusão é imediata e definitiva. Se você não tem mais o app, escreva para <a href="mailto:admin@koderastudio.com?subject=Eliminar%20mi%20cuenta%20de%20Puntitos">admin@koderastudio.com</a> do e-mail da sua conta (ou diga seu @) e nós a excluímos. A <a href="/puntos/privacy">política de privacidade</a> explica o que é apagado e o que fica (por exemplo, as partidas que já chegaram aos seus amigos).',
                 q6: 'Como informo um erro?',
                 a6: 'Use o botão “Conta pra gente” no app ou mande um e-mail. Se puder, diga o modelo do celular, a versão do app e mande uma captura de tela.',
                 q7: 'Em quais aparelhos funciona?',
-                a7: 'Em iPhone e iPad com iOS 15 ou posterior.',
+                a7: 'Em iPhone e iPad com iOS 15 ou posterior, e em celulares e tablets com Android 7 ou posterior.',
                 f_home: 'Kodera',
                 f_privacy: 'Privacidade',
                 f_terms: 'Termos'
@@ -279,6 +279,15 @@
         var initial = pickLang();
         if (initial !== 'es') setLang(initial, false);
         document.getElementById('year').textContent = String(new Date().getFullYear());
+
+        // Abre la pregunta que pide el hash de la URL (p. ej. #eliminar-cuenta,
+        // la página de borrado de cuenta que se declara en Play Console).
+        function openFromHash() {
+            var el = location.hash.length > 1 ? document.getElementById(location.hash.slice(1)) : null;
+            if (el && el.tagName === 'DETAILS') el.open = true;
+        }
+        openFromHash();
+        window.addEventListener('hashchange', openFromHash);
     })();
     </script>
 </body>

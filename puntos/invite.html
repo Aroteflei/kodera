@@ -225,6 +225,14 @@
             color: var(--text-primary);
         }
 
+        /* Las dos tiendas, una debajo de la otra y del mismo ancho. */
+        .store-links {
+            display: inline-flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 10px;
+        }
+
         footer {
             padding: 24px 0;
             text-align: center;
@@ -285,11 +293,18 @@
 
                 <div class="secondary-section">
                     <div class="secondary-text">¿Todavía no tenés la app?</div>
-                    <a class="appstore-btn"
-                       href="https://apps.apple.com/us/app/puntitos/id6761696563"
-                       target="_blank" rel="noopener">
-                        Descargar en App Store
-                    </a>
+                    <div class="store-links" id="storeLinks">
+                        <a class="appstore-btn" id="appStoreBtn"
+                           href="https://apps.apple.com/us/app/puntitos/id6761696563"
+                           target="_blank" rel="noopener">
+                            Descargar en App Store
+                        </a>
+                        <a class="appstore-btn" id="playStoreBtn"
+                           href="https://play.google.com/store/apps/details?id=com.puntos.app"
+                           target="_blank" rel="noopener">
+                            Descargar en Google Play
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -338,16 +353,30 @@
             const uid = new URLSearchParams(location.search).get('i');
             const deepLink = 'puntitos://invite/' + username + (uid && /^[A-Za-z0-9_-]{6,128}$/.test(uid) ? '?i=' + encodeURIComponent(uid) : '');
             openBtn.addEventListener('click', () => {
-                // Trigger the iOS URL scheme. If Puntitos is installed,
-                // the OS catches the scheme and opens the app (showing
-                // the AcceptInviteModal via @capacitor/app). If not,
-                // nothing visible happens — user can scroll down to
-                // the App Store button.
+                // Trigger the puntitos:// URL scheme. Both apps register
+                // it (iOS: CFBundleURLTypes; Android: intent-filter in the
+                // manifest). If Puntitos is installed, the OS catches the
+                // scheme and opens the app (showing the AcceptInviteModal
+                // via @capacitor/app). If not, nothing visible happens —
+                // user can scroll down to the store buttons.
+                // Note: with Universal Links (iOS, apple-app-site-association)
+                // and verified App Links (Android, /.well-known/assetlinks.json)
+                // the https link itself opens the app and this page is
+                // never shown; this scheme is the fallback for when the
+                // page does load (browser without verification, desktop…).
                 window.location.href = deepLink;
             });
 
             // Update document title with username for browser tab + share previews.
             document.title = '@' + username + ' te invitó a Puntitos';
+        }
+
+        // Store buttons by device: Google Play first on Android, App Store
+        // first on iPhone/iPad (already the HTML order), HTML order on
+        // desktop (App Store, Google Play). Without JS both still show.
+        if (/android/i.test(navigator.userAgent || '')) {
+            const storeLinks = document.getElementById('storeLinks');
+            storeLinks.insertBefore(document.getElementById('playStoreBtn'), storeLinks.firstChild);
         }
     </script>
 </body>

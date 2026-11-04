@@ -1,0 +1,15 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.puntos.app",
+      "sha256_cert_fingerprints": [
+        "7A:8D:F7:70:73:9B:48:7B:CC:58:A9:FE:93:74:79:AA:9B:59:28:C6:CE:EA:86:6B:47:5F:B8:44:FD:51:95:5C",
+        "49:B3:22:74:0B:38:4A:4D:7D:1A:9D:ED:DE:46:85:5C:38:B9:43:8E:7C:25:A2:14:A4:D0:F1:11:D2:B3:C6:48"
+      ]
+    }
+  }
+]

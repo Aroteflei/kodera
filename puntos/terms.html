@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions — Puntitos</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⌘</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=General+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-primary: #0a0a0b;
+            --bg-secondary: #111113;
+            --text-primary: #f4f4f5;
+            --text-secondary: #a1a1aa;
+            --text-tertiary: #52525b;
+            --accent: #e8c872;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --font-display: 'Instrument Serif', Georgia, serif;
+            --font-body: 'General Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        :root.light {
+            --bg-primary: #fafaf9;
+            --bg-secondary: #f5f5f4;
+            --text-primary: #1c1917;
+            --text-secondary: #57534e;
+            --text-tertiary: #a8a29e;
+            --accent: #b8960a;
+            --border: rgba(0, 0, 0, 0.06);
+            --border-hover: rgba(0, 0, 0, 0.12);
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            background-size: 200px;
+        }
+
+        .container { max-width: 680px; margin: 0 auto; padding: 0 28px; }
+
+        header {
+            border-bottom: 1px solid var(--border);
+            padding: 24px 0;
+            transition: border-color 0.4s ease;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left { display: flex; align-items: center; gap: 24px; }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.4s ease;
+        }
+
+        .back-link {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover { color: var(--text-secondary); }
+
+        .header-controls { display: flex; align-items: center; gap: 8px; }
+
+        .toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: var(--text-tertiary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .toggle-btn:hover { color: var(--text-secondary); border-color: var(--border-hover); }
+        .toggle-btn svg { width: 15px; height: 15px; }
+
+        main { padding: 80px 0 120px; }
+
+        h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 400;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            transition: color 0.4s ease;
+        }
+
+        .updated { font-size: 0.8125rem; color: var(--text-tertiary); margin-bottom: 48px; }
+
+        h2 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-top: 40px;
+            margin-bottom: 12px;
+            transition: color 0.4s ease;
+        }
+
+        p { font-size: 0.9375rem; margin-bottom: 16px; }
+        ul { margin: 0 0 16px 20px; font-size: 0.9375rem; }
+        li { margin-bottom: 6px; }
+        strong { color: var(--text-primary); font-weight: 600; transition: color 0.4s ease; }
+        a { color: var(--accent); text-decoration: none; transition: opacity 0.3s ease, color 0.4s ease; }
+        a:hover { opacity: 0.8; }
+
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 32px 0;
+            text-align: center;
+            font-size: 0.8125rem;
+            color: var(--text-tertiary);
+            transition: all 0.4s ease;
+        }
+
+        /* Same mechanism as /puntos/privacy (one block per language, shown by html[lang]), extended to Portuguese. */
+        [data-lang="es"], [data-lang="pt"] { display: none; }
+        html[lang="es"] [data-lang="es"] { display: block; }
+        html[lang="es"] [data-lang="en"], html[lang="es"] [data-lang="pt"] { display: none; }
+        html[lang="pt"] [data-lang="pt"] { display: block; }
+        html[lang="pt"] [data-lang="en"], html[lang="pt"] [data-lang="es"] { display: none; }
+
+        @media (max-width: 640px) {
+            .back-link { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-left">
+                <a href="/" class="logo">Kodera</a>
+                <a href="/" class="back-link" data-lang="en">&larr; Back to home</a>
+                <a href="/" class="back-link" data-lang="es">&larr; Volver al inicio</a>
+                <a href="/" class="back-link" data-lang="pt">&larr; Voltar ao início</a>
+            </div>
+            <div class="header-controls">
+                <button class="toggle-btn" id="lang-toggle" aria-label="Switch language">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10A15.3 15.3 0 0 1 12 2z"/></svg>
+                </button>
+                <button class="toggle-btn" id="theme-toggle" aria-label="Toggle theme">
+                    <svg id="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    <svg id="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="display:none"><circle cx="12" cy="12" r="5"/><path d="M12 1v2m0 18v2M4.22 4.22l1.42 1.42m12.72 12.72l1.42 1.42M1 12h2m18 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- English (prevails if the versions differ) -->
+            <div data-lang="en">
+                <h1>Puntitos Terms and Conditions</h1>
+                <p class="updated">Last updated: November 4, 2026</p>
+                <p>Kodera LLC ("we", "our", or "us") offers the Puntitos mobile application (the "App"). These Terms and Conditions (the "Terms") set out the rules for using it. By installing or using Puntitos you accept these Terms and our <a href="/puntos/privacy">Privacy Policy</a>. If you don't agree, don't use the App.</p>
+                <p>These Terms are available in English, Spanish and Portuguese. If the versions differ, the English version prevails.</p>
+
+                <h2>1. Who We Are</h2>
+                <p>Puntitos is made and maintained by <strong>Kodera LLC</strong>, a limited liability company formed in Wyoming, United States. For anything about the App or these Terms, write to <a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a>. Support is provided by us, at that email or from the App with the "Tell us" button.</p>
+
+                <h2>2. Acceptance and Minimum Age</h2>
+                <p>By using the App you accept these Terms.</p>
+                <p>Puntitos is not directed to children under 13. To use it, and above all to create an account, you must be at least 13 years old. If your country requires you to be older to accept this kind of service without a parent's permission, that age applies. If you are a minor, use the App with the permission of a parent or guardian. If you believe a minor gave us information without that permission, write to us and we'll delete it.</p>
+
+                <h2>3. What Puntitos Is</h2>
+                <p>Puntitos is a scorekeeper: it keeps score for Truco, Chinchón, Burako, Generala, Backgammon and other table games we add over time. It is free and has no ads. It works offline: what you score is stored on your phone. An account is optional (section 4).</p>
+                <p>We may change, add or remove features and release new versions. Sometimes an old version stops being compatible with our servers and the App asks you to update to keep going.</p>
+
+                <h2>4. Your Account</h2>
+                <p>You can create an account with Apple, with Google, or with your email and a password. When you create it you pick a unique username (your @) and, if you like, a display name and an avatar. An account adds cloud history, friends, shared and live games, and tournaments (section 5).</p>
+                <p>Your account is personal:</p>
+                <ul>
+                    <li>Give true information and keep your password, or the access to your Apple or Google account, safe. Whatever is done from your account is your responsibility; if you think someone else is using it, change your password and let us know.</li>
+                    <li>Your username and display name may not be offensive or impersonate another person or brand. You can change your @ once every 30 days.</li>
+                    <li>One account per person. You may not sell, transfer or lend it.</li>
+                </ul>
+                <p><strong>Deleting your account</strong>: in the App, tap your avatar → Account &amp; privacy → Delete account. Deletion is immediate and permanent: your profile, cloud history, friendships and notification tokens are removed. What remains: copies of games already delivered to your friends (like a sent message), and your name and @ in tournaments organized by someone else and in other people's live games until those are deleted from our servers (about 3 days). The <a href="/puntos/privacy">Privacy Policy</a> explains what remains and how to ask for a copy of your data.</p>
+
+                <h2>5. What You Can Do With an Account</h2>
+                <ul>
+                    <li><strong>Cloud history</strong> — your finished games, your profile and the order of your games are stored on our servers and synced across your devices.</li>
+                    <li><strong>Friends</strong> — you add friends by their @, with a link or with a QR code. An invite link or QR identifies your account: whoever opens it can send you a friend request, so share it only with people you want.</li>
+                    <li><strong>Shared games</strong> — when a game includes linked friends, a copy is delivered to each of their accounts when it ends and becomes part of their history, like a sent message. You delete your copy; they delete theirs.</li>
+                    <li><strong>Live games</strong> — if you turn on "Broadcast live", the game is stored on our servers while it is played so the linked registered players can follow it and, in Generala and Burako, score it too. You decide who keeps score and when to stop broadcasting.</li>
+                    <li><strong>Tournaments</strong> — you can set up tournaments and link other registered players. Those tournaments are stored on our servers so the participants can follow them and log their matches.</li>
+                    <li><strong>Invitations</strong> — if you link someone who is not your friend in the App to a live game or a tournament, we send them an invitation showing your display name; they only see the game or tournament if they accept.</li>
+                    <li><strong>Notifications</strong> — if you turn them on, we notify you of friend requests, live games and news from your tournaments. You can turn them off in Settings or in your phone's settings.</li>
+                </ul>
+                <p>Account features need an internet connection. Keeping score doesn't.</p>
+
+                <!-- Compras dentro de la app: agregar acá, como sección nueva después de «What You Can Do With an Account», cuando se monetice: qué se cobra y cuánto, que el cobro lo hace Apple o Google (con sus reembolsos), renovación y cancelación de suscripciones, cambios de precio y el derecho de desistimiento (UE/Reino Unido). Hoy la App es gratis y no tiene compras ni suscripciones (sin StoreKit ni RevenueCat en package.json): no va la sección. Renumerar las que siguen, en los tres idiomas. -->
+
+                <h2>6. Your Privacy</h2>
+                <p>What data we collect, what we use it for and the rights you have are set out in the <a href="/puntos/privacy">Privacy Policy</a>, which forms part of these Terms.</p>
+
+                <h2>7. Your Content</h2>
+                <p>What you put into Puntitos is yours: player names, results and games, the names and notes of your tournaments, your username, your display name and what you write to us through "Tell us".</p>
+                <p>So the App can work, you give us permission (a non-exclusive, royalty-free, worldwide licence) to store, copy, sync and display that content, only as needed to operate the App: on your devices, on those of the friends linked to a game or tournament, and on those of the people you invite. We don't use it for advertising and we don't sell it to anyone. That permission ends when you delete the content or your account, except for copies already delivered to others (like a sent message) and what the Privacy Policy explains.</p>
+                <p>You are responsible for what you write, including the names you give other people: use names they won't mind and don't enter other people's details without their say-so. Share images (the result cards) are generated on your phone from what you scored; you decide who you send them to. They may carry the Puntitos name and a link to download it.</p>
+                <p>If you send us ideas or suggestions, we may use them to improve the App with no obligation to you.</p>
+
+                <h2>8. Acceptable Use</h2>
+                <p>Use Puntitos for what it is: scoring and sharing games with people you know. You may not:</p>
+                <ul>
+                    <li>use it for anything illegal, or to bother, harass, threaten or deceive others (not in usernames or display names, not in tournament names, not in "Tell us");</li>
+                    <li>impersonate another person or Kodera;</li>
+                    <li>enter content that is offensive, discriminatory or infringes someone else's rights;</li>
+                    <li>try to access other people's accounts or data, get around usage limits, overload our servers, automate requests or interfere with how the App works;</li>
+                    <li>copy, modify, sell, rent or distribute the App, or decompile or reverse-engineer it, except where the law expressly allows it.</li>
+                </ul>
+                <p>If you do, we may suspend or delete your account (section 13).</p>
+
+                <h2>9. Puntitos Is a Scorekeeper</h2>
+                <p>Puntitos helps you keep count, nothing more. The rules it shows are a guide: every table and every region has its variants, and in many games the players agree on their own rules. The App is not a referee: we don't guarantee that the rules, calculations, statistics, streaks or a tournament bracket are accurate or error-free. What counts is what the table agrees; check what you score.</p>
+                <p>Disputes between players are the players' business. If you bet something among yourselves or write "what's at stake" in a tournament, that is an agreement between you: Puntitos doesn't organize, collect or pay anything, and Kodera is not a party to and not responsible for those agreements. It is your responsibility to comply with the laws where you are.</p>
+
+                <h2>10. Intellectual Property</h2>
+                <p>The App — its code, design, texts, drawings, icons and images — and the names and marks "Puntitos" and "Kodera" belong to Kodera LLC (or are used under licence) and are protected by intellectual property laws.</p>
+                <p>We give you a personal, limited, non-exclusive, revocable and non-transferable licence to install and use the App on your devices, for personal use and in accordance with these Terms. We don't transfer ownership of anything to you. The games themselves (Truco, Generala and so on) are not ours: they belong to everyone.</p>
+
+                <h2>11. Third-Party Services</h2>
+                <p>To work, the App relies on services from other companies, which have their own terms and privacy policies:</p>
+                <ul>
+                    <li><strong>Apple</strong> — the App Store, "Sign in with Apple" and notification delivery on iOS.</li>
+                    <li><strong>Google</strong> — Google Play, "Continue with Google" and Firebase (authentication, database, notifications and crash reporting), where our backend runs.</li>
+                    <li>The other services listed in the <a href="/puntos/privacy">Privacy Policy</a>.</li>
+                </ul>
+                <p>We don't control those services and are not responsible for them. If you downloaded the App from the App Store or from Google Play, that store's terms also apply (for example, Apple's standard Licensed Application End User License Agreement, or the Google Play Terms of Service). Apple and Google are not parties to these Terms and are not responsible for the App or its support: that's on us.</p>
+
+                <h2>12. No Warranties and Limitation of Liability</h2>
+                <p>Puntitos is free and is provided "as is" and "as available". We do our best to keep it working well, but we don't guarantee it will run without interruptions or errors, or that your cloud data will never be lost. If something matters, keep a copy (for example, share the game's image).</p>
+                <p>To the extent the law allows, Kodera is not liable for indirect damages, for loss of data, games or history, money or opportunities, or for disputes, bets or agreements between players. And our total liability for any claim related to the App is limited to 100 US dollars.</p>
+                <p>None of this limits the rights that your country's consumer protection laws give you — for example in the European Union, the United Kingdom, Brazil or Argentina — and that cannot be waived by contract. Nor do we exclude liability that the law does not allow us to exclude, such as liability for fraud or gross negligence, or for death or personal injury caused by negligence.</p>
+
+                <h2>13. Suspension and Termination</h2>
+                <p>We may suspend or delete your account if you breach these Terms, if the law requires it, or if needed to protect other users or the App. Unless it would be unreasonable (for example, in a case of obvious abuse, or if the law prevents us), we'll notify you at your account's email and tell you why. If you think we got it wrong, write to us.</p>
+                <p>You can leave whenever you want: delete your account from the App or simply stop using it. We may also stop offering the App or some of its features; if we stop offering the account features, we'll give you reasonable notice so you can ask for a copy of your data (see the Privacy Policy).</p>
+
+                <h2>14. Changes to These Terms</h2>
+                <p>We may update these Terms, for example when the App gains features. When we do, we change the "Last updated" date above. If the change is material, we'll notify you within the App before it takes effect. If you keep using the App after that date, you accept the new Terms; if you don't agree, stop using it or delete your account.</p>
+
+                <h2>15. Governing Law</h2>
+                <p>These Terms are governed by the laws of the State of Wyoming, United States, without regard to its conflict-of-law rules, and any dispute is resolved in the courts of Wyoming. If you are a consumer and live in a country whose laws give you protection that cannot be waived — such as the European Union, the United Kingdom, Brazil or Argentina — you keep that protection and may bring a claim before the courts where you live. Before going to court, write to us: most problems get solved by email.</p>
+
+                <h2>16. Miscellaneous</h2>
+                <p>These Terms and the Privacy Policy are the entire agreement between you and Kodera about the App. If any clause turns out to be invalid, the rest still stands. If we don't enforce a right at some point, that doesn't mean we waive it. You may not assign your account or these Terms to anyone else; we may assign them to whoever continues the App (for example, if Kodera reorganizes), and we'll let you know if that happens.</p>
+
+                <h2>17. Contact</h2>
+                <p>If you have questions about these Terms, write to:<br><a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a></p>
+            </div>
+
+            <!-- Spanish -->
+            <div data-lang="es">
+                <h1>Términos y Condiciones de Puntitos</h1>
+                <p class="updated">Última actualización: 4 de noviembre de 2026</p>
+                <p>Kodera LLC («nosotros», «nuestro») ofrece la aplicación móvil Puntitos (la «App»). Estos Términos y Condiciones (los «Términos») explican las reglas para usarla. Al instalar o usar Puntitos aceptás estos Términos y nuestra <a href="/puntos/privacy">Política de Privacidad</a>. Si no estás de acuerdo, no uses la App.</p>
+                <p>Estos Términos están en español, inglés y portugués. Si hay diferencias entre las versiones, prevalece la versión en inglés.</p>
+
+                <h2>1. Quiénes Somos</h2>
+                <p>Puntitos la hace y la mantiene <strong>Kodera LLC</strong>, una sociedad de responsabilidad limitada constituida en Wyoming, Estados Unidos. Para cualquier consulta sobre la App o estos Términos escribinos a <a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a>. El soporte lo damos nosotros, por ese email o desde la App con el botón «Contanos».</p>
+
+                <h2>2. Aceptación y Edad Mínima</h2>
+                <p>Al usar la App aceptás estos Términos.</p>
+                <p>Puntitos no está dirigida a menores de 13 años. Para usarla, y sobre todo para crear una cuenta, tenés que tener al menos 13 años. Si en tu país hace falta ser mayor para aceptar este tipo de servicios sin permiso de tus padres, se aplica esa edad. Si sos menor de edad, usá la App con el permiso de tu madre, padre o tutor. Si creés que un menor nos dio información sin ese permiso, escribinos y la borramos.</p>
+
+                <h2>3. Qué Es Puntitos</h2>
+                <p>Puntitos es un anotador: sirve para llevar los puntos de truco, chinchón, burako, generala, backgammon y otros juegos de mesa que se vayan sumando. Es gratis y no tiene publicidad. Funciona sin conexión: lo que anotás se guarda en tu teléfono. La cuenta es opcional (sección 4).</p>
+                <p>Podemos cambiar, agregar o retirar funciones y publicar versiones nuevas. A veces una versión vieja deja de ser compatible con nuestros servidores y la App te pide actualizar para seguir.</p>
+
+                <h2>4. Tu Cuenta</h2>
+                <p>Podés crear una cuenta con Apple, con Google o con tu email y una contraseña. Al crearla elegís un nombre de usuario único (tu @) y, si querés, un nombre para mostrar y un avatar. La cuenta suma el historial en la nube, amigos, partidas compartidas y en vivo, y torneos (sección 5).</p>
+                <p>Tu cuenta es personal:</p>
+                <ul>
+                    <li>Tenés que dar datos verdaderos y cuidar tu contraseña o el acceso a tu cuenta de Apple o de Google. Lo que se haga desde tu cuenta es tu responsabilidad; si creés que alguien más la está usando, cambiá la contraseña y avisanos.</li>
+                    <li>Tu nombre de usuario y tu nombre para mostrar no pueden ser ofensivos ni hacerse pasar por otra persona o marca. Podés cambiar tu @ una vez cada 30 días.</li>
+                    <li>Una cuenta por persona. No podés venderla, cederla ni prestarla.</li>
+                </ul>
+                <p><strong>Borrar tu cuenta</strong>: en la App, tocá tu avatar → Cuenta y privacidad → Eliminar cuenta. El borrado es inmediato y definitivo: se borran tu perfil, tu historial en la nube, tus amistades y tus tokens de notificaciones. Quedan las copias de las partidas que ya les llegaron a tus amigos (como un mensaje enviado), y tu nombre y tu @ en los torneos que organizó otra persona y en las partidas en vivo de otros hasta que se borran de nuestros servidores (unos 3 días). La <a href="/puntos/privacy">Política de Privacidad</a> explica qué queda y cómo pedir una copia de tus datos.</p>
+
+                <h2>5. Lo Que Podés Hacer con la Cuenta</h2>
+                <ul>
+                    <li><strong>Historial en la nube</strong> — tus partidas terminadas, tu perfil y el orden de tus juegos se guardan en nuestros servidores y se sincronizan entre tus dispositivos.</li>
+                    <li><strong>Amigos</strong> — agregás amigos por su @, con un link o con un código QR. Un link o QR de invitación identifica tu cuenta: quien lo abra puede mandarte una solicitud de amistad; compartilo sólo con quien quieras.</li>
+                    <li><strong>Partidas compartidas</strong> — cuando una partida incluye amigos vinculados, al terminar se entrega una copia a la cuenta de cada uno y pasa a ser parte de su historial, como un mensaje enviado. Vos borrás tu copia; ellos, la suya.</li>
+                    <li><strong>Partidas en vivo</strong> — si prendés «Transmitir en vivo», la partida se guarda en nuestros servidores mientras se juega para que los jugadores vinculados con cuenta puedan seguirla y, en Generala y Burako, anotar también. Vos decidís quién anota y cuándo dejar de transmitir.</li>
+                    <li><strong>Torneos</strong> — podés armar torneos y vincular a otros jugadores con cuenta. Esos torneos se guardan en nuestros servidores para que los participantes los sigan y carguen sus partidos.</li>
+                    <li><strong>Invitaciones</strong> — si vinculás a una partida en vivo o a un torneo a alguien que no es tu amigo en la App, le mandamos una invitación con tu nombre visible; ve la partida o el torneo sólo si la acepta.</li>
+                    <li><strong>Notificaciones</strong> — si las activás, te avisamos de solicitudes de amistad, de partidas en vivo y de novedades de tus torneos. Las podés apagar en Ajustes o en los ajustes de tu teléfono.</li>
+                </ul>
+                <p>Las funciones con cuenta necesitan conexión a internet. Anotar, no.</p>
+
+                <!-- Compras dentro de la app: agregar acá, como sección nueva después de «Lo Que Podés Hacer con la Cuenta», cuando se monetice: qué se cobra y cuánto, que el cobro lo hace Apple o Google (con sus reembolsos), renovación y cancelación de suscripciones, cambios de precio y el derecho de desistimiento (UE/Reino Unido). Hoy la App es gratis y no tiene compras ni suscripciones (sin StoreKit ni RevenueCat en package.json): no va la sección. Renumerar las que siguen, en los tres idiomas. -->
+
+                <h2>6. Tu Privacidad</h2>
+                <p>Qué datos recopilamos, para qué los usamos y qué derechos tenés está en la <a href="/puntos/privacy">Política de Privacidad</a>, que forma parte de estos Términos.</p>
+
+                <h2>7. Tu Contenido</h2>
+                <p>Lo que cargás en Puntitos es tuyo: los nombres de los jugadores, los resultados y las partidas, los nombres y las notas de tus torneos, tu nombre de usuario, tu nombre para mostrar y lo que nos escribís por «Contanos».</p>
+                <p>Para que la App funcione nos das un permiso (una licencia no exclusiva, gratuita y mundial) para guardar, copiar, sincronizar y mostrar ese contenido, sólo en lo necesario para operar la App: en tus dispositivos, en los de los amigos vinculados a una partida o a un torneo y en los de las personas que invites. No lo usamos para publicidad ni se lo vendemos a nadie. Ese permiso termina cuando borrás el contenido o tu cuenta, salvo por las copias que ya les llegaron a otros (como un mensaje enviado) y por lo que explica la Política de Privacidad.</p>
+                <p>Vos sos responsable de lo que escribís, incluidos los nombres con los que anotás a otras personas: usá nombres que no les molesten y no cargues datos de otros sin su permiso. Las imágenes para compartir (las tarjetas con el resultado) se generan en tu teléfono con lo que anotaste; vos decidís a quién se las mandás. Pueden llevar el nombre de Puntitos y un link para descargarla.</p>
+                <p>Si nos mandás ideas o sugerencias, podemos usarlas para mejorar la App sin obligación hacia vos.</p>
+
+                <h2>8. Uso Aceptable</h2>
+                <p>Usá Puntitos para lo que es: anotar y compartir partidas con gente que conocés. No podés:</p>
+                <ul>
+                    <li>usarla para algo ilegal, ni para molestar, acosar, amenazar o engañar a otros (ni en nombres de usuario o para mostrar, ni en nombres de torneos, ni en «Contanos»);</li>
+                    <li>hacerte pasar por otra persona o por Kodera;</li>
+                    <li>cargar contenido ofensivo, discriminatorio o que viole derechos de terceros;</li>
+                    <li>intentar entrar a cuentas o datos ajenos, saltarte los límites de uso, sobrecargar nuestros servidores, automatizar pedidos ni interferir con el funcionamiento de la App;</li>
+                    <li>copiar, modificar, vender, alquilar o distribuir la App, ni descompilarla o hacer ingeniería inversa, salvo lo que la ley permita expresamente.</li>
+                </ul>
+                <p>Si lo hacés, podemos suspender o borrar tu cuenta (sección 13).</p>
+
+                <h2>9. Puntitos Es un Anotador</h2>
+                <p>Puntitos ayuda a llevar la cuenta, nada más. Las reglas que muestra son orientativas: cada mesa y cada región tiene sus variantes, y en muchos juegos los jugadores acuerdan reglas propias. La App no es árbitro: no garantizamos que las reglas, los cálculos, las estadísticas, las rachas o la llave de un torneo sean exactos ni estén libres de errores. Lo que vale es lo que la mesa acuerda; revisá lo que anotás.</p>
+                <p>Las discusiones entre jugadores son cosa de los jugadores. Si entre ustedes apuestan algo o ponen «qué se juega» en un torneo, es un acuerdo entre ustedes: Puntitos no organiza, no cobra ni paga nada, y Kodera no es parte de esos acuerdos ni responde por ellos. Es tu responsabilidad respetar las leyes de tu lugar.</p>
+
+                <h2>10. Propiedad Intelectual</h2>
+                <p>La App —su código, diseño, textos, dibujos, íconos e imágenes— y los nombres y marcas «Puntitos» y «Kodera» son de Kodera LLC (o los usamos con licencia) y están protegidos por las leyes de propiedad intelectual.</p>
+                <p>Te damos una licencia personal, limitada, no exclusiva, revocable e intransferible para instalar y usar la App en tus dispositivos, para uso personal y según estos Términos. No te transferimos la propiedad de nada. Los juegos en sí (el truco, la generala, etcétera) no son nuestros: son de todos.</p>
+
+                <h2>11. Servicios de Terceros</h2>
+                <p>Para funcionar, la App usa servicios de otras empresas, que tienen sus propias condiciones y políticas de privacidad:</p>
+                <ul>
+                    <li><strong>Apple</strong> — el App Store, «Iniciar sesión con Apple» y la entrega de notificaciones en iOS.</li>
+                    <li><strong>Google</strong> — Google Play, «Continuar con Google» y Firebase (autenticación, base de datos, notificaciones y reportes de errores), donde corre nuestro backend.</li>
+                    <li>Los demás servicios que lista la <a href="/puntos/privacy">Política de Privacidad</a>.</li>
+                </ul>
+                <p>No controlamos esos servicios ni respondemos por ellos. Si descargaste la App desde el App Store o desde Google Play, también aplican las condiciones de esa tienda (por ejemplo, el acuerdo de licencia estándar de Apple para apps del App Store, o los Términos de Servicio de Google Play). Apple y Google no son parte de estos Términos y no responden por la App ni por su soporte: de eso nos ocupamos nosotros.</p>
+
+                <h2>12. Sin Garantías y Límite de Responsabilidad</h2>
+                <p>Puntitos es gratis y se ofrece «tal cual» y «según disponibilidad». Hacemos lo posible para que ande bien, pero no garantizamos que funcione sin interrupciones ni errores, ni que tus datos en la nube nunca se pierdan. Si algo es importante, guardá una copia (por ejemplo, compartí la imagen de la partida).</p>
+                <p>En la medida en que la ley lo permita, Kodera no responde por daños indirectos, ni por pérdida de datos, de partidas o de historial, de dinero o de oportunidades, ni por las discusiones, apuestas o acuerdos entre jugadores. Y nuestra responsabilidad total por cualquier reclamo relacionado con la App se limita a 100 dólares estadounidenses.</p>
+                <p>Nada de esto limita los derechos que te dan las leyes de protección al consumidor de tu país —por ejemplo en la Unión Europea, el Reino Unido, Brasil o la Argentina— y que no se pueden renunciar por contrato. Tampoco excluimos la responsabilidad que la ley no permite excluir, como la que surge de dolo o culpa grave, o de muerte o lesiones causadas por negligencia.</p>
+
+                <h2>13. Suspensión y Cierre</h2>
+                <p>Podemos suspender o borrar tu cuenta si incumplís estos Términos, si la ley nos lo exige o si hace falta para proteger a otros usuarios o a la App. Salvo que no sea razonable (por ejemplo, ante un abuso evidente o si la ley nos lo impide), te avisamos al email de tu cuenta y te decimos por qué. Si creés que nos equivocamos, escribinos.</p>
+                <p>Vos podés irte cuando quieras: borrá tu cuenta desde la App o simplemente dejá de usarla. También podemos dejar de ofrecer la App o alguna de sus funciones; si dejamos de ofrecer las funciones con cuenta, te avisamos con tiempo razonable para que puedas pedir una copia de tus datos (ver la Política de Privacidad).</p>
+
+                <h2>14. Cambios a Estos Términos</h2>
+                <p>Podemos actualizar estos Términos, por ejemplo cuando la App sume funciones. Cuando lo hagamos, cambiamos la fecha de «Última actualización» de arriba. Si el cambio es importante, te avisamos dentro de la App antes de que entre en vigor. Si seguís usando la App después de esa fecha, aceptás los Términos nuevos; si no estás de acuerdo, dejá de usarla o borrá tu cuenta.</p>
+
+                <h2>15. Ley Aplicable</h2>
+                <p>Estos Términos se rigen por las leyes del Estado de Wyoming, Estados Unidos, sin aplicar sus reglas sobre conflicto de leyes, y cualquier disputa se resuelve en los tribunales de Wyoming. Si sos consumidor y vivís en un país cuyas leyes te dan una protección que no se puede renunciar —como la Unión Europea, el Reino Unido, Brasil o la Argentina—, conservás esa protección y podés reclamar ante los tribunales de tu domicilio. Antes de llegar a un tribunal, escribinos: la mayoría de los problemas se resuelven por email.</p>
+
+                <h2>16. Varios</h2>
+                <p>Estos Términos y la Política de Privacidad son el acuerdo completo entre vos y Kodera sobre la App. Si alguna cláusula resulta inválida, el resto sigue en pie. Que no hagamos valer un derecho en algún momento no significa que renunciemos a él. No podés ceder tu cuenta ni estos Términos a otra persona; nosotros podemos cederlos a quien continúe con la App (por ejemplo, si Kodera se reorganiza), y te avisamos si eso pasa.</p>
+
+                <h2>17. Contacto</h2>
+                <p>Si tenés preguntas sobre estos Términos, escribinos a:<br><a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a></p>
+            </div>
+
+            <!-- Portuguese (Brazil) -->
+            <div data-lang="pt">
+                <h1>Termos e Condições do Puntitos</h1>
+                <p class="updated">Última atualização: 4 de novembro de 2026</p>
+                <p>A Kodera LLC («nós», «nosso») oferece o aplicativo móvel Puntitos (o «App»). Estes Termos e Condições (os «Termos») explicam as regras para usá-lo. Ao instalar ou usar o Puntitos, você aceita estes Termos e a nossa <a href="/puntos/privacy">Política de Privacidade</a>. Se não concordar, não use o App.</p>
+                <p>Estes Termos estão disponíveis em português, espanhol e inglês. Se houver diferenças entre as versões, prevalece a versão em inglês.</p>
+
+                <h2>1. Quem Somos</h2>
+                <p>O Puntitos é feito e mantido pela <strong>Kodera LLC</strong>, uma sociedade de responsabilidade limitada constituída em Wyoming, Estados Unidos. Para qualquer assunto sobre o App ou estes Termos, escreva para <a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a>. O suporte é dado por nós, por esse e-mail ou pelo App com o botão «Conta pra gente».</p>
+
+                <h2>2. Aceitação e Idade Mínima</h2>
+                <p>Ao usar o App, você aceita estes Termos.</p>
+                <p>O Puntitos não é dirigido a menores de 13 anos. Para usá-lo, e principalmente para criar uma conta, você precisa ter pelo menos 13 anos. Se no seu país for preciso ser mais velho para aceitar esse tipo de serviço sem a permissão dos pais, vale essa idade. Se você for menor de idade, use o App com a permissão da sua mãe, do seu pai ou do seu responsável. Se você acha que um menor nos passou informações sem essa permissão, escreva pra gente e nós apagamos.</p>
+
+                <h2>3. O Que É o Puntitos</h2>
+                <p>O Puntitos é um anotador: serve para marcar os pontos de truco, chinchón, buraco, generala, gamão e outros jogos de mesa que formos adicionando. É grátis e não tem anúncios. Funciona sem conexão: o que você anota fica salvo no seu celular. A conta é opcional (seção 4).</p>
+                <p>Podemos mudar, adicionar ou retirar funções e publicar versões novas. Às vezes uma versão antiga deixa de ser compatível com os nossos servidores e o App pede para você atualizar para continuar.</p>
+
+                <h2>4. Sua Conta</h2>
+                <p>Você pode criar uma conta com a Apple, com o Google ou com seu e-mail e uma senha. Ao criá-la, você escolhe um nome de usuário único (o seu @) e, se quiser, um nome de exibição e um avatar. A conta adiciona o histórico na nuvem, amigos, partidas compartilhadas e ao vivo, e torneios (seção 5).</p>
+                <p>Sua conta é pessoal:</p>
+                <ul>
+                    <li>Informe dados verdadeiros e mantenha em segurança sua senha ou o acesso à sua conta da Apple ou do Google. O que for feito a partir da sua conta é responsabilidade sua; se achar que outra pessoa está usando, troque a senha e nos avise.</li>
+                    <li>Seu nome de usuário e seu nome de exibição não podem ser ofensivos nem se passar por outra pessoa ou marca. Você pode mudar o seu @ uma vez a cada 30 dias.</li>
+                    <li>Uma conta por pessoa. Você não pode vendê-la, cedê-la nem emprestá-la.</li>
+                </ul>
+                <p><strong>Excluir sua conta</strong>: no App, toque no seu avatar → Conta e privacidade → Excluir conta. A exclusão é imediata e definitiva: seu perfil, seu histórico na nuvem, suas amizades e seus tokens de notificação são apagados. Ficam as cópias das partidas que já chegaram aos seus amigos (como uma mensagem enviada), e o seu nome e o seu @ nos torneios organizados por outra pessoa e nas partidas ao vivo de outras pessoas até que sejam apagadas dos nossos servidores (uns 3 dias). A <a href="/puntos/privacy">Política de Privacidade</a> explica o que fica e como pedir uma cópia dos seus dados.</p>
+
+                <h2>5. O Que Você Pode Fazer com a Conta</h2>
+                <ul>
+                    <li><strong>Histórico na nuvem</strong> — suas partidas terminadas, seu perfil e a ordem dos seus jogos ficam salvos nos nossos servidores e sincronizados entre os seus aparelhos.</li>
+                    <li><strong>Amigos</strong> — você adiciona amigos pelo @, por um link ou por um código QR. Um link ou QR de convite identifica a sua conta: quem abrir pode te mandar um pedido de amizade; compartilhe só com quem você quiser.</li>
+                    <li><strong>Partidas compartilhadas</strong> — quando uma partida inclui amigos vinculados, ao terminar uma cópia é entregue à conta de cada um e passa a fazer parte do histórico deles, como uma mensagem enviada. Você apaga a sua cópia; eles, a deles.</li>
+                    <li><strong>Partidas ao vivo</strong> — se você ligar «Transmitir ao vivo», a partida fica salva nos nossos servidores enquanto é jogada, para que os jogadores vinculados com conta possam acompanhá-la e, na Generala e no Buraco, anotar também. Você decide quem anota e quando parar de transmitir.</li>
+                    <li><strong>Torneios</strong> — você pode montar torneios e vincular outros jogadores com conta. Esses torneios ficam salvos nos nossos servidores para que os participantes os acompanhem e registrem suas partidas.</li>
+                    <li><strong>Convites</strong> — se você vincular a uma partida ao vivo ou a um torneio alguém que não é seu amigo no App, nós enviamos um convite com o seu nome de exibição; a pessoa só vê a partida ou o torneio se aceitar.</li>
+                    <li><strong>Notificações</strong> — se você ativá-las, avisamos sobre pedidos de amizade, partidas ao vivo e novidades dos seus torneios. Você pode desativá-las em Ajustes ou nos ajustes do seu celular.</li>
+                </ul>
+                <p>As funções com conta precisam de conexão com a internet. Anotar, não.</p>
+
+                <!-- Compras dentro de la app: agregar acá, como sección nueva después de «O Que Você Pode Fazer com a Conta», cuando se monetice: qué se cobra y cuánto, que el cobro lo hace Apple o Google (con sus reembolsos), renovación y cancelación de suscripciones, cambios de precio y el derecho de desistimiento (UE/Reino Unido). Hoy la App es gratis y no tiene compras ni suscripciones (sin StoreKit ni RevenueCat en package.json): no va la sección. Renumerar las que siguen, en los tres idiomas. -->
+
+                <h2>6. Sua Privacidade</h2>
+                <p>Quais dados coletamos, para que os usamos e quais são os seus direitos está na <a href="/puntos/privacy">Política de Privacidade</a>, que faz parte destes Termos.</p>
+
+                <h2>7. Seu Conteúdo</h2>
+                <p>O que você coloca no Puntitos é seu: os nomes dos jogadores, os resultados e as partidas, os nomes e as notas dos seus torneios, seu nome de usuário, seu nome de exibição e o que você escreve pra gente em «Conta pra gente».</p>
+                <p>Para que o App funcione, você nos dá uma permissão (uma licença não exclusiva, gratuita e mundial) para guardar, copiar, sincronizar e exibir esse conteúdo, só no necessário para operar o App: nos seus aparelhos, nos dos amigos vinculados a uma partida ou a um torneio e nos das pessoas que você convidar. Não o usamos para publicidade nem o vendemos a ninguém. Essa permissão termina quando você apaga o conteúdo ou a sua conta, exceto pelas cópias que já chegaram a outras pessoas (como uma mensagem enviada) e pelo que a Política de Privacidade explica.</p>
+                <p>Você é responsável pelo que escreve, inclusive pelos nomes que dá a outras pessoas: use nomes que não as incomodem e não cadastre dados de outras pessoas sem a autorização delas. As imagens para compartilhar (os cartões com o resultado) são geradas no seu celular com o que você anotou; você decide para quem as envia. Elas podem levar o nome do Puntitos e um link para baixá-lo.</p>
+                <p>Se você nos mandar ideias ou sugestões, podemos usá-las para melhorar o App sem nenhuma obrigação com você.</p>
+
+                <h2>8. Uso Aceitável</h2>
+                <p>Use o Puntitos para o que ele é: anotar e compartilhar partidas com gente que você conhece. Você não pode:</p>
+                <ul>
+                    <li>usá-lo para algo ilegal, nem para incomodar, assediar, ameaçar ou enganar outras pessoas (nem em nomes de usuário ou de exibição, nem em nomes de torneios, nem em «Conta pra gente»);</li>
+                    <li>se passar por outra pessoa ou pela Kodera;</li>
+                    <li>inserir conteúdo ofensivo, discriminatório ou que viole direitos de terceiros;</li>
+                    <li>tentar acessar contas ou dados de outras pessoas, burlar os limites de uso, sobrecarregar nossos servidores, automatizar pedidos ou interferir no funcionamento do App;</li>
+                    <li>copiar, modificar, vender, alugar ou distribuir o App, nem descompilá-lo ou fazer engenharia reversa, salvo o que a lei permitir expressamente.</li>
+                </ul>
+                <p>Se fizer isso, podemos suspender ou excluir a sua conta (seção 13).</p>
+
+                <h2>9. O Puntitos É um Anotador</h2>
+                <p>O Puntitos ajuda a marcar os pontos, nada mais. As regras que ele mostra são orientativas: cada mesa e cada região tem suas variantes, e em muitos jogos os jogadores combinam regras próprias. O App não é árbitro: não garantimos que as regras, os cálculos, as estatísticas, as sequências ou a chave de um torneio sejam exatos ou estejam livres de erros. O que vale é o que a mesa combina; confira o que você anota.</p>
+                <p>Discussões entre jogadores são assunto dos jogadores. Se vocês apostarem algo entre si ou escreverem «o que está em jogo» num torneio, isso é um acordo entre vocês: o Puntitos não organiza, não cobra nem paga nada, e a Kodera não faz parte desses acordos nem responde por eles. É responsabilidade sua respeitar as leis do lugar onde você está.</p>
+
+                <h2>10. Propriedade Intelectual</h2>
+                <p>O App — seu código, design, textos, desenhos, ícones e imagens — e os nomes e marcas «Puntitos» e «Kodera» pertencem à Kodera LLC (ou são usados sob licença) e estão protegidos pelas leis de propriedade intelectual.</p>
+                <p>Nós damos a você uma licença pessoal, limitada, não exclusiva, revogável e intransferível para instalar e usar o App nos seus aparelhos, para uso pessoal e de acordo com estes Termos. Não transferimos a propriedade de nada. Os jogos em si (o truco, a generala e assim por diante) não são nossos: são de todo mundo.</p>
+
+                <h2>11. Serviços de Terceiros</h2>
+                <p>Para funcionar, o App usa serviços de outras empresas, que têm suas próprias condições e políticas de privacidade:</p>
+                <ul>
+                    <li><strong>Apple</strong> — a App Store, «Iniciar sessão com a Apple» e a entrega de notificações no iOS.</li>
+                    <li><strong>Google</strong> — o Google Play, «Continuar com o Google» e o Firebase (autenticação, banco de dados, notificações e relatórios de erros), onde roda o nosso backend.</li>
+                    <li>Os demais serviços listados na <a href="/puntos/privacy">Política de Privacidade</a>.</li>
+                </ul>
+                <p>Não controlamos esses serviços nem respondemos por eles. Se você baixou o App na App Store ou no Google Play, também valem as condições dessa loja (por exemplo, o contrato de licença padrão da Apple para apps da App Store, ou os Termos de Serviço do Google Play). A Apple e o Google não fazem parte destes Termos e não respondem pelo App nem pelo seu suporte: isso é com a gente.</p>
+
+                <h2>12. Sem Garantias e Limite de Responsabilidade</h2>
+                <p>O Puntitos é grátis e é oferecido «no estado em que se encontra» e «conforme a disponibilidade». Fazemos o possível para que funcione bem, mas não garantimos que vá funcionar sem interrupções ou erros, nem que seus dados na nuvem nunca se percam. Se algo for importante, guarde uma cópia (por exemplo, compartilhe a imagem da partida).</p>
+                <p>Na medida em que a lei permitir, a Kodera não responde por danos indiretos, nem por perda de dados, de partidas ou de histórico, de dinheiro ou de oportunidades, nem por discussões, apostas ou acordos entre jogadores. E a nossa responsabilidade total por qualquer reclamação relacionada ao App fica limitada a 100 dólares americanos.</p>
+                <p>Nada disso limita os direitos que as leis de proteção ao consumidor do seu país dão a você — por exemplo, no Brasil, na União Europeia, no Reino Unido ou na Argentina — e que não podem ser renunciados por contrato. Também não excluímos a responsabilidade que a lei não permite excluir, como a decorrente de dolo ou culpa grave, ou de morte ou lesões causadas por negligência.</p>
+
+                <h2>13. Suspensão e Encerramento</h2>
+                <p>Podemos suspender ou excluir a sua conta se você descumprir estes Termos, se a lei exigir ou se for preciso para proteger outros usuários ou o App. A menos que não seja razoável (por exemplo, num caso de abuso evidente ou se a lei nos impedir), avisamos no e-mail da sua conta e dizemos o motivo. Se achar que erramos, escreva pra gente.</p>
+                <p>Você pode sair quando quiser: exclua a sua conta pelo App ou simplesmente pare de usá-lo. Também podemos deixar de oferecer o App ou alguma das suas funções; se deixarmos de oferecer as funções com conta, avisamos com antecedência razoável para que você possa pedir uma cópia dos seus dados (veja a Política de Privacidade).</p>
+
+                <h2>14. Mudanças nestes Termos</h2>
+                <p>Podemos atualizar estes Termos, por exemplo quando o App ganhar funções. Quando isso acontecer, mudamos a data de «Última atualização» acima. Se a mudança for importante, avisamos dentro do App antes de ela entrar em vigor. Se você continuar usando o App depois dessa data, aceita os novos Termos; se não concordar, pare de usá-lo ou exclua a sua conta.</p>
+
+                <h2>15. Lei Aplicável</h2>
+                <p>Estes Termos são regidos pelas leis do Estado de Wyoming, Estados Unidos, sem aplicar suas regras de conflito de leis, e qualquer disputa é resolvida nos tribunais de Wyoming. Se você for consumidor e morar num país cujas leis dão a você uma proteção que não pode ser renunciada — como o Brasil, a União Europeia, o Reino Unido ou a Argentina —, você mantém essa proteção e pode reclamar nos tribunais do seu domicílio. Antes de chegar a um tribunal, escreva pra gente: a maioria dos problemas se resolve por e-mail.</p>
+
+                <h2>16. Disposições Gerais</h2>
+                <p>Estes Termos e a Política de Privacidade são o acordo completo entre você e a Kodera sobre o App. Se alguma cláusula for inválida, o resto continua valendo. Se em algum momento não exercermos um direito, isso não significa que renunciamos a ele. Você não pode ceder a sua conta nem estes Termos a outra pessoa; nós podemos cedê-los a quem continuar com o App (por exemplo, se a Kodera se reorganizar), e avisamos você se isso acontecer.</p>
+
+                <h2>17. Contato</h2>
+                <p>Se tiver dúvidas sobre estes Termos, escreva para:<br><a href="mailto:admin@koderastudio.com">admin@koderastudio.com</a></p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            &copy; 2026 Kodera LLC. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const html = document.documentElement;
+        // Language toggle — same button as /puntos/privacy; with three languages it cycles EN → ES → PT.
+        const LANGS = ['en', 'es', 'pt'];
+        const TITLES = { en: 'Terms and Conditions — Puntitos', es: 'Términos y Condiciones — Puntitos', pt: 'Termos e Condições — Puntitos' };
+        const NEXT = { en: 'Cambiar a español', es: 'Mudar para português', pt: 'Switch to English' };
+        const langToggle = document.getElementById('lang-toggle');
+        function setLang(lang) {
+            html.lang = lang;
+            document.title = TITLES[lang];
+            langToggle.setAttribute('aria-label', NEXT[lang]);
+        }
+        // ?lang=es|en|pt opens the page in that language (the app passes the one it is using); otherwise English, like the policy.
+        const wanted = new URLSearchParams(location.search).get('lang');
+        setLang(LANGS.includes(wanted) ? wanted : 'en');
+        langToggle.addEventListener('click', () => {
+            setLang(LANGS[(LANGS.indexOf(html.lang) + 1) % LANGS.length]);
+        });
+        // Theme toggle
+        const iconMoon = document.getElementById('icon-moon');
+        const iconSun = document.getElementById('icon-sun');
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            const isLight = html.classList.toggle('light');
+            iconMoon.style.display = isLight ? 'none' : 'block';
+            iconSun.style.display = isLight ? 'block' : 'none';
+        });
+    </script>
+
+</body>
+</html>
